@@ -10,6 +10,7 @@ html, body {
  padding:0;
  background-color: #EBEBEB;
  font-family: "Andale Mono", AndaleMono, monospace;
+ height: auto;
  }
 
 /* MISE EN FORME ENVIRONNEMENT*/
@@ -61,8 +62,8 @@ div.userBandeau {
     height:30px;
 
 
-    position: absolute;
-    bottom: 0px;
+    position: fixed;
+    bottom: 5px;
 }
 
 #message {
