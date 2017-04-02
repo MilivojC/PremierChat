@@ -1,16 +1,166 @@
-p
-{
-	background-color:blue;
+/* CHARTE GRAPHIQUE
+Couleur de fond
+#EBEBEB
+
+*/
+
+/* SUPPRESSION DES MARGES DE BASES */
+html, body {
+ margin:0;
+ padding:0;
+ background-color: #EBEBEB;
+ font-family: "Andale Mono", AndaleMono, monospace;
+ }
+
+/* MISE EN FORME ENVIRONNEMENT*/
+
+.Bandeau-tete {
+    width:100%; 
+    height:40px;
+    background-color: aqua;
+    padding:0px;
 }
 
-html
-{
-	color:red;
+.titreGrand {
+    background-color:#206281; 
+    color:#EBEBEB; 
+    padding-left: 20px;
+    font-size: 24px;
+    line-height: 0px;
+    width:70%;
+    float:left;
+    height:40px;
+     margin-right:-10px;
+
 }
 
-#zone_chat strong 
+div.userBandeau {
+        background-color:#369124; 
+    color:#EBEBEB; 
+    
+    width:30%;
+    text-align: center;
+    float:right;
+    height:40px;
+    margin-left:-10px;
+
+    
+}
+
+
+/* MISE EN FORME FORMULAIRE*/
+
+#formulaire_chat {
+    
+    /*A développer*/
+    
+}
+
+.Formulaire {
+    width:100%; 
+    height:30px;
+
+
+    position: absolute;
+    bottom: 0px;
+}
+
+#message {
+    
+    background-color:#EBEBEB; 
+    color:#206281; 
+    padding-left: 20px;
+    font-size: 16px;
+    line-height: 0px;
+    width:75%;
+    float:right;
+    height:40px;
+     margin-left:-10px;
+    border:0px;
+}
+
+#envoi_message {
+    
+        background-color:#369124; 
+    color:#EBEBEB; 
+    
+    width:20%;
+    text-align: center;
+    float:left;
+    height:40px;
+    margin-right:-10px;
+    border:0px;
+        font-size: 16px;
+    line-height: 0px;
+
+}
+
+#envoi_message:hover {
+    
+        background-color:#D58FE3; 
+    color:#EBEBEB; 
+    
+    width:20%;
+    text-align: center;
+    float:left;
+    height:40px;
+    margin-right:-10px;
+    border:0px;
+        font-size: 16px;
+    line-height: 0px;
+    cursor:pointer;
+}
+
+
+
+
+/* MISE EN FORME ZONE DE CHAT*/
+
+#zone_chat 
 {
-	color: white;
-	background-color: black;
+	color: #103040;
+
 	padding: 2px;
+    text-align: center;
 }
+
+.msg {
+    width:95%;
+    background-color: RGBA(54,145,36,0.2);
+   display:inline-block;
+    margin-top:15px;
+    padding:5px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.msgdate {
+    font-size: 8px;
+    color: red;
+
+    
+}
+
+.msguser {
+    font-size: 14px;
+    
+}
+
+.msgvrai {
+    min-height: 30px;
+    display:inline-block;
+    padding-right:10px;
+    padding-left:10px;
+    font-size: 14px;
+}
+
+.entete{
+        height: 30px;
+        display:inline-block;
+        margin-left: 10px;
+        margin-right: 20px;
+        float:left;
+
+}
+
+
