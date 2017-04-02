@@ -164,4 +164,13 @@ div.userBandeau {
 
 }
 
+@media all and (max-device-width: 480px)
+{
+    html {
+        max-width: 500px;
+    }
+    
+    /* Vos règles CSS pour les mobiles ici */
+}
+
 
