@@ -91,15 +91,19 @@ io.sockets.on('connection', function (socket, pseudo) {
        var User = Username;
        var pwd = Password;
 // ce sera interessant de mettre un ent. pour la securite a lavenir.
-        console.log(User + " est connecté avec le password : " +pwd);
-        var reponse= false;
-        if (User = "Milivoy") {
+        console.log(User + " est connecté avec le password : " + pwd);
+
+        if (User = "junk") {
             
-                reponse=true;    
+  
+                socket.emit('successAuth', {Auth : true});
+                console.log("La variable " + true + " a été transmise." );
         
         } else {
  
-     reponse=false; 
+
+            socket.emit('successAuth', {Auth : false});
+            console.log("La variable " + false + " a été transmise." );
     
 }
         
@@ -107,7 +111,7 @@ io.sockets.on('connection', function (socket, pseudo) {
         
         
         
-        socket.emit('successAuth', {Auth : reponse});
+
         
     });    
         /*
