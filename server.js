@@ -2,7 +2,7 @@
 
 var express = require('express'), 
     app = require('express')(),
-    var router = express.Router();
+    router = express.Router();
     server = require('http').createServer(app),
     io = require('socket.io').listen(server),
     ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
@@ -88,9 +88,10 @@ io.sockets.on('connection', function (socket, pseudo) {
     
     
     socket.on('connexion', function (Username, Password) {
-        User = ent.encode(Username);
-        pwd = ent.encode(Password);
-        console.log(Username + " est connecté avec le password : " +Password);
+       var User = Username;
+       var pwd = Password;
+// ce sera interessant de mettre un ent. pour la securite a lavenir.
+        console.log(User + " est connecté avec le password : " +pwd);
             router.get('/', function(req, res) {
                 res.sendFile(__dirname + '/public/index.html');
             });
