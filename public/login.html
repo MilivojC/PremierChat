@@ -4,20 +4,17 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CHATSCREEB</title>
-        <link rel="stylesheet" type="text/css" href="/style.css" />
+        <link rel="stylesheet" type="text/css" href="login.css" />
+        <!-- Ne pas oublier d'ajouter le /-->
     </head>
-
     <body>
-
-        <div class="Bandeau-tete">
-            <div class="titreLogin"><p>CHATSCREEB</p></div>
-        </div>
+        <div class="BandeauLogin"><p>CHATSCREEB</p></div>
         <div class="formLogin">
             <form action="/login" method="post" id="formulaire_login">
-                <label>Nom d'utilisateur</label>
-		<input type="text" name="Username" id="inputLogin" placeholder="Username" size="50" autofocus />
-		<label>Mot de passe</label>
-		<input type="password" name="password" id="inputLogin" size="50" />			
+                <p><div class="labelLogin"><label>Nom d'utilisateur</label></div>
+		<input type="text" name="Username" id="inputLogin" placeholder="Username" size="50" autofocus /></p></br>
+        <p><div class="labelLogin"><label>Mot de passe</label></div>
+		<input type="password" name="password" id="inputLogin" size="50" placeholder="Password" /></p></br>			
                 <input class="setLogin" type="submit" value="Login" />
             </form>
         </div>
