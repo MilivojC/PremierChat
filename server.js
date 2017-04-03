@@ -93,16 +93,17 @@ io.sockets.on('connection', function (socket, pseudo) {
 // ce sera interessant de mettre un ent. pour la securite a lavenir.
         console.log(User + " est connecté avec le password : " + pwd);
 
-        if (User == "junk") {
-              
-                socket.emit('successAuth', 1);
-                console.log("La variable " + 1 + " a été transmise." );
+        if (User = "junk") {
+            
+  
+                socket.emit('successAuth', {Auth : true});
+                console.log("La variable " + true + " a été transmise." );
         
         } else {
  
 
-            socket.emit('successAuth', 0);
-            console.log("La variable " + 0 + " a été transmise." );
+            socket.emit('successAuth', {Auth : false});
+            console.log("La variable " + false + " a été transmise." );
     
 }
         
