@@ -11,7 +11,12 @@ var express = require('express'),
 
 // Chargement de la page index.html
 app.get('/', function (req, res) {
+
+
   res.sendFile(__dirname + '/public/index.html');
+
+
+
 });
 
 //Chargement dossier des fichiers statiques
@@ -20,10 +25,6 @@ app.use(express.static(__dirname + '/public'));
 io.sockets.on('connection', function (socket, pseudo) {
     // Dès qu'on nous donne un pseudo, on le stocke en variable de session et on informe les autres personnes
    
-
-
-
-
       socket.on('nouveau_client', function(pseudo) {
         pseudo = ent.encode(pseudo);
         socket.pseudo = pseudo;
