@@ -133,6 +133,7 @@ div.userBandeau {
     padding:5px;
     border-radius: 10px;
     text-align: left;
+
 }
 
 .msgdate {
@@ -149,28 +150,92 @@ div.userBandeau {
 
 .msgvrai {
     min-height: 30px;
-    display:inline-block;
+/*    display:inline-block; */
     padding-right:10px;
     padding-left:10px;
     font-size: 14px;
+    word-wrap: break-word;
 }
 
 .entete{
-        height: 30px;
-        display:inline-block;
+        height: 60px;
+/*        display:inline-block;$/
         margin-left: 10px;
         margin-right: 20px;
         float:left;
 
 }
 
-@media all and (max-device-width: 480px)
-{
-    html {
-        max-width: 500px;
-    }
-    
-    /* Vos règles CSS pour les mobiles ici */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation : portrait) {
+
+.Bandeau-tete {
+    height:100px;
 }
 
 
+
+    .titreGrand {
+
+    font-size: 48px;
+    height:100px;
+}
+
+div.userBandeau {
+ 
+    font-size: 30px;
+    height:100px;
+
+    
+}
+
+
+.Formulaire {
+ 
+    height:150px;
+}
+
+
+
+
+
+
+#message {
+    font-size: 32px;
+    height:150px;
+}
+
+
+#envoi_message {
+        font-size: 32px;
+   height:150px;
+
+}
+
+
+.msgdate {
+    font-size: 16px;
+ 
+
+    
+}
+
+.msguser {
+    font-size: 28px;
+    
+}
+
+.msgvrai {
+
+    font-size: 28px;
+    overflow-wrap: break-word;
+    background-color: red;
+}
+
+
+
+
+    
+    /* Vos règles CSS pour les mobiles ici */
+
+
+}
