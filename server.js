@@ -92,9 +92,23 @@ io.sockets.on('connection', function (socket, pseudo) {
        var pwd = Password;
 // ce sera interessant de mettre un ent. pour la securite a lavenir.
         console.log(User + " est connecté avec le password : " +pwd);
-            router.get('/', function(req, res) {
-                res.sendFile(__dirname + '/public/index.html');
-            });
+        var reponse= false;
+        if (User = "Milivoy") {
+            
+                reponse=true;    
+        
+        } else {
+ 
+     reponse=false; 
+    
+}
+        
+        
+        
+        
+        
+        socket.emit('successAuth', {Auth : reponse});
+        
     });    
         /*
 //MILI	// CONNECTION DATABASE DB_WORK
