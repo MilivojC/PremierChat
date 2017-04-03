@@ -15,9 +15,7 @@ $('#formulaire_login').submit(function () {
 
 //Le client attend que le serveur lui dise qu'il est bien authentifie. Si il lest le client part dans la homepage sinon un message d'erreur apparait.
 socket.on('successAuth', function(Auth) {
-
-
-    if (Auth === 1) {
+    if (Auth == 1) {
 
         document.location.href = 'http://milivoy.screeb.io'
         
