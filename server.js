@@ -22,6 +22,27 @@ app.get('/', function (req, res) {
 });
 
 
+var pg = require('pg')
+		  , session = require('express-session')
+		  , pgSession = require('connect-pg-simple')(session);
+		 
+		app.use(session({
+		  store: new pgSession({
+		    pg : pg,                                  // Use global pg-module 
+		    conString : "postgres://postgres@localhost:5432/db_work", // Connect using something else than default DATABASE_URL env variable 
+
+		  }),
+		  secret: "scibesecret",
+		  resave: false,
+		  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days 
+		}));
+
+
+
+
+
+
+
 
 io.sockets.on('connection', function (socket, pseudo) {
     
@@ -93,7 +114,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 // ce sera interessant de mettre un ent. pour la securite a lavenir.
         console.log(User + " est connecté avec le password : " + pwd);
 
-        if (User = "junk") {
+        if (User === 'junk') {
             
   
                 socket.emit('successAuth', {Auth : true});
