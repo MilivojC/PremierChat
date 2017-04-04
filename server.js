@@ -137,7 +137,9 @@ io.sockets.on('connection', function (socket, pseudo, session) {
         var User = Username; // ce sera interessant de mettre un ent. pour la securite a lavenir.
         var pwd = Password; // ce sera interessant de mettre un ent. pour la securite a lavenir.
         console.log(User + " est connecté avec le password : " +pwd);
-	    sess.nom Username;
+	    sess.nom = User;
+
+
 /*          if (User == "Milivoy") {
             var reponse = 1;    
             console.log("La reponse " + reponse);
@@ -161,6 +163,7 @@ io.sockets.on('connection', function (socket, pseudo, session) {
             socket.emit('successAuth', 1);
         }
 */
+
     });
     
 });
