@@ -1,18 +1,17 @@
 // Fichier serveur pour milivoy.screeb.io
 var express = require('express'), 
     app = require('express')(),
-    server = require('http').createServer(app),
-    io = require('socket.io').listen(server),
+    server = require('http').createServer(app), //Creation serveur
+    io = require('socket.io').listen(server), // Ecouteur client/serveur
     ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
-    fs = require('fs');
+    fs = require('fs'),// Construction html
+    pg = require('pg'),// Gestion session/cookie
+    session = require('express-session'),// Gestion session/cookie
+    pgSession = require('connect-pg-simple')(session);// Gestion session/cookie
 
 app.use(express.static(__dirname + '/public')); //Chargement dossier des fichiers statiques
 
 // Suivi de session
-var pg = require('pg')
-  , session = require('express-session')
-  , pgSession = require('connect-pg-simple')(session);
-
 app.use(session({
       store: new pgSession({
         pg : pg,                                  // Use global pg-module 
@@ -25,9 +24,56 @@ app.use(session({
       cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 day
 }));
 
-// Chargement de la page login.html
+
+
+// Authentication and Authorization Middleware
+var auth = function(req, res, next) {
+  if (req.session && req.session.user === "amy" && req.session.admin)
+    return next();
+  else
+    return res.sendStatus(401);
+};
+
+
+
+// Chargement de la page login.html | Login endpoint
 app.get('/login', function (req, res) {
-  res.sendFile(__dirname + '/public/login.html');
+    
+    res.sendFile(__dirname + '/public/login.html');
+    io.sockets.on('connection', function (socket, pseudo) {
+        
+             // ---- LOGIN DE L'UTILISATEUR  
+        socket.on('connexion', function (Username, Password) {
+            // On recoit ce qu'envoi le formulaire de login    
+            var User = Username; // ce sera interessant de mettre un ent. pour la securite a lavenir.
+            var pwd = Password; // ce sera interessant de mettre un ent. pour la securite a lavenir.
+            console.log(User + " est connecté avec le password : " +pwd);
+ /*          if (User == "Milivoy") {
+                var reponse = 1;    
+                console.log("La reponse " + reponse);
+	       } 
+        
+            else {
+                var reponse = 0; 
+	           console.log("La reponse " + reponse);
+            };
+              
+            //On envoi la réponse au client pour qu'il sache si cela s'est passe correctement
+            socket.emit('successAuth', reponse);   */             
+            if ( User != "Milivoy" || pwd != "haha") {
+                socket.emit('successAuth', 0);
+                res.send('login failed');    
+            } else if(User == "amy" || pwd == "haha") {
+                req.session.user = "amy";
+                req.session.admin = true;
+                res.send("login success!");
+                socket.emit('successAuth', 1);
+            }
+       
+        });
+
+    });
+    
 });
 
 // Chargement de la page index.html
@@ -85,28 +131,7 @@ io.sockets.on('connection', function (socket, pseudo) {
     
 // ECOUTE CONCERNANT LA CONNEXION SECURISEE
     
- // ---- LOGIN DE L'UTILISATEUR  
-    socket.on('connexion', function (Username, Password) {
-        // On recoit ce qu'envoi le formulaire de login    
-        var User = Username; // ce sera interessant de mettre un ent. pour la securite a lavenir.
-        var pwd = Password; // ce sera interessant de mettre un ent. pour la securite a lavenir.
-        console.log(User + " est connecté avec le password : " +pwd);
-        if (User == "Milivoy") {
-           var reponse = 1;    
-        console.log("La reponse " + reponse);
-	} 
-        
-        else {
-            var reponse = 0; 
-	console.log("La reponse " + reponse);
-        };
-        
-        //On envoi la réponse au client pour qu'il sache si cela s'est passe correctement
-        socket.emit('successAuth', reponse);        
-    });    
+    
 });
-
-
-
 
 server.listen(8080, "127.0.0.1");
