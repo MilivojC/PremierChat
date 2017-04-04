@@ -25,64 +25,34 @@ app.use(session({
 }));
 
 
-
+/*
 // Authentication and Authorization Middleware
-var auth = function(req, res, next) {
+var authe = function(req, res, next) {
   if (req.session && req.session.user === "amy" && req.session.admin)
     return next();
   else
     return res.sendStatus(401);
 };
-
+*/
 
 
 // Chargement de la page login.html | Login endpoint
-app.get('/login', function (req, res) {
-    
-    res.sendFile(__dirname + '/public/login.html');
-    io.sockets.on('connection', function (socket, pseudo) {
-        
-             // ---- LOGIN DE L'UTILISATEUR  
-        socket.on('connexion', function (Username, Password) {
-            // On recoit ce qu'envoi le formulaire de login    
-            var User = Username; // ce sera interessant de mettre un ent. pour la securite a lavenir.
-            var pwd = Password; // ce sera interessant de mettre un ent. pour la securite a lavenir.
-            console.log(User + " est connecté avec le password : " +pwd);
- /*          if (User == "Milivoy") {
-                var reponse = 1;    
-                console.log("La reponse " + reponse);
-	       } 
-        
-            else {
-                var reponse = 0; 
-	           console.log("La reponse " + reponse);
-            };
-              
-            //On envoi la réponse au client pour qu'il sache si cela s'est passe correctement
-            socket.emit('successAuth', reponse);   */             
-            if ( User != "Milivoy" || pwd != "haha") {
-                socket.emit('successAuth', 0);
-                res.send('login failed');    
-            } else if(User == "amy" || pwd == "haha") {
-                req.session.user = "amy";
-                req.session.admin = true;
-                res.send("login success!");
-                socket.emit('successAuth', 1);
-            }
-       
-        });
-
-    });
-    
+app.get('/login', function (req, res) {  
+    res.sendFile(__dirname + '/public/login.html'); 
+//    req.session.save(function(err) { // fonction pour sauver la session dans le store et l'utiliser dans le socket
+  });
 });
 
 // Chargement de la page index.html
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
-/*
+
 //Ouverture de l'écoute io.sockets
-io.sockets.on('connection', function (socket, pseudo) {
+io.sockets.on('connection', function (socket, pseudo, session) {
+    
+console.log("Je suis dans io.socket " + socket.session.secret);
+    
     
 // ECOUTE CONCERNANT LE CHAT
 
@@ -131,7 +101,37 @@ io.sockets.on('connection', function (socket, pseudo) {
     
 // ECOUTE CONCERNANT LA CONNEXION SECURISEE
     
+// ---- LOGIN DE L'UTILISATEUR  
+    socket.on('connexion', function (Username, Password) {
+        // On recoit ce qu'envoi le formulaire de login    
+        var User = Username; // ce sera interessant de mettre un ent. pour la securite a lavenir.
+        var pwd = Password; // ce sera interessant de mettre un ent. pour la securite a lavenir.
+        console.log(User + " est connecté avec le password : " +pwd);
+/*          if (User == "Milivoy") {
+            var reponse = 1;    
+            console.log("La reponse " + reponse);
+       } 
+
+        else {
+            var reponse = 0; 
+           console.log("La reponse " + reponse);
+        };
+
+        //On envoi la réponse au client pour qu'il sache si cela s'est passe correctement
+        socket.emit('successAuth', reponse);   */             
+        if ( User != "Milivoy" || pwd != "haha") {
+            socket.emit('successAuth', 0);
+               
+        } else if(User == "Milivoy" || pwd == "haha") {
+          //  app.session.user
+        //    req.session.user = "amy";
+        //    req.session.admin = true;
+          //  res.send("login success!");
+            socket.emit('successAuth', 1);
+        }
+
+    });
     
 });
-*/
+
 server.listen(8080, "127.0.0.1");
