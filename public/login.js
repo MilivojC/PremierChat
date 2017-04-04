@@ -9,7 +9,7 @@ $('#formulaire_login').submit(function () {
     socket.emit('connexion', Username, Password); // Transmet les identifiants au serveurs
 
     $('#Username').val('').focus(); 
-    $('#password').val('') // Vide les zones de renseignement et remet le focus sur identifiant
+    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
     return false; // Permet de bloquer l'envoi "classique" du formulaire
 });
 
@@ -20,9 +20,9 @@ socket.on('successAuth', function(Auth) {
     } else {
      $('#console').prepend('<p style="color:red;"> Lauthentification a échoué</p>');
     };
-})
+});
 
-socket.on('UPDATE', function(ok)){
-          
-          document.reload();
-          };
+socket.on('UPDATE', function(ok){
+          document.location.href = 'http://milivoy.screeb.io/login';
+   
+          });

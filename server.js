@@ -45,15 +45,17 @@ var authe = function(req, res, next) {
 // Chargement de la page login.html | Login endpoint
 app.get('/login', function (req, res) {  
     sess = req.session;
+	console.log(sess);
 	if(sess.nom) {
 /*
 * This line check Session existence.
 * If it existed will do some action.
 */
-    res.sendFile(__dirname + '/public/index.html'); 
+    res.redirect('http://milivoy.screeb.io'); 
 		console.log(sess.nom);
 }
 else {
+	console.log("On est arrive a la negation sur login : " + sess.cookie.nom);
 	res.sendFile(__dirname + '/public/login.html');
 }
 	 
