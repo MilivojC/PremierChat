@@ -11,6 +11,7 @@
   "author": "Milivoj <mateo21@email.com>",
   "description": "Un super Chat temps réel avec socket.io",
   "devDependencies": {
+    "body-parser": "^1.17.1",
     "connect-pg-simple": "^3.1.2",
     "express-session": "^1.15.2"
   }
