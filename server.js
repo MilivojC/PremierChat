@@ -57,8 +57,6 @@ else {
 	res.sendFile(__dirname + '/public/login.html');
 }
 	 
-    
-  });
 });
 
 // Chargement de la page index.html
