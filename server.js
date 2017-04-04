@@ -89,30 +89,19 @@ io.sockets.on('connection', function (socket, pseudo) {
         var pwd = Password; // ce sera interessant de mettre un ent. pour la securite a lavenir.
         console.log(User + " est connecté avec le password : " +pwd);
         if (User == "Milivoy") {
-            reponse=1;    
-        } 
+           var reponse = 1;    
+        console.log("La reponse " + reponse);
+	} 
         
         else {
-            reponse=0; 
+            var reponse = 0; 
+	console.log("La reponse " + reponse);
         };
         
         //On envoi la réponse au client pour qu'il sache si cela s'est passe correctement
-        socket.emit('successAuth', {Auth : reponse});        
+        socket.emit('successAuth', reponse);        
     });    
-    
-//MILI	// CONNECTION DATABASE DB_WORK
-	//Code pour l'enregistrement des messages dans la base de donnée
-	var pg = require('pg');
-	var conString = "postgres://postgres@localhost:5432/db_work";
-
-	var client = new pg.Client(conString);
-	client.connect();
-	client.query("INSERT INTO messages(utilisateur, message, date) VALUES($1, $2, $3)",[ socket.pseudo, message, date]);
-//	console.log("Message correctement ajouté à la base de donnée");
-
-//MILI	FIN DE L'AJOUT
-
-     
+      
 
 
 });
