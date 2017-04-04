@@ -39,7 +39,7 @@ var authe = function(req, res, next) {
 // Chargement de la page login.html | Login endpoint
 app.get('/login', function (req, res) {  
     res.sendFile(__dirname + '/public/login.html'); 
-//    req.session.save(function(err) { // fonction pour sauver la session dans le store et l'utiliser dans le socket
+    req.session.save(function(err) { // fonction pour sauver la session dans le store et l'utiliser dans le socket
   });
 });
 
@@ -51,7 +51,7 @@ app.get('/', function (req, res) {
 //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo, session) {
     
-console.log("Je suis dans io.socket " + socket.session.secret);
+console.log(store.session);
     
     
 // ECOUTE CONCERNANT LE CHAT
