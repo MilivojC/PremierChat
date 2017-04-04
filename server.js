@@ -64,6 +64,8 @@ else {
 // Chargement de la page index.html
 app.get('/', function (req, res) {
 	sess = req.session;
+	console.log("app.get sur  home est active")
+	console.log(sess)
 	if(sess.nom) {
 
 		/*
