@@ -7,6 +7,7 @@ var express = require('express'),
     fs = require('fs'),// Construction html
     pg = require('pg'),// Gestion session/cookie
     session = require('express-session'),// Gestion session/cookie
+    bodyParser = require('body-parser'),
     pgSession = require('connect-pg-simple')(session);// Gestion session/cookie
 
 app.use(express.static(__dirname + '/public')); //Chargement dossier des fichiers statiques
@@ -24,6 +25,11 @@ app.use(session({
       cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 day
 }));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+var sess;
+
 
 /*
 // Authentication and Authorization Middleware
@@ -38,20 +44,44 @@ var authe = function(req, res, next) {
 
 // Chargement de la page login.html | Login endpoint
 app.get('/login', function (req, res) {  
-    res.sendFile(__dirname + '/public/login.html'); 
-    req.session.save(function(err) { // fonction pour sauver la session dans le store et l'utiliser dans le socket
+    sess = req.session;
+	if(sess.nom) {
+/*
+* This line check Session existence.
+* If it existed will do some action.
+*/
+    res.sendFile(__dirname + '/public/index.html'); 
+		console.log(sess.nom);
+}
+else {
+	res.sendFile(__dirname + '/public/login.html');
+}
+	 
+    
   });
 });
 
 // Chargement de la page index.html
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/public/index.html');
+	sess = req.session;
+	if(sess.nom) {
+
+		/*
+* This line check Session existence.
+* If it existed will do some action.
+*/
+ res.sendFile(__dirname + '/public/index.html');   
+		console.log(sess.nom);
+}
+else {
+	res.sendFile(__dirname + '/public/login.html');
+}
 });
 
 //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo, session) {
     
-console.log(store.session);
+
     
     
 // ECOUTE CONCERNANT LE CHAT
@@ -107,6 +137,7 @@ console.log(store.session);
         var User = Username; // ce sera interessant de mettre un ent. pour la securite a lavenir.
         var pwd = Password; // ce sera interessant de mettre un ent. pour la securite a lavenir.
         console.log(User + " est connecté avec le password : " +pwd);
+	    sess.nom Username;
 /*          if (User == "Milivoy") {
             var reponse = 1;    
             console.log("La reponse " + reponse);
@@ -119,7 +150,7 @@ console.log(store.session);
 
         //On envoi la réponse au client pour qu'il sache si cela s'est passe correctement
         socket.emit('successAuth', reponse);   */             
-        if ( User != "Milivoy" || pwd != "haha") {
+  /*      if ( User != "Milivoy" || pwd != "haha") {
             socket.emit('successAuth', 0);
                
         } else if(User == "Milivoy" || pwd == "haha") {
@@ -129,7 +160,7 @@ console.log(store.session);
           //  res.send("login success!");
             socket.emit('successAuth', 1);
         }
-
+*/
     });
     
 });
