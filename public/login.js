@@ -21,3 +21,8 @@ socket.on('successAuth', function(Auth) {
      $('#console').prepend('<p style="color:red;"> Lauthentification a échoué</p>');
     };
 })
+
+socket.on('UPDATE', function(ok)){
+          
+          document.reload();
+          };

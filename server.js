@@ -79,7 +79,11 @@ else {
 //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo, session) {
     
+    
+    
 
+    
+    
     
     
 // ECOUTE CONCERNANT LE CHAT
@@ -136,8 +140,11 @@ io.sockets.on('connection', function (socket, pseudo, session) {
         var pwd = Password; // ce sera interessant de mettre un ent. pour la securite a lavenir.
         console.log(User + " est connecté avec le password : " +pwd);
 	    sess.nom = User;
+        console.log(sess);
 
-
+        socket.emit('UPDATE', 1);
+        
+        
 /*          if (User == "Milivoy") {
             var reponse = 1;    
             console.log("La reponse " + reponse);
