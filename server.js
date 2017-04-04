@@ -80,7 +80,7 @@ app.get('/login', function (req, res) {
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
-
+/*
 //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo) {
     
@@ -133,5 +133,5 @@ io.sockets.on('connection', function (socket, pseudo) {
     
     
 });
-
+*/
 server.listen(8080, "127.0.0.1");
