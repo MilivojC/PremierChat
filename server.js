@@ -33,6 +33,7 @@ var sess; // variable de session
 var authe = function(req, res, next) {
   if (req.session && req.session.user === "Milivoy")
     return next();
+    console.log("Authentification reussie");
   else
     return res.sendStatus(401);
 };
@@ -61,7 +62,7 @@ app.get('/login', dejauthe, function (req, res) {
         return next();
 });
 
-app.get('/', authe, function (req, res) {
+app.get('/', authe(), function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
@@ -71,7 +72,7 @@ io.sockets.on('connection', function (socket, pseudo, session) {
 // ECOUTE CONCERNANT LE CHAT
 
 // ---- CONNEXION AU CHAT DUN NOUVEAU CLIENT
-    socket.on('ouvertureChat', function() {
+    socket.on('ouvertureChat', authe, function() {
         var nomUtilisateur = sess.user;
 //        pseudo = ent.encode(pseudo);
 //       socket.pseudo = pseudo;
