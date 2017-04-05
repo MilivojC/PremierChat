@@ -30,7 +30,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 var sess;
 
-
 /*
 // Authentication and Authorization Middleware
 var authe = function(req, res, next) {
@@ -41,43 +40,44 @@ var authe = function(req, res, next) {
 };
 */
 
-
+/*
 // Chargement de la page login.html | Login endpoint
 app.get('/login', function (req, res) {  
     sess = req.session;
+	console.log("je test si on peut recupere la variable :");
+	console.log("ICI PROCHAINE VARIABLE A TESTER");
+	console.log("cest tout ce quon a pu recupere...");
+	console.log("Je suis dans l'app.get sur login");
 	console.log(sess);
 	if(sess.nom) {
-/*
-* This line check Session existence.
-* If it existed will do some action.
-*/
+
     res.redirect('http://milivoy.screeb.io'); 
-		console.log(sess.nom);
+		console.log("Je suis dans la parti sess.nom est vrai sur login");
 }
 else {
 	console.log("On est arrive a la negation sur login : " + sess.cookie.nom);
 	res.sendFile(__dirname + '/public/login.html');
 }
+
 	 
 });
-
+*/
 // Chargement de la page index.html
 app.get('/', function (req, res) {
-	sess = req.session;
-	console.log("app.get sur  home est active")
-	console.log(sess)
-	if(sess.nom) {
 
-		/*
-* This line check Session existence.
-* If it existed will do some action.
-*/
+	console.log("app.get sur  home est active");
+	console.log(req.session);
+
+res.sendFile(__dirname + '/public/index.html');
+
+/*	if(sess.nom) {
+
  res.sendFile(__dirname + '/public/index.html');   
 		console.log(sess.nom);
 }
 else {
 	res.sendFile(__dirname + '/public/login.html');
-}
+}*/
 });
 
 //Ouverture de l'écoute io.sockets
@@ -145,7 +145,9 @@ io.sockets.on('connection', function (socket, pseudo, session) {
         console.log(User + " est connecté avec le password : " +pwd);
 	    sess.nom = User;
         console.log(sess);
-
+	console.log("on est arrive dans le socket et on regarde tout de suite -->");
+	console.log(sess);
+	console.log("<--")
         socket.emit('UPDATE', 1);
         
         
