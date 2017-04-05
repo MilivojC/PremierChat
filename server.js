@@ -33,16 +33,18 @@ var sess; // variable de session
 var authe = function(req, res, next) {
     if (req.session && req.session.user === "Milivoy"){
         console.log("Authentification reussie");
-        return next();}
+        next();}
     else {
-    return res.redirect('/login');}
+        res.redirect('/login');}
 };
 
 var dejauthe = function(req, res, next) {
-  if (req.session.user != "Milivoy")
-    return next();
-  else
-    return res.redirect('/');
+  if (req.session.user != "Milivoy") {
+      next();
+  }
+  else {
+      res.redirect('/');
+  }
 };
 
 app.use(authe);
