@@ -35,7 +35,7 @@ var authe = function(req, res, next) {
         console.log("Authentification reussie");
         return next();}
     else {
-    return res.sendStatus(401);}
+    return res.redirect('/login');}
 };
 
 var dejauthe = function(req, res, next) {
@@ -46,6 +46,7 @@ var dejauthe = function(req, res, next) {
 };
 
 app.use(authe);
+app.use(dejauthe);
 
 // Chargement de la page login.html | Login endpoint
 app.get('/login', dejauthe, function (req, res) {  
