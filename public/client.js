@@ -1,11 +1,25 @@
 // Connexion    socket.io
 var socket = io.connect('http://milivoy.screeb.io');
-
+/*
 // On demande le pseudo, on l'envoie au serveur et on l'affiche dans le titre
 var pseudo = prompt('Quel est votre pseudo ?');
 socket.emit('nouveau_client', pseudo);
 document.title = pseudo + ' - ' + document.title;
 document.getElementById("user").innerHTML = pseudo;
+*/
+
+//On previent au socket quon rentre sur le chat
+socket.emit('ouvertureChat');
+// Le serveur nous repond et renvoi les identifiants qui nous permettent de parametrer la page
+socket.on('acceptationChat', function(nomUtilisateur){
+   
+    document.title = nomUtilisateur + ' - ' + document.title;
+    document.getElementById("user").innerHTML = nomUtilisateur;    
+});
+
+
+
+
 
 // Quand on re  oit un message, on l'ins  re dans la page
 socket.on('message', function (data) {

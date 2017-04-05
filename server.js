@@ -26,39 +26,44 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-var sess;
+var sess; // variable de session
 
-/*
+
 // Authentication and Authorization Middleware
 var authe = function(req, res, next) {
-  if (req.session && req.session.user === "amy" && req.session.admin)
+  if (req.session && req.session.user === "Milivoy")
     return next();
   else
     return res.sendStatus(401);
 };
-*/
+
+var dejauthe = function(req, res, next) {
+  if (!req.session || req.session.user != "Milivoy")
+    return next();
+  else
+    return res.redirect('/');
+};
+
 
 
 // Chargement de la page login.html | Login endpoint
-app.get('/login', function (req, res) {  
-res.sendFile(__dirname + '/public/login.html');
+app.get('/login', dejauthe, function (req, res) {  
+
+    res.sendFile(__dirname + '/public/login.html');    
 
 }).post('/login', function(req, res) {
 	req.session.user = req.body.Username;
 	req.session.pass = req.body.password;
-	console.log(req.body.Username);
-	console.log(req.session);
-	console.log("On est dans le post de login");
-	res.redirect('/');
-
+	sess = req.session;
+    if (req.session.user == "Milivoy" )
+        return res.redirect('/');
+    else 
+        return next();
 });
 
-/*.get('/', function (req, res) {
-
-	console.log("app.get sur  home est active");
-	console.log(sess.nom);
+app.get('/', authe, function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
-});*/
+});
 
 //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo, session) {
@@ -66,10 +71,12 @@ io.sockets.on('connection', function (socket, pseudo, session) {
 // ECOUTE CONCERNANT LE CHAT
 
 // ---- CONNEXION AU CHAT DUN NOUVEAU CLIENT
-    socket.on('nouveau_client', function(pseudo) {
-        pseudo = ent.encode(pseudo);
-        socket.pseudo = pseudo;
-        socket.broadcast.emit('nouveau_client', pseudo);
+    socket.on('ouvertureChat', function() {
+        var nomUtilisateur = sess.user;
+//        pseudo = ent.encode(pseudo);
+//       socket.pseudo = pseudo;
+        socket.emit('acceptationChat', nomUtilisateur)
+        socket.broadcast.emit('nouveau_client', nomUtilisateur);
 	   //Code pour la recuperation des messages dans la base de donnée
         var pg = require('pg');
         var conString = "postgres://postgres@localhost:5432/db_work";
@@ -110,7 +117,9 @@ io.sockets.on('connection', function (socket, pseudo, session) {
     
 // ECOUTE CONCERNANT LA CONNEXION SECURISEE
     
-// ---- LOGIN DE L'UTILISATEUR  
+
+    /*
+    // ---- LOGIN DE L'UTILISATEUR  
     socket.on('connexion', function (Username, Password) {
         // On recoit ce qu'envoi le formulaire de login    
         var User = Username; // ce sera interessant de mettre un ent. pour la securite a lavenir.
@@ -118,33 +127,9 @@ io.sockets.on('connection', function (socket, pseudo, session) {
         console.log(User + " est connecté avec le password : " +pwd);
 //        socket.emit('UPDATE', 1);
         
-        
-/*          if (User == "Milivoy") {
-            var reponse = 1;    
-            console.log("La reponse " + reponse);
-       } 
+*/        
 
-        else {
-            var reponse = 0; 
-           console.log("La reponse " + reponse);
-        };
-
-        //On envoi la réponse au client pour qu'il sache si cela s'est passe correctement
-        socket.emit('successAuth', reponse);   */             
-  /*      if ( User != "Milivoy" || pwd != "haha") {
-            socket.emit('successAuth', 0);
-               
-        } else if(User == "Milivoy" || pwd == "haha") {
-          //  app.session.user
-        //    req.session.user = "amy";
-        //    req.session.admin = true;
-          //  res.send("login success!");
-            socket.emit('successAuth', 1);
-        }
-*/
 
     });
     
-});
-
 server.listen(8080, "127.0.0.1");
