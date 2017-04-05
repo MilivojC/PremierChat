@@ -5,6 +5,7 @@ var express = require('express'),
     io = require('socket.io').listen(server), // Ecouteur client/serveur
     ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
     fs = require('fs'),// Construction html
+
     pg = require('pg'),// Gestion session/cookie
     session = require('express-session'),// Gestion session/cookie
     bodyParser = require('body-parser'),
@@ -42,23 +43,22 @@ var authe = function(req, res, next) {
 app.get('/login', function (req, res) {  
 res.sendFile(__dirname + '/public/login.html');
 
+}).post('/login', function(req, res) {
+	req.session.user = req.body.Username;
+	req.session.pass = req.body.password;
+	console.log(req.body.Username);
+	console.log(req.session);
+	console.log("On est dans le post de login");
+	res.redirect('/');
 
 });
 
-app.post('/login', function(request, response) {
-	sess = req.session;
-	sess.user = request.body.Username;
-	sess.pass = request.body.password;
-	console.log(sess);
-
-	res.sendFile(__dirname + '/public/index.html');
-
-}).get('/', function (req, res) {
+/*.get('/', function (req, res) {
 
 	console.log("app.get sur  home est active");
 	console.log(sess.nom);
     res.sendFile(__dirname + '/public/index.html');
-});
+});*/
 
 //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo, session) {
@@ -116,7 +116,7 @@ io.sockets.on('connection', function (socket, pseudo, session) {
         var User = Username; // ce sera interessant de mettre un ent. pour la securite a lavenir.
         var pwd = Password; // ce sera interessant de mettre un ent. pour la securite a lavenir.
         console.log(User + " est connecté avec le password : " +pwd);
-        socket.emit('UPDATE', 1);
+//        socket.emit('UPDATE', 1);
         
         
 /*          if (User == "Milivoy") {

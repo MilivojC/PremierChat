@@ -2,14 +2,14 @@
 var socket = io.connect('http://milivoy.screeb.io');
 
 
-$('#formulaire_login').submit(function () {
-    var Username = $('#Username').val(),
-        Password = $('#password').val();
+//$('#formulaire_login').submit(function () {
+//    var Username = $('#Username').val(),
+//        Password = $('#password').val();
     
-    socket.emit('connexion', Username, Password); // Transmet les identifiants au serveurs
+//    socket.emit('connexion', Username, Password); // Transmet les identifiants au serveurs
 
-    $('#Username').val('').focus(); 
-    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
+//    $('#Username').val('').focus(); 
+//    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
 //    return false; // Permet de bloquer l'envoi "classique" du formulaire
 });
 
