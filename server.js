@@ -31,11 +31,11 @@ var sess; // variable de session
 
 // Authentication and Authorization Middleware
 var authe = function(req, res, next) {
-  if (req.session && req.session.user === "Milivoy")
-    return next();
-    console.log("Authentification reussie");
-  else
-    return res.sendStatus(401);
+    if (req.session && req.session.user === "Milivoy"){
+        console.log("Authentification reussie");
+        return next();}
+    else {
+    return res.sendStatus(401);}
 };
 
 var dejauthe = function(req, res, next) {
