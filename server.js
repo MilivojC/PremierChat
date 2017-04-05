@@ -37,44 +37,27 @@ var authe = function(req, res, next) {
 };
 */
 
-/*
+
 // Chargement de la page login.html | Login endpoint
 app.get('/login', function (req, res) {  
-    sess = req.session;
-	console.log("je test si on peut recupere la variable :");
-	console.log("ICI PROCHAINE VARIABLE A TESTER");
-	console.log("cest tout ce quon a pu recupere...");
-	console.log("Je suis dans l'app.get sur login");
-	console.log(sess);
-	if(sess.nom) {
+res.sendFile(__dirname + '/public/login.html');
 
-    res.redirect('http://milivoy.screeb.io'); 
-		console.log("Je suis dans la parti sess.nom est vrai sur login");
-}
-else {
-	console.log("On est arrive a la negation sur login : " + sess.cookie.nom);
-	res.sendFile(__dirname + '/public/login.html');
-}
 
-	 
 });
-*/
-// Chargement de la page index.html
-app.get('/', function (req, res) {
+
+app.post('/login', function(request, response) {
+	sess = req.session;
+	sess.user = request.body.Username;
+	sess.pass = request.body.password;
+	console.log(sess);
+
+	res.sendFile(__dirname + '/public/index.html');
+
+}).get('/', function (req, res) {
 
 	console.log("app.get sur  home est active");
-	console.log(req.session);
+	console.log(sess.nom);
     res.sendFile(__dirname + '/public/index.html');
-
-
-/*	if(sess.nom) {
-
- res.sendFile(__dirname + '/public/index.html');   
-		console.log(sess.nom);
-}
-else {
-	res.sendFile(__dirname + '/public/login.html');
-}*/
 });
 
 //Ouverture de l'écoute io.sockets
@@ -133,11 +116,6 @@ io.sockets.on('connection', function (socket, pseudo, session) {
         var User = Username; // ce sera interessant de mettre un ent. pour la securite a lavenir.
         var pwd = Password; // ce sera interessant de mettre un ent. pour la securite a lavenir.
         console.log(User + " est connecté avec le password : " +pwd);
-	    sess.nom = User;
-        console.log(sess);
-	console.log("on est arrive dans le socket et on regarde tout de suite -->");
-	console.log(sess);
-	console.log("<--")
         socket.emit('UPDATE', 1);
         
         

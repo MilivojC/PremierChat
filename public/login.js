@@ -10,7 +10,7 @@ $('#formulaire_login').submit(function () {
 
     $('#Username').val('').focus(); 
     $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
-    return false; // Permet de bloquer l'envoi "classique" du formulaire
+//    return false; // Permet de bloquer l'envoi "classique" du formulaire
 });
 
 //Le client attend que le serveur lui dise qu'il est bien authentifie. Si il lest le client part dans la homepage sinon un message d'erreur apparait.
