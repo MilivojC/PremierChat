@@ -71,7 +71,7 @@ app.get('/login', dejauthe, function (req, res) {
         return next();
 });
 
-app.get('/', authe(), function (req, res) {
+app.get('/', authe, function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
