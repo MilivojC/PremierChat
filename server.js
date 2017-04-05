@@ -38,6 +38,15 @@ var authe = function(req, res, next) {
     return res.sendStatus(401);}
 };
 
+var autheIo = function(req, res, next) {
+    if (sess && sess.user === "Milivoy"){
+        console.log("Authentification reussie");
+        return next();}
+    else {
+    return res.sendStatus(401);}
+};
+
+
 var dejauthe = function(req, res, next) {
   if (!req.session || req.session.user != "Milivoy")
     return next();
@@ -72,7 +81,7 @@ io.sockets.on('connection', function (socket, pseudo, session) {
 // ECOUTE CONCERNANT LE CHAT
 
 // ---- CONNEXION AU CHAT DUN NOUVEAU CLIENT
-    socket.on('ouvertureChat', authe, function() {
+    socket.on('ouvertureChat', autheIo, function() {
         var nomUtilisateur = sess.user;
 //        pseudo = ent.encode(pseudo);
 //       socket.pseudo = pseudo;
