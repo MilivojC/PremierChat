@@ -38,13 +38,14 @@ var authe = function(req, res, next) {
     return res.sendStatus(401);}
 };
 
-var autheIo = function(req, res, next) {
+var autheIo = function() {
     if (sess && sess.user === "Milivoy"){
         console.log("Authentification reussie");
         next();
     }
     else {
-    res.sendStatus(401);
+    console.log("Echec Authentification")
+        socket.emit('acceptationChat', "Renard")
     }
 };
 
