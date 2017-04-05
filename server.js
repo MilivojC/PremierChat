@@ -41,9 +41,11 @@ var authe = function(req, res, next) {
 var autheIo = function(req, res, next) {
     if (sess && sess.user === "Milivoy"){
         console.log("Authentification reussie");
-        return next();}
+        next();
+    }
     else {
-    return res.sendStatus(401);}
+    res.sendStatus(401);
+    }
 };
 
 
