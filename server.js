@@ -38,18 +38,6 @@ var authe = function(req, res, next) {
     return res.sendStatus(401);}
 };
 
-var autheIo = function() {
-    if (sess && sess.user === "Milivoy"){
-        console.log("Authentification reussie");
-        next();
-    }
-    else {
-    console.log("Echec Authentification")
-        socket.emit('acceptationChat', "Renard")
-    }
-};
-
-
 var dejauthe = function(req, res, next) {
   if (!req.session || req.session.user != "Milivoy")
     return next();
@@ -84,7 +72,12 @@ io.sockets.on('connection', function (socket, pseudo, session) {
 // ECOUTE CONCERNANT LE CHAT
 
 // ---- CONNEXION AU CHAT DUN NOUVEAU CLIENT
-    socket.on('ouvertureChat', autheIo, function() {
+    socket.on('ouvertureChat', function() {
+ 
+  
+    if (sess && sess.user === "Milivoy"){
+        console.log("Authentification reussie");
+        
         var nomUtilisateur = sess.user;
 //        pseudo = ent.encode(pseudo);
 //       socket.pseudo = pseudo;
@@ -111,6 +104,12 @@ io.sockets.on('connection', function (socket, pseudo, session) {
 	query.on('end', function() {
 	    client2.end();
 	});
+          
+    }
+    else {
+    console.log("Echec Authentification")
+        socket.emit('acceptationChat', "Renard")
+    }
 
     });
 
