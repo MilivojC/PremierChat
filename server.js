@@ -9,9 +9,7 @@ var express = require('express'),
     session = require('express-session'),// Gestion session/cookie
     bodyParser = require('body-parser'),
     pgSession = require('connect-pg-simple')(session);// Gestion session/cookie
-
 app.use(express.static(__dirname + '/public')); //Chargement dossier des fichiers statiques
-
 // Suivi de session
 app.use(session({
       store: new pgSession({
@@ -24,7 +22,6 @@ app.use(session({
       saveUninitialized: true,
       cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 day
 }));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -67,8 +64,8 @@ app.get('/', function (req, res) {
 
 	console.log("app.get sur  home est active");
 	console.log(req.session);
+    res.sendFile(__dirname + '/public/index.html');
 
-res.sendFile(__dirname + '/public/index.html');
 
 /*	if(sess.nom) {
 
@@ -82,13 +79,6 @@ else {
 
 //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo, session) {
-    
-    
-    
-
-    
-    
-    
     
 // ECOUTE CONCERNANT LE CHAT
 
