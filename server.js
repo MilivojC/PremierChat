@@ -39,7 +39,7 @@ var authe = function(req, res, next) {
 };
 
 var dejauthe = function(req, res, next) {
-  if (!req.session || req.session.user != "Milivoy")
+  if (req.session.user != "Milivoy")
     return next();
   else
     return res.redirect('/');
