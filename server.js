@@ -57,8 +57,6 @@ var dejauthe = function(req, res, next) {
   }
 };
 
-app.use(authe);
-app.use(dejauthe);
 
 // Chargement de la page login.html | Login endpoint
 app.get('/login', dejauthe, function (req, res) {  
