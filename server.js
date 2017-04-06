@@ -13,6 +13,8 @@ var express = require('express'),
     // Ajout pour récupération de POST
     var multer = require('multer'); // v1.0.5
     var upload = multer(); // for parsing multipart/form-data
+    var AuthMili = require('../AuthMili'); // Fait appel à AuthMili.js (dossier parent)
+
 
 // Suivi de session
 app.use(session({
@@ -107,7 +109,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 app.get('/home', function (req, res) {    
  
     sess = req.session
-    
+
     if (req.session.user === "Milivoy"){
         console.log("Authentification reussie dans authe");
         
@@ -161,6 +163,9 @@ app.post('/login', upload.array(), function(req, res) {
     console.log(req.session);
     console.log(req.body.Username);
 	req.session.pass = req.body.password;
+    
+    AuthMili.verif(req.body.Username, req.body.password);
+    
 	sess = req.session;
     if (req.session.user === "Milivoy" ){
         return res.redirect('/home');
