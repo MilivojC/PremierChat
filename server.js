@@ -145,17 +145,23 @@ app.get('/login', function (req, res) {
       res.sendFile(__dirname + '/public/login.html');
   }
        
+    
+    
+
+    
+    
 });
 
 app.post('/login', function(req, res) {
 	req.session.user = req.body.Username;
     console.log("Acces au post dans le serveur");
+    console.log(req.session);
+    console.log(req.body.Username);
 	req.session.pass = req.body.password;
 	sess = req.session;
     if (req.session.user === "Milivoy" ){
-        return res.redirect('/');
+        return res.redirect('/home');
     }
-
 });
 
 
