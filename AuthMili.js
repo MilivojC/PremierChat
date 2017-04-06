@@ -34,7 +34,7 @@ function ver(x, y){
     console.log(23);
   console.log(ver(nom, pass)); 
     console.log(32);
-    
+    return [ver, nom];
     
 };
 
