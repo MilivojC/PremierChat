@@ -134,7 +134,7 @@ app.get('/home', function (req, res) {
 
 app.post('/home', upload.array(), function (req, res) { 
     
-    req.session._expires:0;
+    req.session._expires=0;
     console.log(req.session);
     
 });   
