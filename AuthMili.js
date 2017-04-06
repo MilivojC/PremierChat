@@ -1,6 +1,6 @@
 var verif = function(nom, pass) {
   
-var ver = function(nom, pass, function(nom, pass, response, next){
+var ver = function(nom, pass, response){
     
     var pg = require('pg'),
         conString = "postgres://postgres@localhost:5432/db_work",
@@ -31,11 +31,10 @@ var ver = function(nom, pass, function(nom, pass, response, next){
 	    client.end();
 	});
 
-    next();
-    
-}){
     return response;
 };
+    
+    
     
     console.log(23);
   console.log(ver); 
