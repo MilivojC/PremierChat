@@ -7,13 +7,13 @@ $('#formulaire_login').submit(function () {
     return;
     
     
-}).onsubmit(function(){
+}).onsubmit = function(){
     console.log("onsubmit a du etre joue");
     $('#Username').val('').focus(); 
     $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
         socket.emit('verification');
     
-});
+};
 
 
 socket.on('refus', function(){
