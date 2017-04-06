@@ -32,10 +32,21 @@ var sess; // variable de session
 
 
 // Chargement de la page login.html | Login endpoint
-app.get('/login', authe.dej(), function (req, res) {  
+app.get('/login', function (req, res) {  
 
-    res.sendFile(__dirname + '/public/login.html');    
+        
 
+    if (req.session.user === "Milivoy") {
+      console.log("Il considere que lauthentification est reussi et nous envoi sur / ");
+        res.redirect('/');
+        
+  }
+  else {
+      
+      console.log("Il se rend compte que c'est un echec");
+      res.sendFile(__dirname + '/public/login.html');
+  }
+       
 }).post('/login', function(req, res) {
 	req.session.user = req.body.Username;
 	req.session.pass = req.body.password;
@@ -46,8 +57,17 @@ app.get('/login', authe.dej(), function (req, res) {
         return next();
 });
 
-app.get('/', authe.cont(), function (req, res) {
-    res.sendFile(__dirname + '/public/index.html');
+app.get('/', function (req, res) {
+    
+    
+    if (req.session.user === "Milivoy"){
+        console.log("Authentification reussie dans authe");
+        res.sendFile(__dirname + '/public/index.html');
+    }
+    else {
+        console.log("Authentification rate dans authe");
+        res.redirect('/login');
+    }
 });
 
 //Ouverture de l'écoute io.sockets
@@ -128,7 +148,7 @@ io.sockets.on('connection', function (socket, pseudo, session) {
 
     });
 
-
+/*
 // Authentication and Authorization Middleware
 var authe = {
     cont : function(req, res, next) {
@@ -158,5 +178,5 @@ var authe = {
 }
 };
 
-    
+  */  
 server.listen(8080, "127.0.0.1");
