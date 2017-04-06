@@ -65,7 +65,9 @@ app.get('/login', dejauthe, function (req, res) {
 
     res.sendFile(__dirname + '/public/login.html');    
 
-}).post('/login', function(req, res) {
+});
+
+/*.post('/login', function(req, res) {
 	req.session.user = req.body.Username;
 	req.session.pass = req.body.password;
 	sess = req.session;
@@ -73,7 +75,7 @@ app.get('/login', dejauthe, function (req, res) {
         return res.redirect('/');
     else 
         return next();
-});
+});*/
 
 app.get('/', authe, function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
