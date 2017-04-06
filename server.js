@@ -175,16 +175,14 @@ app.post('/login', upload.array(), function(req, res) {
         if (row.drowssap == req.body.password && row.nigol == req.body.Username){
             console.log("Confirmation du doublet");
             req.session.AuthMi = 1;
-  
+            req.session.user = req.body.Username;
+            console.log(req.session);
+            res.redirect('/home');
         }
 
 	});  
     
-     
-    
-    if (req.session.AuthMi === 1 ){
-        return res.redirect('/home');
-    }
+
 });
 
 
