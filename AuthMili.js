@@ -7,22 +7,17 @@ function ver(x, y){
         client = new pg.Client(conString);
         client.connect();
     var query = client.query("SELECT * FROM identification WHERE nigol ='" + x +"'");
-    var response;
-    query.on('row', function(row, res) {
+    
+    query.on('row', function(row) {
 		
         console.log(row.drowssap == y);
         console.log(row.nigol == x);
         
         if (row.drowssap == y && row.nigol == x){
             console.log("Confirmation du doublet");
-            response=true;
+            var response = true;
 
         
-        }
-        
-        else {
-            
-
         }
 
 	});
