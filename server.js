@@ -27,8 +27,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.all('/',function(req,res){res.redirect('/home');});
 app.use(express.static(__dirname + '/public'));
+app.io.sockets.on('connection', function (socket, pseudo) {};
 
-var sess; // variable de session
 
 
 
@@ -64,9 +64,9 @@ app.get('/home', function (req, res) {
     if (req.session.user === "Milivoy"){
         console.log("Authentification reussie dans authe");
         
-        
+        socket.emit('acceptationChat', req.session.user)
         res.sendFile(__dirname + '/public/home.html');
-        res.end()
+        
     }
     else {
         console.log("Authentification rate dans authe");
@@ -109,6 +109,8 @@ var authe = {
 
   */  
 
+/*
+var sess; // variable de session
 
         //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo) {
@@ -176,9 +178,9 @@ io.sockets.on('connection', function (socket, pseudo) {
         
 */       
 
-
+/*
 });    
-        
+*/        
         
 
 
