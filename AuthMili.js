@@ -1,12 +1,11 @@
 var verif = function(nom, pass) {
-    var ver = new Boolean();
+  var ver = function(){
     var pg = require('pg'),
         conString = "postgres://postgres@localhost:5432/db_work",
         client = new pg.Client(conString);
         client.connect();
     var query = client.query("SELECT * FROM identification WHERE nigol ='" + nom +"'");
-    var rows = [];
-    
+
     query.on('row', function(row, res) {
 		
         console.log(row.drowssap == pass);
@@ -14,9 +13,7 @@ var verif = function(nom, pass) {
         
         if (row.drowssap == pass && row.nigol == nom){
             console.log("Confirmation du doublet");
-            rows.push(true);
-
-            console.log([ver, nom]);
+            return true;
         
         }
 
@@ -25,13 +22,7 @@ var verif = function(nom, pass) {
 	query.on('end', function() {
 	    client.end();
 	});
-    console.log(rows);
-    ver = rows[0];
-    console.log([ver, nom]);
-    
-    return [ver, nom];
-    
 };
-
-
+    return [ver(), nom];
+};
 exports.verif = verif;
