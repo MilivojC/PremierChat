@@ -2,18 +2,13 @@ var socket = io.connect('http://milivoy.screeb.io');
 
 //socket.emit('jesuisla');
 $('#formulaire_login').submit(function () {
-
-    
+    $('#Username').val('').focus(); 
+    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
+            socket.emit('verification');
     return;
     
     
-}).onsubmit = function(){
-    console.log("onsubmit a du etre joue");
-    $('#Username').val('').focus(); 
-    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
-        socket.emit('verification');
-    
-};
+});
 
 
 socket.on('refus', function(){
