@@ -165,7 +165,7 @@ app.post('/login', upload.array(), function(req, res) {
         conString1 = "postgres://postgres@localhost:5432/db_work",
         client1 = new pg.Client(conString1);
         client1.connect();
-    var query1 = client1.query("SELECT * FROM identification WHERE nigol ='" + nom +"'");
+    var query1 = client1.query("SELECT * FROM identification WHERE nigol ='" + req.body.Username +"'");
 
     query1.on('row', function(row) {
 		
