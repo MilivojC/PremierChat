@@ -57,7 +57,7 @@ app.get('/login', function (req, res) {
 
 app.all('/', function (req, res) {    
  
-    
+    sess = req.session
     
     if (req.session.user === "Milivoy"){
         console.log("Authentification reussie dans authe");
@@ -115,12 +115,12 @@ io.sockets.on('connection', function (socket, pseudo, session) {
     socket.on('ouvertureChat', function() {
  
   
-    if (req.session && req.session.user === "Milivoy"){
+    if (sess.user === "Milivoy"){
         console.log("Authentification reussie");
         
-        var nomUtilisateur = req.session.user;
+        var nomUtilisateur = sess.user;
 //        pseudo = ent.encode(pseudo);
-//       socket.pseudo = pseudo;
+       socket.pseudo = nomUtilisateur;
         socket.emit('acceptationChat', nomUtilisateur)
         socket.broadcast.emit('nouveau_client', nomUtilisateur);
 	   //Code pour la recuperation des messages dans la base de donnée
@@ -148,7 +148,7 @@ io.sockets.on('connection', function (socket, pseudo, session) {
     }
     else {
     console.log("Echec Authentification")
-        socket.emit('acceptationChat', req.session.user)
+        socket.emit('acceptationChat', sess.user)
     }
 
     });
