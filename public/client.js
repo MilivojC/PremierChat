@@ -1,5 +1,5 @@
 // Connexion    socket.io
-var socket = io.connect('http://milivoy.screeb.io');
+var socket = io.connect('http://milivoy.screeb.io/home');
 /*
 // On demande le pseudo, on l'envoie au serveur et on l'affiche dans le titre
 var pseudo = prompt('Quel est votre pseudo ?');
