@@ -158,16 +158,8 @@ app.get('/login', function (req, res) {
 });
 
 app.post('/login', upload.array(), function(req, res) {
-	req.session.user = req.body.Username;
-    console.log("Acces au post dans le serveur");
-    console.log(req.session);
-    console.log(req.body.Username);
-	req.session.pass = req.body.password;
-    
-    console.log(AuthMili.verif(req.body.Username, req.body.password));
-    
 	sess = req.session;
-    if (req.session.user === "Milivoy" ){
+    if (AuthMili.verif(req.body.Username, req.body.password)[0] === True ){
         return res.redirect('/home');
     }
 });
