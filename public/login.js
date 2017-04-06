@@ -1,6 +1,6 @@
 var socket = io.connect('http://milivoy.screeb.io');
 
-socket.emit('jesuisla');
+//socket.emit('jesuisla');
 $('#formulaire_login').submit(function () {
     socket.emit('verification');
     console.log("socketemit a du etre joue")
@@ -10,6 +10,6 @@ $('#formulaire_login').submit(function () {
 });
 
 
-socket.on('refus'){
+socket.on('refus', functioon(){
   $('#console').prepend('<p style="color:red;">Identifiant ou mot de passe incorrect!</p>');  
-};
+});
