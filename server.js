@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.all('/',function(req,res){res.redirect('/home');});
 app.use(express.static(__dirname + '/public'));
-app.io.sockets.on('connection', function (socket, pseudo) {};
+app.io.sockets.on('connection', function (socket, pseudo) {});
 
 
 
