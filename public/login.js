@@ -5,7 +5,7 @@ $('#formulaire_login').submit(function (event) {
     
     event.preventDefault();
     var $form = $( this ),
-    url = $form.attr( "action" );
+    url = $form.attr( "/login" );
     var posting = $.post( url, { Username : $('#Username').value, password:$('#password').value } );
     $('#Username').val('').focus(); 
     $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
