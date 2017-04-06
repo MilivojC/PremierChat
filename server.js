@@ -64,8 +64,9 @@ app.get('/home', function (req, res) {
     if (req.session.user === "Milivoy"){
         console.log("Authentification reussie dans authe");
         
-        app.io.sockets.emit('acceptationChat', req.session.user)
+        
         res.sendFile(__dirname + '/public/home.html');
+        app.io.sockets.emit('acceptationChat', req.session.user);
         
     }
     else {
