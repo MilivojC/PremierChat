@@ -30,7 +30,7 @@ var verif = function(nom, pass) {
 	    client.end();
 	});
   
-    
+    console.log([ver, nom]);
     return [ver, nom];
 };
    
