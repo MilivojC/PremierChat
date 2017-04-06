@@ -111,7 +111,7 @@ var authe = {
 
 
         //Ouverture de l'écoute io.sockets
-io.sockets.on('connection', function (socket, pseudo, session) {
+io.sockets.on('connection', function (socket, pseudo) {
     
 // ECOUTE CONCERNANT LE CHAT
 
