@@ -105,7 +105,6 @@ var authe = {
 
   */  
 
-/*
 
         //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo, session) {
@@ -180,12 +179,12 @@ io.sockets.on('connection', function (socket, pseudo, session) {
         console.log(User + " est connecté avec le password : " +pwd);
 //        socket.emit('UPDATE', 1);
         
-//       
+*/       
 
 
 });    
         
         
-*/
+
 
 server.listen(8080, "127.0.0.1");
