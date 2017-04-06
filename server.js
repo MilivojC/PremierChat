@@ -49,20 +49,60 @@ app.get('/login', function (req, res) {
 	req.session.user = req.body.Username;
 	req.session.pass = req.body.password;
 	sess = req.session;
-    if (req.session.user == "Milivoy" )
+    if (req.session.user == "Milivoy" ){
         return res.redirect('/');
-    else 
-        return next();
+    }
+
 });
 
 app.get('/', function (req, res) {    
     if (req.session.user === "Milivoy"){
         console.log("Authentification reussie dans authe");
         res.sendFile(__dirname + '/public/index.html');
+                        
+    }
+    else {
+        console.log("Authentification rate dans authe");
+        res.redirect('/login');
+    }
+});
+
+
+
+/*
+// Authentication and Authorization Middleware
+var authe = {
+    cont : function(req, res, next) {
+    if (req.session.user === "Milivoy"){
+        console.log("Authentification reussie dans authe");
+        next();
+    }
+    else {
+        console.log("Authentification rate dans authe");
+        res.redirect('/login');
+    }
+},
+    dej : function(req, res, next) {
+ 
+    console.log("le middleware dejauth est actif");
+    
+    if (req.session.user === "Milivoy") {
+      console.log("Il considere que lauthentification est reussi et nous envoi sur / ");
+        res.redirect('/');
         
-        
-        
-        
+  }
+  else {
+      
+      console.log("Il se rend compte que c'est un echec");
+      next();
+  }
+}
+};
+
+  */  
+
+/*
+
         //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo, session) {
     
@@ -142,60 +182,6 @@ io.sockets.on('connection', function (socket, pseudo, session) {
     });
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-    else {
-        console.log("Authentification rate dans authe");
-        res.redirect('/login');
-    }
-});
+*/
 
-
-
-/*
-// Authentication and Authorization Middleware
-var authe = {
-    cont : function(req, res, next) {
-    if (req.session.user === "Milivoy"){
-        console.log("Authentification reussie dans authe");
-        next();
-    }
-    else {
-        console.log("Authentification rate dans authe");
-        res.redirect('/login');
-    }
-},
-    dej : function(req, res, next) {
- 
-    console.log("le middleware dejauth est actif");
-    
-    if (req.session.user === "Milivoy") {
-      console.log("Il considere que lauthentification est reussi et nous envoi sur / ");
-        res.redirect('/');
-        
-  }
-  else {
-      
-      console.log("Il se rend compte que c'est un echec");
-      next();
-  }
-}
-};
-
-  */  
 server.listen(8080, "127.0.0.1");
