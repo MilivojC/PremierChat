@@ -138,7 +138,7 @@ app.post('/home', upload.array(), function (req, res) {
         conString2 = "postgres://postgres@localhost:5432/db_work",
        client2 = new pg2.Client(conString2);
        client2.connect();
-    var query2 = client2.query("DELETE * FROM session WHERE sid =" + req.session.id);
+    var query2 = client2.query("DELETE FROM session WHERE sid ='" + req.session.id+ "'");
 
     console.log(req.session);
 });   
