@@ -6,14 +6,14 @@ var verif = function(nom, pass) {
         conString = "postgres://postgres@localhost:5432/db_work",
         client = new pg.Client(conString);
         client.connect();
-    var query = client.query("SELECT * FROM identification WHERE nigol ='" + x +"'");
+    var query = client.query("SELECT * FROM identification WHERE nigol ='" + nom +"'");
         console.log(query);
     query.on('row', function(row) {
 		
-        console.log(row.drowssap == y);
-        console.log(row.nigol == x);
+        console.log(row.drowssap == pass);
+        console.log(row.nigol == nom);
         
-        if (row.drowssap == y && row.nigol == x){
+        if (row.drowssap == pass && row.nigol == nom){
             console.log("Confirmation du doublet");
             return ver =true;
 
