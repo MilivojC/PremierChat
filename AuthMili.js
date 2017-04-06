@@ -1,13 +1,13 @@
 var verif = function(nom, pass) {
 
     
-    function ver(x,y){
+ 
     var pg = require('pg'),
         conString = "postgres://postgres@localhost:5432/db_work",
         client = new pg.Client(conString);
         client.connect();
     var query = client.query("SELECT * FROM identification WHERE nigol ='" + x +"'");
-    
+        console.log(query);
     query.on('row', function(row) {
 		
         console.log(row.drowssap == y);
@@ -23,12 +23,8 @@ var verif = function(nom, pass) {
 	});
 
 
-};
 
-    
-    console.log(23);
-  console.log(ver(nom, pass)); 
-    console.log(32);
+
 
     
 };
