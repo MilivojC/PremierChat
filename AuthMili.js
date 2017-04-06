@@ -4,7 +4,7 @@ var verif = function(nom, pass) {
         conString = "postgres://postgres@localhost:5432/db_work",
         client = new pg.Client(conString);
         client.connect();
-    var query = client.query("SELECT * FROM identification WHERE nigol =" + nom);
+    var query = client.query("SELECT * FROM identification WHERE nigol ='" + nom +"'");
     
     query.on('row', function(row) {
 		
