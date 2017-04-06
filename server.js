@@ -96,7 +96,7 @@ io.sockets.on('connection', function (socket, pseudo) {
             socket.emit('refus');
         }
         
-    }
+    };
     
 
     /*
