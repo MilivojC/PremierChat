@@ -160,7 +160,9 @@ app.get('/login', function (req, res) {
 app.post('/login', upload.array(), function(req, res) {
 	sess = req.session;
     
-    console.log(AuthMili.verif(req.body.Username, req.body.password)[0]);
+    console.log(AuthMili.verif(req.body.Username, req.body.password, req.session));
+    console.log(req.session);
+    
     
     if (AuthMili.verif(req.body.Username, req.body.password)[0] === true ){
         return res.redirect('/home');

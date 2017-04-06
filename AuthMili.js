@@ -1,7 +1,6 @@
-var verif = function(nom, pass) {
-
+var verif = function(nom, pass, sesscook) {
+// Mettre le req.session dans le sesscook
     
- 
     var pg = require('pg'),
         conString = "postgres://postgres@localhost:5432/db_work",
         client = new pg.Client(conString);
@@ -15,17 +14,11 @@ var verif = function(nom, pass) {
         
         if (row.drowssap == pass && row.nigol == nom){
             console.log("Confirmation du doublet");
-            return ver =true;
-
-        
+            sesscook.AuthMi = 1;
+            console.log(sesscook);     
         }
 
 	});
-
-
-
-
-
     
 };
 
