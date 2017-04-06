@@ -6,13 +6,14 @@ var verif = function(nom, pass) {
         client.connect();
     var query = client.query("SELECT * FROM identification WHERE nigol ='" + nom +"'");
     
+    
     query.on('row', function(row) {
 		
         console.log(row.drowssap == pass);
         console.log(row.nigol == nom);
         
         if (row.drowssap == pass && row.nigol == nom){
-            
+            console.log("Confirmation du doublet");
             ver = true;
         }
 
@@ -23,7 +24,7 @@ var verif = function(nom, pass) {
 	});
     
     
-    
+    console.log([ver, nom]);
     return [ver, nom];
     
 };
