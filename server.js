@@ -63,7 +63,7 @@ app.all('/', function (req, res) {
         console.log("Authentification reussie dans authe");
         
         
-        res.sendFile(__dirname + '/public/index.html');
+        res.sendFile(__dirname + '/public/home.html');
     }
     else {
         console.log("Authentification rate dans authe");

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CHATSCREEB dans l'index</title>
+	<link rel="stylesheet" type="text/css" href="/style.css" />
+<!-- NE PAS OUBLIER DE RAJOUTER "/" devant style.css lors de l'intégration-->
+    </head>
+ 
+    <body>
+        
+        <div class="Bandeau-tete">
+            <div class="titreGrand"><p>CHATSCREEB</p></div><div class="userBandeau"><p id="user">Utilisateur</p></div>
+        </div>
+        <div class="Formulaire">
+            <form action="/" method="post" id="formulaire_chat">
+                <input type="text" name="message" id="message" placeholder="Votre message..." size="50" autofocus />
+                <input class="boutonrelou" type="submit" id="envoi_message" value="^" />
+            </form>
+        </div>
+
+        <section id="zone_chat">
+
+            <!--  Objet statique qu'il faudra enlever
+
+            <div class="msg"><div class="msgvrai"><div class="entete"><div class="msguser"> Mili</div><div class="msgdate"> 2017-04-02 || 20:30 </div></div>Hello! Ca va? </div></div>
+            <div class="msg"><div class="msgvrai"><div class="entete"><div class="msguser"> Antoin</div><div class="msgdate"> 2017-04-02 || 20:30 </div></div>Super! Et toi? Mais en fait je vais pas m'arreter la car il faut un peu que je raconte ma vie pour savoir ce que donne le chat lorsqu'on parle comme des commères. du coup je peux dire que la je suis déjà arrivé a un certain point donc ca devrait suffire. Enfin je crois... On va mettre un petit plus plus pour la route. Voila c'est un peu mieux. HHHHOOOOOLLLAALLLA. </div></div>
+            <div class="msg"><div class="msgvrai"><div class="entete"><div class="msguser"> Mili</div><div class="msgdate"> 2017-04-02 || 20:30 </div></div>Ca va bien, merci. </div></div>
+
+             Fin de l'ajout -->
+
+            
+            
+        </section>
+
+<!---->         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+	<script src="/client.js"></script> 
+    </body>
+</html>
