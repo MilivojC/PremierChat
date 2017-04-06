@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.all('/',function(req,res){res.redirect('/home');});
 app.use(express.static(__dirname + '/public'));
-app.io.sockets.on('connection', function (socket, pseudo) {});
+app.io = io;
 
 
 
@@ -64,7 +64,7 @@ app.get('/home', function (req, res) {
     if (req.session.user === "Milivoy"){
         console.log("Authentification reussie dans authe");
         
-        socket.emit('acceptationChat', req.session.user)
+        app.io.sockets.emit('acceptationChat', req.session.user)
         res.sendFile(__dirname + '/public/home.html');
         
     }
