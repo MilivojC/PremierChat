@@ -10,6 +10,9 @@ var express = require('express'),
     session = require('express-session'),// Gestion session/cookie
     bodyParser = require('body-parser'),
     pgSession = require('connect-pg-simple')(session);// Gestion session/cookie
+    // Ajout pour récupération de POST
+    var multer = require('multer'); // v1.0.5
+    var upload = multer(); // for parsing multipart/form-data
 
 // Suivi de session
 app.use(session({
@@ -152,7 +155,7 @@ app.get('/login', function (req, res) {
     
 });
 
-app.post('/login', function(req, res) {
+app.post('/login', upload.array(), function(req, res) {
 	req.session.user = req.body.Username;
     console.log("Acces au post dans le serveur");
     console.log(req.session);
