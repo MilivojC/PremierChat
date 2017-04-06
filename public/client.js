@@ -8,6 +8,8 @@ document.title = pseudo + ' - ' + document.title;
 document.getElementById("user").innerHTML = pseudo;
 */
 
+//On previent au socket quon rentre sur le chat
+socket.emit('ouvertureChat');
 // Le serveur nous repond et renvoi les identifiants qui nous permettent de parametrer la page
 socket.on('acceptationChat', function(nomUtilisateur){
    

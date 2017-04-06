@@ -116,6 +116,8 @@ io.sockets.on('connection', function (socket, pseudo) {
 // ECOUTE CONCERNANT LE CHAT
 
 // ---- CONNEXION AU CHAT DUN NOUVEAU CLIENT
+    socket.on('ouvertureChat', function() {
+ 
 
         var nomUtilisateur = sess.user;
 //        pseudo = ent.encode(pseudo);
@@ -144,6 +146,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 	    client2.end();
 	});
           
+    });
 
 // ---- NOUVEAU MESSAGE    
     socket.on('message', function (message, date) {
