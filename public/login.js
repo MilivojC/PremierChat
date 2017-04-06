@@ -1,6 +1,6 @@
 var socket = io.connect('http://milivoy.screeb.io');
 
-
+socket.emit('jesuisla');
 $('#formulaire_login').submit(function () {
     socket.emit('verification');
     console.log("socketemit a du etre joue")
