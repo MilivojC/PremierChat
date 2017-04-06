@@ -44,31 +44,29 @@ io.sockets.on('connection', function (socket, pseudo) {
  
 
         var nomUtilisateur = sess.user;
-//        pseudo = ent.encode(pseudo);
-       socket.pseudo = nomUtilisateur;
+//      pseudo = ent.encode(pseudo);
+        socket.pseudo = nomUtilisateur;
         socket.emit('acceptationChat', nomUtilisateur)
         socket.broadcast.emit('nouveau_client', nomUtilisateur);
-	   //Code pour la recuperation des messages dans la base de donnée
+        //Code pour la recuperation des messages dans la base de donnée
         var pg = require('pg');
         var conString = "postgres://postgres@localhost:5432/db_work";
-	   var client2 = new pg.Client(conString);
-	   client2.connect();
-	   var query = client2.query("SELECT * FROM messages");
+        var client2 = new pg.Client(conString);
+        client2.connect();
+        var query = client2.query("SELECT * FROM messages");
 	
-	query.on('row', function(row) {
-		try{
-			socket.emit('message', {pseudo: row.utilisateur, message: row.message, date: row.date});
-		}
-		catch(err){
-			console.log("Problème sur le broadcast");
-		}
-
-
-	});
+        query.on('row', function(row) {
+		  try{
+			 socket.emit('message', {pseudo: row.utilisateur, message: row.message, date: row.date});
+		  }
+		  catch(err){
+			 console.log("Problème sur le broadcast");
+		  }
+	   });
 	
-	query.on('end', function() {
-	    client2.end();
-	});
+	   query.on('end', function() {
+	       client2.end();
+	   });
           
     });
 
@@ -84,33 +82,21 @@ io.sockets.on('connection', function (socket, pseudo) {
 	   client.connect();
 	   client.query("INSERT INTO messages(utilisateur, message, date) VALUES($1, $2, $3)",[ socket.pseudo, message, date]);
     }); 
-
-    
+   
 // ECOUTE CONCERNANT LA CONNEXION SECURISEE
     
 // ---- Après que le client est envoye ses identifiant il va demander si tout s'est bien deroule io va alors lui repondre
     socket.on('verification', function(){
-        
-        if (sess.AuthMi !== 1){
+        console.log(sess);
+        if (sess.AuthMi === 1){
+            console.log("le socket ne fait rien mais il a été joué")
             
+        } else {
             socket.emit('refus');
         }
         
     });
     
-
-    /*
-    // ---- LOGIN DE L'UTILISATEUR  
-    socket.on('connexion', function (Username, Password) {
-        // On recoit ce qu'envoi le formulaire de login    
-        var User = Username; // ce sera interessant de mettre un ent. pour la securite a lavenir.
-        var pwd = Password; // ce sera interessant de mettre un ent. pour la securite a lavenir.
-        console.log(User + " est connecté avec le password : " +pwd);
-//        socket.emit('UPDATE', 1);
-        
-*/       
-
-
 }); 
 
 
