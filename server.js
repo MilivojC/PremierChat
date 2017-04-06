@@ -145,11 +145,14 @@ app.get('/login', function (req, res) {
       res.sendFile(__dirname + '/public/login.html');
   }
        
-}).post('/login', function(req, res) {
+});
+
+app.post('/login', function(req, res) {
 	req.session.user = req.body.Username;
+    console.log("Acces au post dans le serveur");
 	req.session.pass = req.body.password;
 	sess = req.session;
-    if (req.session.user == "Milivoy" ){
+    if (req.session.user === "Milivoy" ){
         return res.redirect('/');
     }
 
