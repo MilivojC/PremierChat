@@ -60,6 +60,18 @@ $('#formulaire_chat').submit(function () {
     $('#message').val('').focus(); // Vide la zone de Chat et remet le focus dessus
     return false; // Permet de bloquer l'envoi "classique" du formulaire
 });
+
+// Lorsqu'on envoie le formulaire, on transmet le message et on l'affiche sur la page
+$('#formulaireDeconnexion').submit(function () {
+
+    socket.emit('message', message, nowtimeB); // Transmet le message aux autres
+
+    insereMessage(document.getElementById("user").innerHTML, message, nowtime); // Affiche le message aussi sur notre page
+    $('#message').val('').focus(); // Vide la zone de Chat et remet le focus dessus
+    return false; // Permet de bloquer l'envoi "classique" du formulaire
+});
+
+
    
 // Ajoute un message dans la page
 function insereMessage(pseudo, message, date) {

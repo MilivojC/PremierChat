@@ -11,10 +11,9 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     pgSession = require('connect-pg-simple')(session);// Gestion session/cookie
     // Ajout pour récupération de POST
-    var multer = require('multer'); // v1.0.5
-    var upload = multer(); // for parsing multipart/form-data
-    var AuthMili = require('./AuthMili'); // Fait appel à AuthMili.js
-
+var multer = require('multer'); // v1.0.5
+var upload = multer(); // for parsing multipart/form-data
+var AuthMili = require('./AuthMili'); // Fait appel à AuthMili.js
 
 // Suivi de session
 app.use(session({
@@ -30,11 +29,10 @@ app.use(session({
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
+// Chargement dossier statique présentation etc.
 app.use(express.static(__dirname + '/public'));
 
-
-var sess; // variable de session
+var sess; // variable de session utilisee par socket
 
         //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo) {
@@ -90,6 +88,16 @@ io.sockets.on('connection', function (socket, pseudo) {
     
 // ECOUTE CONCERNANT LA CONNEXION SECURISEE
     
+// ---- Après que le client est envoye ses identifiant il va demander si tout s'est bien deroule io va alors lui repondre
+    socket.on('verification'){
+        
+        if (sess.AuthMi !== 1){
+            
+            socket.emit('refus');
+        }
+        
+    }
+    
 
     /*
     // ---- LOGIN DE L'UTILISATEUR  
@@ -124,64 +132,51 @@ app.get('/home', function (req, res) {
     }
 });
 
+app.post('/home', upload.array(), function (req, res) { 
+    
+    console.log(req.body);
+    
+});   
 
-
-
-
-
-
-
-
-
-
+//Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
 app.all('/',function(req,res){res.redirect('/home');});
 
-// Chargement de la page login.html | Login endpoint
+// Chargement de la page login.html | Vérification de l'existence de la session et redirection si necessaire.
 app.get('/login', function (req, res) {  
 
-    if (req.session.user === "Milivoy") {
-      console.log("Il considere que lauthentification est reussi et nous envoi sur / ");
-        res.redirect('/');
-        
+    if (req.session.AuthMi === 1) { //si la variable d'autorisation est déja a 1 alors redirection
+        res.redirect('/');        
   }
-  else {
-      
-      console.log("Il se rend compte que c'est un echec");
+    else { //sinon on envoi le formulaire
       res.sendFile(__dirname + '/public/login.html');
   }
-       
-    
-    
-
-    
-    
 });
 
+//Reception de la requete d'identification
 app.post('/login', upload.array(), function(req, res) {
-	sess = req.session;
-
+	
+    //Requete qui va chercher dans la db si le mdp et l'id correspondent
     var pg1 = require('pg'),
         conString1 = "postgres://postgres@localhost:5432/db_work",
         client1 = new pg.Client(conString1);
         client1.connect();
     var query1 = client1.query("SELECT * FROM identification WHERE nigol ='" + req.body.Username +"'");
-
-    query1.on('row', function(row) {
-		
-
-        
-        if (row.drowssap == req.body.password && row.nigol == req.body.Username){
-           
+    query1.on('row', function(row) {   
+        if (row.drowssap == req.body.password && row.nigol == req.body.Username){ // Si cela correspond on affecte les valeurs à la variable de session et on renvoi sur home (notement authMi qui donne acces aux pages)
             req.session.AuthMi = 1;
             req.session.user = req.body.Username;
-            
             res.redirect('/home');
         }
+        
+   //     else --> Sinon on affiche une erreur d'authentification avec le websocket
+        sess = req.session; //Pour cela on affecte la session a la variable sess qui sera utilisé par le websocket.    
+        
 
 	});  
-    
+
 
 });
+
 
 
 server.listen(8080, "127.0.0.1");
