@@ -30,7 +30,8 @@ var sess; // variable de session
 
 
 // Authentication and Authorization Middleware
-var authe = function(req, res, next) {
+var authe = {
+    cont : function(req, res, next) {
     if (req.session.user === "Milivoy"){
         console.log("Authentification reussie dans authe");
         next();
@@ -39,9 +40,8 @@ var authe = function(req, res, next) {
         console.log("Authentification rate dans authe");
         res.redirect('/login');
     }
-};
-
-var dejauthe = function(req, res, next) {
+},
+    dej : function(req, res, next) {
  
     console.log("le middleware dejauth est actif");
     
@@ -55,11 +55,12 @@ var dejauthe = function(req, res, next) {
       console.log("Il se rend compte que c'est un echec");
       next();
   }
+}
 };
 
 
 // Chargement de la page login.html | Login endpoint
-app.get('/login', dejauthe, function (req, res) {  
+app.get('/login', authe.dej(), function (req, res) {  
 
     res.sendFile(__dirname + '/public/login.html');    
 
@@ -73,7 +74,7 @@ app.get('/login', dejauthe, function (req, res) {
         return next();
 });
 
-app.get('/', authe, function (req, res) {
+app.get('/', authe.cont(), function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
