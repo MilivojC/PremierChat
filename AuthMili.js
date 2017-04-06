@@ -1,5 +1,5 @@
 var verif = function(nom, pass) {
-    var ver = new Boolean(false);
+    var ver = new Boolean();
     var pg = require('pg'),
         conString = "postgres://postgres@localhost:5432/db_work",
         client = new pg.Client(conString);
@@ -14,7 +14,8 @@ var verif = function(nom, pass) {
         
         if (row.drowssap == pass && row.nigol == nom){
             console.log("Confirmation du doublet");
-            ver = true;
+            console.log([ver, nom]);
+            return ver = true;
         }
 
 	});
