@@ -107,7 +107,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 
 
 app.get('/home', function (req, res) {    
- 
+ console.log(req.session);
     sess = req.session
 
     if (req.session.user === "Milivoy"){
@@ -159,9 +159,8 @@ app.get('/login', function (req, res) {
 
 app.post('/login', upload.array(), function(req, res) {
 	sess = req.session;
-    
 
-      var pg1 = require('pg'),
+    var pg1 = require('pg'),
         conString1 = "postgres://postgres@localhost:5432/db_work",
         client1 = new pg.Client(conString1);
         client1.connect();
@@ -169,14 +168,13 @@ app.post('/login', upload.array(), function(req, res) {
 
     query1.on('row', function(row) {
 		
-        console.log(row.drowssap == req.body.password);
-        console.log(row.nigol == req.body.Username);
+
         
         if (row.drowssap == req.body.password && row.nigol == req.body.Username){
-            console.log("Confirmation du doublet");
+           
             req.session.AuthMi = 1;
             req.session.user = req.body.Username;
-            console.log(req.session);
+            
             res.redirect('/home');
         }
 
@@ -184,47 +182,6 @@ app.post('/login', upload.array(), function(req, res) {
     
 
 });
-
-
-
-
-
-/*
-// Authentication and Authorization Middleware
-var authe = {
-    cont : function(req, res, next) {
-    if (req.session.user === "Milivoy"){
-        console.log("Authentification reussie dans authe");
-        next();
-    }
-    else {
-        console.log("Authentification rate dans authe");
-        res.redirect('/login');
-    }
-},
-    dej : function(req, res, next) {
- 
-    console.log("le middleware dejauth est actif");
-    
-    if (req.session.user === "Milivoy") {
-      console.log("Il considere que lauthentification est reussi et nous envoi sur / ");
-        res.redirect('/');
-        
-  }
-  else {
-      
-      console.log("Il se rend compte que c'est un echec");
-      next();
-  }
-}
-};
-
-  */  
-
-
-   
-        
-        
 
 
 server.listen(8080, "127.0.0.1");
