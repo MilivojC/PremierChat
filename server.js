@@ -134,13 +134,13 @@ app.get('/home', function (req, res) {
 
 app.post('/home', upload.array(), function (req, res) { 
     
- //   var pg2 = require('pg'),
-//        conString2 = "postgres://postgres@localhost:5432/db_work",
-  //      client2 = new pg2.Client(conString2);
-//        client2.connect();
-//    var query2 = client2.query("DELETE * FROM session WHERE sess =" + req.session);
-console.log(req.session.id);
-    
+   var pg2 = require('pg'),
+        conString2 = "postgres://postgres@localhost:5432/db_work",
+       client2 = new pg2.Client(conString2);
+       client2.connect();
+    var query2 = client2.query("DELETE * FROM session WHERE sid =" + req.session.id);
+
+    console.log(req.session);
 });   
 
 //Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
