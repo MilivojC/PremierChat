@@ -135,6 +135,7 @@ app.get('/home', function (req, res) {
 app.post('/home', upload.array(), function (req, res) { 
     
     console.log(req.body);
+    console.log("On a recu l'appel de logout");
     
 });   
 
