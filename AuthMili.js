@@ -29,8 +29,13 @@ var verif = function(nom, pass) {
 	query.on('end', function() {
 	    client.end();
 	});
-  
-    console.log([ver, nom]);
+
+    console.log(pg);
+    console.log(client);
+    console.log(query);
+    
+    
+
     return [ver, nom];
 };
    
