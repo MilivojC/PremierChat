@@ -163,11 +163,11 @@ app.post('/login', upload.array(), function(req, res) {
 
       var pg1 = require('pg'),
         conString1 = "postgres://postgres@localhost:5432/db_work",
-        client1 = new pg.Client(conString);
+        client1 = new pg.Client(conString1);
         client1.connect();
     var query1 = client1.query("SELECT * FROM identification WHERE nigol ='" + nom +"'");
 
-    query.on('row', function(row) {
+    query1.on('row', function(row) {
 		
         console.log(row.drowssap == req.body.password);
         console.log(row.nigol == req.body.Username);
