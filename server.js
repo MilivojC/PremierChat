@@ -55,7 +55,10 @@ app.get('/login', function (req, res) {
 
 }).use(express.static(__dirname + '/public')); //Chargement dossier des fichiers statiques
 
-app.get('/', function (req, res) {    
+app.all('/', function (req, res) {    
+ 
+    
+    
     if (req.session.user === "Milivoy"){
         console.log("Authentification reussie dans authe");
         
