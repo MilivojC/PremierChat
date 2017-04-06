@@ -110,18 +110,18 @@ app.get('/home', function (req, res) {
  
     sess = req.session
 
-    if (req.session.user === "Milivoy"){
-        console.log("Authentification reussie dans authe");
+//    if (req.session.user === "Milivoy"){
+//        console.log("Authentification reussie dans authe");
         
         
         res.sendFile(__dirname + '/public/home.html');
         
-    }
-    else {
-        console.log("Authentification rate dans authe");
-        res.redirect('/login');
-        res.end()
-    }
+//    }
+//    else {
+//        console.log("Authentification rate dans authe");
+//        res.redirect('/login');
+//        res.end()
+//    }
 });
 
 
