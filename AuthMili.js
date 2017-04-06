@@ -21,7 +21,7 @@ var verif = function(nom, pass) {
         
         else {
             
-            retun false;
+            return false;
         }
 
 	});
