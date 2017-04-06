@@ -86,6 +86,7 @@ app.post('/login', upload.array(), function(req, res) {
         if (row.drowssap == req.body.password && row.nigol == req.body.Username){ // Si cela correspond on affecte les valeurs à la variable de session et on renvoi sur home (notement authMi qui donne acces aux pages)
             req.session.AuthMi = 1;
             req.session.user = req.body.Username;
+            sess = req.session;
             res.redirect('/home');
         }
         
@@ -170,7 +171,9 @@ io.sockets.on('connection', function (socket, pseudo) {
 // ---- Après que le client est envoye ses identifiant il va demander si tout s'est bien deroule io va alors lui repondre
     socket.on('verification', function(){
         
+        if (sess === undefined){
             socket.emit('refus');
+            }
         
     });
     
