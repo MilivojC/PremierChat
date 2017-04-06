@@ -8,6 +8,9 @@ var verif = function(nom, pass) {
     
     query.on('row', function(row) {
 		
+        console.log(row.drowssap == pass);
+        console.log(row.nigol == nom);
+        
         if (row.drowssap == pass && row.nigol == nom){
             
             ver = true;
