@@ -94,7 +94,7 @@ app.post('/login', upload.array(), function(req, res) {
         
 
 	});  
-
+res.sendFile(__dirname + '/public/login.html');
 res.end();
 });
 
