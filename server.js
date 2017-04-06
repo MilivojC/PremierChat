@@ -66,7 +66,8 @@ app.get('/home', function (req, res) {
         
         
         res.sendFile(__dirname + '/public/home.html');
-        app.io.sockets.emit('acceptationChat', req.session.user);
+        app.io.sockets.on('connection', function (socket, pseudo) {
+            socket.emit('acceptationChat', req.session.user);});
         
     }
     else {
