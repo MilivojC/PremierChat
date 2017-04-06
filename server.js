@@ -116,12 +116,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 // ECOUTE CONCERNANT LE CHAT
 
 // ---- CONNEXION AU CHAT DUN NOUVEAU CLIENT
-    socket.on('ouvertureChat', function() {
- 
-  
-    if (sess.user === "Milivoy"){
-        console.log("Authentification reussie dans ouvertureChat");
-        
+
         var nomUtilisateur = sess.user;
 //        pseudo = ent.encode(pseudo);
        socket.pseudo = nomUtilisateur;
@@ -149,13 +144,6 @@ io.sockets.on('connection', function (socket, pseudo) {
 	    client2.end();
 	});
           
-    }
-    else {
-    console.log("Echec Authentification")
-        socket.emit('acceptationChat', sess.user)
-    }
-
-    });
 
 // ---- NOUVEAU MESSAGE    
     socket.on('message', function (message, date) {
