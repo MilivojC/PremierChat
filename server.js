@@ -160,11 +160,29 @@ app.get('/login', function (req, res) {
 app.post('/login', upload.array(), function(req, res) {
 	sess = req.session;
     
-    console.log(AuthMili.verif(req.body.Username, req.body.password, req.session));
-    console.log(req.session);
+
+      var pg1 = require('pg'),
+        conString1 = "postgres://postgres@localhost:5432/db_work",
+        client1 = new pg.Client(conString);
+        client1.connect();
+    var query1 = client1.query("SELECT * FROM identification WHERE nigol ='" + nom +"'");
+
+    query.on('row', function(row) {
+		
+        console.log(row.drowssap == req.body.password);
+        console.log(row.nigol == req.body.Username);
+        
+        if (row.drowssap == req.body.password && row.nigol == req.body.Username){
+            console.log("Confirmation du doublet");
+            req.session.AuthMi = 1;
+  
+        }
+
+	});  
     
+     
     
-    if (AuthMili.verif(req.body.Username, req.body.password)[0] === true ){
+    if (req.session.AuthMi === 1 ){
         return res.redirect('/home');
     }
 });
