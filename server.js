@@ -92,7 +92,7 @@ app.post('/login', upload.array(), function(req, res) {
    //     else --> Sinon on affiche une erreur d'authentification avec le websocket
         else {
             sess = req.session; //Pour cela on affecte la session a la variable sess qui sera utilisé par le websocket.
-           res.redirect('/login');
+           res.end();
             
         }
             
