@@ -15,7 +15,7 @@ function ver(x, y){
         
         if (row.drowssap == y && row.nigol == x){
             console.log("Confirmation du doublet");
-            window.response = true;
+            global["responseVrai"] = true;
 
         
         }
@@ -26,7 +26,7 @@ function ver(x, y){
 	    client.end();
 	});
 
-    return window.response;
+    return global["responseVrai"];
 };
     
     
