@@ -10,6 +10,6 @@ $('#formulaire_login').submit(function () {
 });
 
 
-socket.on('refus', functioon(){
+socket.on('refus', function(){
   $('#console').prepend('<p style="color:red;">Identifiant ou mot de passe incorrect!</p>');  
 });
