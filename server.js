@@ -11,40 +11,10 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     pgSession = require('connect-pg-simple')(session);// Gestion session/cookie
 
-// Suivi de session
-app.use(session({
-      store: new pgSession({
-        pg : pg,                                  // Use global pg-module 
-        conString : "postgres://postgres@localhost:5432/db_work", // Connect using something else than default DATABASE_URL env variable 
-        tableName : 'session'               // Use another table-name than the default "session" one 
-      }),
-      secret: "ScribeSecret",
-      resave: false,
-      saveUninitialized: true,
-      cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 day
-}));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/home', function (req, res) {    
- 
-    sess = req.session
-    
-    if (req.session.user === "Milivoy"){
-        console.log("Authentification reussie dans authe");
-        
-        
-        res.sendFile(__dirname + '/public/home.html');
-        
-    }
-    else {
-        console.log("Authentification rate dans authe");
-        res.redirect('/login');
-        res.end()
-    }
-});
 
 var sess; // variable de session
 
@@ -118,6 +88,23 @@ io.sockets.on('connection', function (socket, pseudo) {
 }); 
 
 
+app.get('/home', function (req, res) {    
+ 
+    sess = req.session
+    
+    if (req.session.user === "Milivoy"){
+        console.log("Authentification reussie dans authe");
+        
+        
+        res.sendFile(__dirname + '/public/home.html');
+        
+    }
+    else {
+        console.log("Authentification rate dans authe");
+        res.redirect('/login');
+        res.end()
+    }
+});
 
 
 
@@ -192,7 +179,20 @@ var authe = {
   */  
 
 
-   
+// Suivi de session
+app.use(session({
+      store: new pgSession({
+        pg : pg,                                  // Use global pg-module 
+        conString : "postgres://postgres@localhost:5432/db_work", // Connect using something else than default DATABASE_URL env variable 
+        tableName : 'session'               // Use another table-name than the default "session" one 
+      }),
+      secret: "ScribeSecret",
+      resave: false,
+      saveUninitialized: true,
+      cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 day
+}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));   
         
         
 
