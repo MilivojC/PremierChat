@@ -34,72 +34,6 @@ app.use(express.static(__dirname + '/public'));
 
 var sess; // variable de session utilisee par socket
 
-        //Ouverture de l'écoute io.sockets
-io.sockets.on('connection', function (socket, pseudo) {
-    
-// ECOUTE CONCERNANT LE CHAT
-
-// ---- CONNEXION AU CHAT DUN NOUVEAU CLIENT
-    socket.on('ouvertureChat', function() {
- 
-
-        var nomUtilisateur = sess.user;
-//      pseudo = ent.encode(pseudo);
-        socket.pseudo = nomUtilisateur;
-        socket.emit('acceptationChat', nomUtilisateur)
-        socket.broadcast.emit('nouveau_client', nomUtilisateur);
-        //Code pour la recuperation des messages dans la base de donnée
-        var pg = require('pg');
-        var conString = "postgres://postgres@localhost:5432/db_work";
-        var client2 = new pg.Client(conString);
-        client2.connect();
-        var query = client2.query("SELECT * FROM messages");
-	
-        query.on('row', function(row) {
-		  try{
-			 socket.emit('message', {pseudo: row.utilisateur, message: row.message, date: row.date});
-		  }
-		  catch(err){
-			 console.log("Problème sur le broadcast");
-		  }
-	   });
-	
-	   query.on('end', function() {
-	       client2.end();
-	   });
-          
-    });
-
-// ---- NOUVEAU MESSAGE    
-    socket.on('message', function (message, date) {
-        // Dès qu'on reçoit un message, on récupère le pseudo de son auteur et on le transmet aux autres personnes
-        message = ent.encode(message);
-        socket.broadcast.emit('message', {pseudo: socket.pseudo, message: message, date: date});
-        //Code pour l'enregistrement des messages dans la base de donnée
-	   var pg1 = require('pg');
-	   var conString = "postgres://postgres@localhost:5432/db_work";
-        var client = new pg1.Client(conString);
-	   client.connect();
-	   client.query("INSERT INTO messages(utilisateur, message, date) VALUES($1, $2, $3)",[ socket.pseudo, message, date]);
-    }); 
-   
-// ECOUTE CONCERNANT LA CONNEXION SECURISEE
-    
-// ---- Après que le client est envoye ses identifiant il va demander si tout s'est bien deroule io va alors lui repondre
-    socket.on('verification', function(){
-        console.log(sess);
-        if (sess.AuthMi === 1){
-            console.log("le socket ne fait rien mais il a été joué")
-            
-        } else {
-            socket.emit('refus');
-        }
-        
-    });
-    
-}); 
-
-
 app.get('/home', function (req, res) {    
  console.log(req.session);
     sess = req.session
@@ -166,6 +100,71 @@ app.post('/login', upload.array(), function(req, res) {
 
 //Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
 app.all('/',function(req,res){res.redirect('/home');});
+
+        //Ouverture de l'écoute io.sockets
+io.sockets.on('connection', function (socket, pseudo) {
+    
+// ECOUTE CONCERNANT LE CHAT
+
+// ---- CONNEXION AU CHAT DUN NOUVEAU CLIENT
+    socket.on('ouvertureChat', function() {
+ 
+
+        var nomUtilisateur = sess.user;
+//      pseudo = ent.encode(pseudo);
+        socket.pseudo = nomUtilisateur;
+        socket.emit('acceptationChat', nomUtilisateur)
+        socket.broadcast.emit('nouveau_client', nomUtilisateur);
+        //Code pour la recuperation des messages dans la base de donnée
+        var pg = require('pg');
+        var conString = "postgres://postgres@localhost:5432/db_work";
+        var client2 = new pg.Client(conString);
+        client2.connect();
+        var query = client2.query("SELECT * FROM messages");
+	
+        query.on('row', function(row) {
+		  try{
+			 socket.emit('message', {pseudo: row.utilisateur, message: row.message, date: row.date});
+		  }
+		  catch(err){
+			 console.log("Problème sur le broadcast");
+		  }
+	   });
+	
+	   query.on('end', function() {
+	       client2.end();
+	   });
+          
+    });
+
+// ---- NOUVEAU MESSAGE    
+    socket.on('message', function (message, date) {
+        // Dès qu'on reçoit un message, on récupère le pseudo de son auteur et on le transmet aux autres personnes
+        message = ent.encode(message);
+        socket.broadcast.emit('message', {pseudo: socket.pseudo, message: message, date: date});
+        //Code pour l'enregistrement des messages dans la base de donnée
+	   var pg1 = require('pg');
+	   var conString = "postgres://postgres@localhost:5432/db_work";
+        var client = new pg1.Client(conString);
+	   client.connect();
+	   client.query("INSERT INTO messages(utilisateur, message, date) VALUES($1, $2, $3)",[ socket.pseudo, message, date]);
+    }); 
+   
+// ECOUTE CONCERNANT LA CONNEXION SECURISEE
+    
+// ---- Après que le client est envoye ses identifiant il va demander si tout s'est bien deroule io va alors lui repondre
+    socket.on('verification', function(){
+        console.log(sess);
+        if (sess.AuthMi === 1){
+            console.log("le socket ne fait rien mais il a été joué")
+            
+        } else {
+            socket.emit('refus');
+        }
+        
+    });
+    
+}); 
 
 
 server.listen(8080, "127.0.0.1");
