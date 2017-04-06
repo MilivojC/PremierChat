@@ -4,9 +4,8 @@ var socket = io.connect('http://milivoy.screeb.io');
 $('#formulaire_login').submit(function (event) {
     
     event.preventDefault();
-    var $form = $( this ),
-    url = $form.attr( "http://milivoy.screeb.io/login" );
-    var posting = $.post( url, { Username : $('#Username').value, password:$('#password').value } );
+    //$.post( "http://milivoy.screeb.io/login", { Username : $('#Username').value, password:$('#password').value } );
+    $.post();
     $('#Username').val('').focus(); 
     $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
     socket.emit('verification');   
