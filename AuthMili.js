@@ -41,7 +41,7 @@ var ver = function(nom, pass, response){
     console.log(32);
     
     
-})
+};
 
 
 
