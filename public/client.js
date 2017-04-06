@@ -35,12 +35,12 @@ socket.on('message', function (data) {
     catch(err) {
         console.log(err + " : " + nowtimeB);
     }
-})
+});
 
 // Quand un nouveau client se connecte, on affiche l'information
 socket.on('nouveau_client', function(pseudo) {
     $('#zone_chat').prepend('<p><em>' + pseudo + ' a rejoint le Chat !</em></p>');
-})
+});
 
 // Lorsqu'on envoie le formulaire, on transmet le message et on l'affiche sur la page
 $('#formulaire_chat').submit(function () {
@@ -56,7 +56,7 @@ $('#formulaire_chat').submit(function () {
 
     socket.emit('message', message, nowtimeB); // Transmet le message aux autres
 
-    insereMessage(pseudo, message, nowtime); // Affiche le message aussi sur notre page
+    insereMessage(document.getElementById("user").innerHTML, message, nowtime); // Affiche le message aussi sur notre page
     $('#message').val('').focus(); // Vide la zone de Chat et remet le focus dessus
     return false; // Permet de bloquer l'envoi "classique" du formulaire
 });
@@ -64,7 +64,7 @@ $('#formulaire_chat').submit(function () {
 // Ajoute un message dans la page
 function insereMessage(pseudo, message, date) {
     $('#zone_chat').prepend('<div class="msg"><div class="msgvrai"><div class="entete"><div class="msguser">' + pseudo + '</div><div class="msgdate">' + date +  '</div></div>' + message + '</div></div>');
-}
+};
 // Fonction trasformation 00
 function format00(x){
 	switch(x) {
