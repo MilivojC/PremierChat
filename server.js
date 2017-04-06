@@ -25,6 +25,8 @@ app.use(session({
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.all('/',function(req,res){res.redirect('/home');});
+app.use(express.static(__dirname + '/public'));
 
 var sess; // variable de session
 
@@ -53,9 +55,9 @@ app.get('/login', function (req, res) {
         return res.redirect('/');
     }
 
-}).use(express.static(__dirname + '/public')); //Chargement dossier des fichiers statiques
+});
 
-app.get('/', function (req, res) {    
+app.all('/home', function (req, res) {    
  
     sess = req.session
     
@@ -69,7 +71,7 @@ app.get('/', function (req, res) {
         console.log("Authentification rate dans authe");
         res.redirect('/login');
     }
-}).post('/',function(req, res){}).use(express.static(__dirname + '/public')); //Chargement dossier des fichiers statiques
+});
 
 
 
