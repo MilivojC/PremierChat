@@ -57,7 +57,7 @@ app.get('/login', function (req, res) {
 
 });
 
-app.all('/home', function (req, res) {    
+app.get('/home', function (req, res) {    
  
     sess = req.session
     
@@ -66,10 +66,12 @@ app.all('/home', function (req, res) {
         
         
         res.sendFile(__dirname + '/public/home.html');
+        res.end()
     }
     else {
         console.log("Authentification rate dans authe");
         res.redirect('/login');
+        res.end()
     }
 });
 
