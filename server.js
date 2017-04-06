@@ -34,8 +34,6 @@ var sess; // variable de session
 // Chargement de la page login.html | Login endpoint
 app.get('/login', function (req, res) {  
 
-        
-
     if (req.session.user === "Milivoy") {
       console.log("Il considere que lauthentification est reussi et nous envoi sur / ");
         res.redirect('/');
@@ -57,20 +55,15 @@ app.get('/login', function (req, res) {
         return next();
 });
 
-app.get('/', function (req, res) {
-    
-    
+app.get('/', function (req, res) {    
     if (req.session.user === "Milivoy"){
         console.log("Authentification reussie dans authe");
         res.sendFile(__dirname + '/public/index.html');
-    }
-    else {
-        console.log("Authentification rate dans authe");
-        res.redirect('/login');
-    }
-});
-
-//Ouverture de l'écoute io.sockets
+        
+        
+        
+        
+        //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo, session) {
     
 // ECOUTE CONCERNANT LE CHAT
@@ -79,10 +72,10 @@ io.sockets.on('connection', function (socket, pseudo, session) {
     socket.on('ouvertureChat', function() {
  
   
-    if (sess && sess.user === "Milivoy"){
+    if (req.session && req.session.user === "Milivoy"){
         console.log("Authentification reussie");
         
-        var nomUtilisateur = sess.user;
+        var nomUtilisateur = req.session.user;
 //        pseudo = ent.encode(pseudo);
 //       socket.pseudo = pseudo;
         socket.emit('acceptationChat', nomUtilisateur)
@@ -112,7 +105,7 @@ io.sockets.on('connection', function (socket, pseudo, session) {
     }
     else {
     console.log("Echec Authentification")
-        socket.emit('acceptationChat', "Renard")
+        socket.emit('acceptationChat', req.session.user)
     }
 
     });
@@ -147,6 +140,32 @@ io.sockets.on('connection', function (socket, pseudo, session) {
 
 
     });
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    else {
+        console.log("Authentification rate dans authe");
+        res.redirect('/login');
+    }
+});
+
+
 
 /*
 // Authentication and Authorization Middleware
