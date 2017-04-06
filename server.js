@@ -11,7 +11,20 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     pgSession = require('connect-pg-simple')(session);// Gestion session/cookie
 
-
+// Suivi de session
+app.use(session({
+      store: new pgSession({
+        pg : pg,                                  // Use global pg-module 
+        conString : "postgres://postgres@localhost:5432/db_work", // Connect using something else than default DATABASE_URL env variable 
+        tableName : 'session'               // Use another table-name than the default "session" one 
+      }),
+      secret: "ScribeSecret",
+      resave: false,
+      saveUninitialized: true,
+      cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 day
+}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + '/public'));
 
@@ -62,9 +75,9 @@ io.sockets.on('connection', function (socket, pseudo) {
         message = ent.encode(message);
         socket.broadcast.emit('message', {pseudo: socket.pseudo, message: message, date: date});
         //Code pour l'enregistrement des messages dans la base de donnée
-	   var pg = require('pg');
+	   var pg1 = require('pg');
 	   var conString = "postgres://postgres@localhost:5432/db_work";
-        var client = new pg.Client(conString);
+        var client = new pg1.Client(conString);
 	   client.connect();
 	   client.query("INSERT INTO messages(utilisateur, message, date) VALUES($1, $2, $3)",[ socket.pseudo, message, date]);
     }); 
@@ -179,20 +192,7 @@ var authe = {
   */  
 
 
-// Suivi de session
-app.use(session({
-      store: new pgSession({
-        pg : pg,                                  // Use global pg-module 
-        conString : "postgres://postgres@localhost:5432/db_work", // Connect using something else than default DATABASE_URL env variable 
-        tableName : 'session'               // Use another table-name than the default "session" one 
-      }),
-      secret: "ScribeSecret",
-      resave: false,
-      saveUninitialized: true,
-      cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 day
-}));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));   
+   
         
         
 
