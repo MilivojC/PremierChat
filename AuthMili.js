@@ -10,7 +10,7 @@ var verif = function(nom, pass) {
 		
         console.log(row.drowssap);
         console.log(row.nigol);
-        if (drowssap === pass && nigol === nom){
+        if (row.drowssap === pass && row.nigol === nom){
             
             ver = true;
         }
