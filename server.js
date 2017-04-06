@@ -176,10 +176,10 @@ io.sockets.on('connection', function (socket, pseudo, session) {
         console.log(User + " est connecté avec le password : " +pwd);
 //        socket.emit('UPDATE', 1);
         
-*/        
+//       
 
 
-    });
+});    
         
         
 */
