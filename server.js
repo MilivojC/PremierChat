@@ -89,14 +89,14 @@ io.sockets.on('connection', function (socket, pseudo) {
 // ECOUTE CONCERNANT LA CONNEXION SECURISEE
     
 // ---- Après que le client est envoye ses identifiant il va demander si tout s'est bien deroule io va alors lui repondre
-    socket.on('verification'){
+    socket.on('verification', function(){
         
         if (sess.AuthMi !== 1){
             
             socket.emit('refus');
         }
         
-    };
+    });
     
 
     /*
