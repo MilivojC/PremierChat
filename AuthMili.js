@@ -29,10 +29,10 @@ function ver(x, y){
     return global["responseVrai"];
 };
     
-    
+    koko = ver(nom, pass);
     
     console.log(23);
-  console.log(ver(nom, pass)); 
+  console.log(koko); 
     console.log(32);
     return [ver, nom];
     
