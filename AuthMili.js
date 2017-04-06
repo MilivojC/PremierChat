@@ -37,7 +37,7 @@ function ver(x, y){
     
     
     console.log(23);
-  console.log(ver(nom, pass, res)); 
+  console.log(ver(nom, pass)); 
     console.log(32);
     
     
