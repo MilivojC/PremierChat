@@ -10,7 +10,7 @@ var express = require('express'),
     session = require('express-session'),// Gestion session/cookie
     bodyParser = require('body-parser'),
     pgSession = require('connect-pg-simple')(session);// Gestion session/cookie
-app.use(express.static(__dirname + '/public')); //Chargement dossier des fichiers statiques
+
 // Suivi de session
 app.use(session({
       store: new pgSession({
@@ -53,19 +53,20 @@ app.get('/login', function (req, res) {
         return res.redirect('/');
     }
 
-});
+}).use(express.static(__dirname + '/public')); //Chargement dossier des fichiers statiques
 
 app.get('/', function (req, res) {    
     if (req.session.user === "Milivoy"){
         console.log("Authentification reussie dans authe");
+        
+        
         res.sendFile(__dirname + '/public/index.html');
-                        
     }
     else {
         console.log("Authentification rate dans authe");
         res.redirect('/login');
     }
-});
+}).use(express.static(__dirname + '/public')); //Chargement dossier des fichiers statiques
 
 
 
