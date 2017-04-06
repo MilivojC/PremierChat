@@ -164,7 +164,7 @@ app.post('/login', upload.array(), function(req, res) {
     console.log(req.body.Username);
 	req.session.pass = req.body.password;
     
-    AuthMili.verif(req.body.Username, req.body.password);
+    console.log(AuthMili.verif(req.body.Username, req.body.password));
     
 	sess = req.session;
     if (req.session.user === "Milivoy" ){
