@@ -69,7 +69,7 @@ app.get('/', function (req, res) {
         console.log("Authentification rate dans authe");
         res.redirect('/login');
     }
-}).use(express.static(__dirname + '/public')); //Chargement dossier des fichiers statiques
+}).post('/',function(req, res){}).use(express.static(__dirname + '/public')); //Chargement dossier des fichiers statiques
 
 
 
