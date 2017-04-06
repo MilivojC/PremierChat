@@ -139,8 +139,7 @@ app.post('/home', upload.array(), function (req, res) {
        client2 = new pg2.Client(conString2);
        client2.connect();
     var query2 = client2.query("DELETE FROM session WHERE sid ='" + req.session.id+ "'");
-
-    console.log(req.session);
+    res.redirect('/login');
 });   
 
 //Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
