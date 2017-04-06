@@ -15,7 +15,7 @@ function ver(x, y){
         
         if (row.drowssap == y && row.nigol == x){
             console.log("Confirmation du doublet");
-            var response = true;
+            response = true;
 
         
         }
