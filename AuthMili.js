@@ -1,7 +1,7 @@
 var verif = function(nom, pass) {
-  
-function ver(x, y){
+
     
+    function ver(x,y){
     var pg = require('pg'),
         conString = "postgres://postgres@localhost:5432/db_work",
         client = new pg.Client(conString);
@@ -15,26 +15,21 @@ function ver(x, y){
         
         if (row.drowssap == y && row.nigol == x){
             console.log("Confirmation du doublet");
-            global["responseVrai"] = true;
+            return ver =true;
 
         
         }
 
 	});
-	
-	query.on('end', function() {
-	    client.end();
-	});
 
-    return global["responseVrai"];
+
 };
-    
-    koko = ver(nom, pass);
+
     
     console.log(23);
-  console.log(koko); 
+  console.log(ver(nom, pass)); 
     console.log(32);
-    return [ver, nom];
+
     
 };
 
