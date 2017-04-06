@@ -55,7 +55,7 @@ app.get('/login', function (req, res) {
 
 }).use(express.static(__dirname + '/public')); //Chargement dossier des fichiers statiques
 
-app.all('/', function (req, res) {    
+app.get('/', function (req, res) {    
  
     sess = req.session
     
@@ -116,7 +116,7 @@ io.sockets.on('connection', function (socket, pseudo, session) {
  
   
     if (sess.user === "Milivoy"){
-        console.log("Authentification reussie");
+        console.log("Authentification reussie dans ouvertureChat");
         
         var nomUtilisateur = sess.user;
 //        pseudo = ent.encode(pseudo);
