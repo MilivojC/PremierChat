@@ -25,7 +25,7 @@ var verif = function(nom, pass) {
 	query.on('end', function() {
 	    client.end();
 	});
-    
+    console.log(rows);
     ver = rows[0];
     console.log([ver, nom]);
     
