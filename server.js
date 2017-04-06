@@ -128,9 +128,6 @@ app.post('/home', upload.array(), function (req, res) {
     res.redirect('/login');
 });   
 
-//Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
-app.all('/',function(req,res){res.redirect('/home');});
-
 // Chargement de la page login.html | Vérification de l'existence de la session et redirection si necessaire.
 app.get('/login', function (req, res) {  
 
@@ -167,6 +164,8 @@ app.post('/login', upload.array(), function(req, res) {
 
 });
 
+//Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
+app.all('/',function(req,res){res.redirect('/home');});
 
 
 server.listen(8080, "127.0.0.1");
