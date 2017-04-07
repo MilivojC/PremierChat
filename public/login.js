@@ -8,7 +8,7 @@ $('#formulaire_login').submit(function () {
         password : document.getElementById("password").value
     }
     
-    $.post("http://milivoy.screeb.io/login", { json_string:JSON.stringify(data) });
+    $.post("http://milivoy.screeb.io/login", { body : JSON.stringify(data) });
     
     console.log(data);
 //    var xhr = getXMLHttpRequest();
