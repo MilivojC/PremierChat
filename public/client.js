@@ -8,9 +8,6 @@ document.title = pseudo + ' - ' + document.title;
 document.getElementById("user").innerHTML = pseudo;
 */
 
-$(function() {
-    $(window).scrollTop();
-});
 
 
 //On previent au socket quon rentre sur le chat
@@ -64,7 +61,7 @@ $('#formulaire_chat').submit(function () {
 
     insereMessage(document.getElementById("user").innerHTML, message, nowtime); // Affiche le message aussi sur notre page
     $('#message').val('').focus(); // Vide la zone de Chat et remet le focus dessus
-    $(window).scrollTop();
+    $('html,body').animate({scrollTop: $("#cale").offset().top}, 'slow');
     return false; // Permet de bloquer l'envoi "classique" du formulaire
 });
    
