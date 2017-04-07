@@ -70,7 +70,7 @@ function insereMessage(pseudo, message, date) {
     $('#zone_chat').append('<div class="msg"><div class="msgvrai"><div class="entete"><div class="msguser">' + pseudo + '</div><div class="msgdate">' + date +  '</div></div>' + message + '</div></div>');
 
 };
-
+//sdlkfls
 // Fonction trasformation 00
 function format00(x){
 	switch(x) {
