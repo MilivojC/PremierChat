@@ -105,6 +105,7 @@ $(window).scroll(function(){
     }
     
     bouton.style.color= 'red';
+    console.log("le window.scroll fonctionne")
     
 });
 
