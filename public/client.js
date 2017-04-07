@@ -8,6 +8,11 @@ document.title = pseudo + ' - ' + document.title;
 document.getElementById("user").innerHTML = pseudo;
 */
 
+$(function() {
+ document.getElementById("cale").scrollIntoView();
+});
+
+
 //On previent au socket quon rentre sur le chat
 socket.emit('ouvertureChat');
 // Le serveur nous repond et renvoi les identifiants qui nous permettent de parametrer la page
@@ -40,7 +45,7 @@ socket.on('message', function (data) {
 // Quand un nouveau client se connecte, on affiche l'information
 socket.on('nouveau_client', function(pseudo) {
     $('#zone_chat').append('<p><em>' + pseudo + ' a rejoint le Chat !</em></p>');
-    location.hash = "cale";
+    document.getElementById("cale").scrollIntoView();
 });
 
 // Lorsqu'on envoie le formulaire, on transmet le message et on l'affiche sur la page
@@ -65,7 +70,7 @@ $('#formulaire_chat').submit(function () {
 // Ajoute un message dans la page
 function insereMessage(pseudo, message, date) {
     $('#zone_chat').append('<div class="msg"><div class="msgvrai"><div class="entete"><div class="msguser">' + pseudo + '</div><div class="msgdate">' + date +  '</div></div>' + message + '</div></div>');
-    location.hash = "cale";
+    document.getElementById("cale").scrollIntoView();
 };
 // Fonction trasformation 00
 function format00(x){
