@@ -39,7 +39,8 @@ socket.on('message', function (data) {
 
 // Quand un nouveau client se connecte, on affiche l'information
 socket.on('nouveau_client', function(pseudo) {
-    $('#zone_chat').prepend('<p><em>' + pseudo + ' a rejoint le Chat !</em></p>');
+    $('#zone_chat').append('<p><em>' + pseudo + ' a rejoint le Chat !</em></p>');
+    location.hash = "cale";
 });
 
 // Lorsqu'on envoie le formulaire, on transmet le message et on l'affiche sur la page
@@ -63,7 +64,8 @@ $('#formulaire_chat').submit(function () {
    
 // Ajoute un message dans la page
 function insereMessage(pseudo, message, date) {
-    $('#zone_chat').prepend('<div class="msg"><div class="msgvrai"><div class="entete"><div class="msguser">' + pseudo + '</div><div class="msgdate">' + date +  '</div></div>' + message + '</div></div>');
+    $('#zone_chat').append('<div class="msg"><div class="msgvrai"><div class="entete"><div class="msguser">' + pseudo + '</div><div class="msgdate">' + date +  '</div></div>' + message + '</div></div>');
+    location.hash = "cale";
 };
 // Fonction trasformation 00
 function format00(x){
