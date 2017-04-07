@@ -17,7 +17,7 @@ socket.on('acceptationChat', function(nomUtilisateur){
    
     document.title = nomUtilisateur + ' - ' + document.title;
     document.getElementById("user").innerHTML = nomUtilisateur;
-    $('html,body').animate({scrollTop: $('#cale').offset().top}, 1000);
+    $('html,body').animate({scrollTop: $('#cale').offset().top}, 100);
 });
 
 // Quand on re  oit un message, on l'ins  re dans la page
