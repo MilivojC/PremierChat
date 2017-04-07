@@ -1,15 +1,17 @@
 var socket = io.connect('http://milivoy.screeb.io');
 
 //socket.emit('jesuisla');
-$('#formulaire_login').submit(function (event) {
-    
-    event.preventDefault();
-    //$.post( "http://milivoy.screeb.io/login", { Username : $('#Username').value, password:$('#password').value } );
-    $.post();
-    $('#Username').val('').focus(); 
-    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
+$('#formulaire_login').submit(function () {
     socket.emit('verification');   
+    return;
 });
+
+$('#formulaire_login').ready(function(){
+     $('#Username').val('').focus(); 
+    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
+    
+});
+
 
 
 socket.on('refus', function(){
