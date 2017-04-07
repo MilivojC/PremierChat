@@ -95,14 +95,14 @@ function format00(x){
 
 $(window).scroll(function(){
     
-    var bouton = document.getElementsByClassName("boutonlogout");
+    var bouton = document.getElementById("logout");
 
     if (document.body.scrollTop < 40){
         bouton.style.top= 50 - document.body.scrollTop + 'px';        
     }
     else {
         bouton.style.top= '10px';
-    }
+    };
     
     bouton.style.color= 'red';
     console.log("le window.scroll fonctionne")
