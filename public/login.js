@@ -3,10 +3,15 @@ var socket = io.connect('http://milivoy.screeb.io');
 //socket.emit('jesuisla');
 $('#formulaire_login').submit(function () {
 
+    var data = {
+        "Username" : $('#Username'),
+        "password" : $('#password')
+    }
+    
     var xhr = getXMLHttpRequest();
     xhr.open("POST", "/login", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("Username=" + $('#Username')+ "&password=" + $('#password'));
+    xhr.send(data);
 
 
  //   socket.emit('verification');  
