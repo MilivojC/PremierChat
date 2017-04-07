@@ -64,6 +64,7 @@ $('#formulaire_chat').submit(function () {
 
     insereMessage(document.getElementById("user").innerHTML, message, nowtime); // Affiche le message aussi sur notre page
     $('#message').val('').focus(); // Vide la zone de Chat et remet le focus dessus
+    $(window).scrollTop();
     return false; // Permet de bloquer l'envoi "classique" du formulaire
 });
    
