@@ -93,8 +93,7 @@ function format00(x){
 
 function bodyScroll(){
     
-
-var bouton = document.getElementsByClassName("boutonlogout");
+    var bouton = document.getElementsByClassName(".boutonlogout");
 
     if (document.body.scrollTop < 40){
         bouton.style.top= 50 - document.body.scrollTop + 'px';        
