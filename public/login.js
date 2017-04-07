@@ -7,8 +7,8 @@ $('#formulaire_login').submit(function () {
 
     $.post("/login",
     {
-        Username: $('#Username').value,
-        password: $('#password').value
+        Username: $('#Username'),
+        password: $('#password')
     });
 
     
