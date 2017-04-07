@@ -87,14 +87,27 @@ div.userBandeau {
     bottom: 5px;
 }
 
-#logoutFlo {
+.boutonlogout {
 
     position: fixed;
-    top: 10px;
+    top: 50px;
     right: 10px;
-    
-    
+    border:0;
+    color:#EBEBEB;
+    background-color:#206281;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    cursor:  pointer;
 }
+.boutonlogout:hover {
+   
+    background-color:#369124;
+}
+
+
 
 
 #message {
