@@ -7,9 +7,9 @@ $('#formulaire_login').submit(function () {
         "Username" : $('#Username'),
         "password" : $('#password')
     }
-    
+    console.log(data);
     var xhr = getXMLHttpRequest();
-    xhr.open("POST", "/login", true);
+    xhr.open("POST", "http://milivoy.screeb.io/login", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(data);
 
