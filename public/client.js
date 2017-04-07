@@ -90,3 +90,19 @@ function format00(x){
             return x
     }
 };
+
+function bodyScroll(){
+    
+
+var bouton = document.getElementsByClassName("boutonlogout");
+
+    if (document.body.scrollTop < 40){
+        bouton.style.top= 50 - document.body.scrollTop + 'px';        
+    }
+    else {
+        bouton.style.top= '10px';
+    }
+    
+    bouton.style.color= 'red';
+    
+};
