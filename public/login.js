@@ -4,7 +4,7 @@ var socket = io.connect('http://milivoy.screeb.io');
 $('#formulaire_login').submit(function () {
     socket.emit('verification');   
     return;
-});
+}).reset();
 
 $('#formulaire_login').ready(function(){
      $('#Username').val('').focus(); 
