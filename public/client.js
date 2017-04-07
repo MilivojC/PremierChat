@@ -9,20 +9,16 @@ document.title = pseudo + ' - ' + document.title;
 document.getElementById("user").innerHTML = pseudo;
 */
 
-
-
 //On previent au socket quon rentre sur le chat
 socket.emit('ouvertureChat');
+
 // Le serveur nous repond et renvoi les identifiants qui nous permettent de parametrer la page
 socket.on('acceptationChat', function(nomUtilisateur){
    
     document.title = nomUtilisateur + ' - ' + document.title;
-    document.getElementById("user").innerHTML = nomUtilisateur;    
+    document.getElementById("user").innerHTML = nomUtilisateur;
+    $('html,body').animate({scrollTop: $('#cale').offset().top}, 'slow');
 });
-
-
-
-
 
 // Quand on re  oit un message, on l'ins  re dans la page
 socket.on('message', function (data) {
@@ -62,15 +58,16 @@ $('#formulaire_chat').submit(function () {
 
     insereMessage(document.getElementById("user").innerHTML, message, nowtime); // Affiche le message aussi sur notre page
     $('#message').val('').focus(); // Vide la zone de Chat et remet le focus dessus
-    $('html,body').animate({scrollTop: $('#cale').offset().top}, 'slow');
+    //$('html,body').animate({scrollTop: $('#cale').offset().top}, 'slow'); déja dans insereMessage
     return false; // Permet de bloquer l'envoi "classique" du formulaire
 });
    
 // Ajoute un message dans la page
 function insereMessage(pseudo, message, date) {
     $('#zone_chat').append('<div class="msg"><div class="msgvrai"><div class="entete"><div class="msguser">' + pseudo + '</div><div class="msgdate">' + date +  '</div></div>' + message + '</div></div>');
-    $(window).scrollTop();
+    $('html,body').animate({scrollTop: $('#cale').offset().top}, 'slow');
 };
+
 // Fonction trasformation 00
 function format00(x){
 	switch(x) {
