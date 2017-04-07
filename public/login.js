@@ -4,8 +4,8 @@ var socket = io.connect('http://milivoy.screeb.io');
 $('#formulaire_login').submit(function () {
 
     var data = {
-        "Username" : document.getElementById("Username"),
-        "password" : document.getElementById("password")
+        Username : document.getElementById("Username").value,
+        password : document.getElementById("password").value
     }
     console.log(data);
     var xhr = getXMLHttpRequest();
