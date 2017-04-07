@@ -3,25 +3,19 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>CHATSCREEB</title>
+	<title>TICKETSCREEB</title>
 	<link rel="stylesheet" type="text/css" href="/style.css" />
 <!-- NE PAS OUBLIER DE RAJOUTER "/" devant style.css lors de l'intégration-->
     </head>
  
     <body>
         <div id="logoutFlo"><form action="/home" method="post" id="formulaireDeconnexion"> <input class="boutonlogout" type="submit" id="logout" value="Logout"/></form></div>
-        <div id="ticketFlo"> <a class="boutonlogout" type="submit" id="goTicket" href="http://milivoy.screeb.io/ticket">Ticket</a></div>
+        <div id="ticketFlo"> <a class="boutonlogout" type="submit" id="goTicket" href="http://milivoy.screeb.io/home">Chat</a></div>
         <div class="Bandeau-tete">
-            <div class="titreGrand"><p>CHATSCREEB</p></div><div class="userBandeau"><p id="user">Utilisateur</p></div>
+            <div class="titreGrand"><p>TICKETSCREEB</p></div><div class="userBandeau"><p id="user">Utilisateur</p></div>
         </div>
-        <div class="Formulaire">
-            <form action="/" method="post" id="formulaire_chat">
-                <input type="text" name="message" id="message" placeholder="Votre message..." size="50" autofocus />
-                <input class="boutonrelou" type="submit" id="envoi_message" value="^" />
-            </form>
-        </div>
-
-        <section id="zone_chat">
+        
+        <section id="zone_ticket">
 
             <!--  Objet statique qu'il faudra enlever
 
