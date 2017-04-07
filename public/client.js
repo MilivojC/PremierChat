@@ -9,7 +9,7 @@ document.getElementById("user").innerHTML = pseudo;
 */
 
 $(function() {
- document.getElementById("cale").scrollIntoView();
+    $('#cale').scroll();
 });
 
 
@@ -45,7 +45,7 @@ socket.on('message', function (data) {
 // Quand un nouveau client se connecte, on affiche l'information
 socket.on('nouveau_client', function(pseudo) {
     $('#zone_chat').append('<p><em>' + pseudo + ' a rejoint le Chat !</em></p>');
-    document.getElementById("cale").scrollIntoView();
+    $('#cale').scroll();  
 });
 
 // Lorsqu'on envoie le formulaire, on transmet le message et on l'affiche sur la page
@@ -70,7 +70,7 @@ $('#formulaire_chat').submit(function () {
 // Ajoute un message dans la page
 function insereMessage(pseudo, message, date) {
     $('#zone_chat').append('<div class="msg"><div class="msgvrai"><div class="entete"><div class="msguser">' + pseudo + '</div><div class="msgdate">' + date +  '</div></div>' + message + '</div></div>');
-    document.getElementById("cale").scrollIntoView();
+    $('#cale').scroll();
 };
 // Fonction trasformation 00
 function format00(x){
