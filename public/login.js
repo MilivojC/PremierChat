@@ -9,7 +9,7 @@ $('#formulaire_login').submit(function () {
     }
     console.log(data);
     var xhr = getXMLHttpRequest();
-    xhr.open("POST", "http://milivoy.screeb.io/login", true);
+    xhr.open("POST", "http://milivoy.screeb.io/login", false);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(data));
     $('#Username').val('').focus(); 
