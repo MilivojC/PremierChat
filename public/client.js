@@ -17,7 +17,7 @@ socket.on('acceptationChat', function(nomUtilisateur){
    
     document.title = nomUtilisateur + ' - ' + document.title;
     document.getElementById("user").innerHTML = nomUtilisateur;
-    $('html,body').animate({scrollTop: $('#cale').offset().top}, 'medium');
+    
 });
 
 // Quand on re  oit un message, on l'ins  re dans la page
@@ -29,6 +29,7 @@ socket.on('message', function (data) {
         var heure = Number(nowtimeB[0]) + 2;
         var nowtime = nowtimeA[0] + " || " + heure + ":" + nowtimeB[1];
         insereMessage(data.pseudo, data.message, nowtime);
+        $('html,body').animate({scrollTop: $('#cale').offset().top}, 1);
     }
     
     catch(err) {
