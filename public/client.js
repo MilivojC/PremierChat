@@ -106,7 +106,7 @@ $(window).scroll(function(){
     }
     else {
         bouton1.style.top = '10px';
-        bouton2.style.top = '600px';
+        bouton2.style.top = '60px';
     };
     
     //Animation du bouton ticket
