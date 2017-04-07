@@ -3,7 +3,16 @@ var socket = io.connect('http://milivoy.screeb.io');
 //socket.emit('jesuisla');
 $('#formulaire_login').submit(function () {
 
-    this.submit();
+    if ($.browser.safari)
+        {
+            this.action += '?t=' + new Date().getTime();
+            this.submit();
+        }
+    else {
+            this.submit();
+         }
+    
+    
     $('#Username').val('').focus(); 
     $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
     socket.emit('verification');    
