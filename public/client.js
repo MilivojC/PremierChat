@@ -95,15 +95,21 @@ function format00(x){
 
 $(window).scroll(function(){
     
-    var bouton = document.getElementById("logout");
+    
+    //Animation du bouton logout
+    var bouton1 = document.getElementById("logout");
+    var bouton2 = document.getElementById("goTicket");
 
     if (document.body.scrollTop < 40){
-        bouton.style.top= 50 - document.body.scrollTop + 'px';        
+        bouton1.style.top= 50 - document.body.scrollTop + 'px';
+        bouton2.style.top= 120 - document.body.scrollTop + 'px';
     }
     else {
-        bouton.style.top= '10px';
+        bouton1.style.top = '10px';
+        bouton2.style.top = '80px';
     };
     
+    //Animation du bouton ticket
     
 });
 
