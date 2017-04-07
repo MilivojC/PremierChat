@@ -7,14 +7,18 @@ $('#formulaire_login').submit(function () {
         Username : document.getElementById("Username").value,
         password : document.getElementById("password").value
     }
+    
+    var datajson = JSON.stringify(data);
+    $.post("http://milivoy.screeb.io/login",datajson);
+    
     console.log(data);
-    var xhr = getXMLHttpRequest();
-    xhr.open("POST", "http://milivoy.screeb.io/login", false);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify(data));
-    $('#Username').val('').focus(); 
-    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
-    socket.emit('verification');
+//    var xhr = getXMLHttpRequest();
+//    xhr.open("POST", "http://milivoy.screeb.io/login", false);
+//    xhr.setRequestHeader("Content-Type", "application/json");
+//    xhr.send(JSON.stringify(data));
+//    $('#Username').val('').focus(); 
+//    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
+//    socket.emit('verification');
     return false;
 });
 

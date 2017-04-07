@@ -88,7 +88,7 @@ app.post('/login', upload.array(), function(req, res) {
             req.session.user = req.body.Username;
             sess = req.session;
             res.redirect('/home')
-            res.end();
+            
             
         }
         
