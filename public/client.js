@@ -91,7 +91,7 @@ function format00(x){
     }
 };
 
-function bodyScroll(){
+$(window).scroll(function(){
     
     var bouton = document.getElementsByClassName(".boutonlogout");
 
