@@ -104,8 +104,6 @@ $(window).scroll(function(){
         bouton.style.top= '10px';
     };
     
-    bouton.style.color= 'red';
-    console.log("le window.scroll fonctionne")
     
 });
 
