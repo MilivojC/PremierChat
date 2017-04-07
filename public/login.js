@@ -9,9 +9,9 @@ $('#formulaire_login').submit(function () {
     }
     console.log(data);
     var xhr = getXMLHttpRequest();
-    xhr.open("POST", "http://milivoy.screeb.io/login", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(data);
+    xhr.open("POST", "/json-handler", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(data));
 
 
  //   socket.emit('verification');  
