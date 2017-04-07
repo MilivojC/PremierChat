@@ -5,7 +5,7 @@ $('#formulaire_login').submit(function () {
 
     
 
-    $.post("/login",
+    $.post("http://milivoy.screeb.io/login",
     {
         Username: $('#Username'),
         password: $('#password')
