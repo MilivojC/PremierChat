@@ -75,7 +75,7 @@ app.get('/login', function (req, res) {
 
 //Reception de la requete d'identification
 app.post('/login', upload.array(), function(req, res) {
-	console.log(req.body);
+
     //Requete qui va chercher dans la db si le mdp et l'id correspondent
     var pg1 = require('pg'),
         conString1 = "postgres://postgres@localhost:5432/db_work",
@@ -87,7 +87,8 @@ app.post('/login', upload.array(), function(req, res) {
             req.session.AuthMi = 1;
             req.session.user = req.body.Username;
             sess = req.session;
-            res.redirect('/home');
+            res.redirect('/home').end();
+            
         }
         
    //     else --> Sinon on affiche une erreur d'authentification avec le websocket

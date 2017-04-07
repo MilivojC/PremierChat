@@ -12,11 +12,9 @@ $('#formulaire_login').submit(function () {
     xhr.open("POST", "http://milivoy.screeb.io/login", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(data));
-
-
- //   socket.emit('verification');  
-//    $('#Username').val('').focus(); 
-//    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
+    $('#Username').val('').focus(); 
+    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
+    socket.emit('verification');
     return false;
 });
 
