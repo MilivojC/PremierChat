@@ -92,7 +92,7 @@ function format00(x){
 };
 
 
-$(document).ready(function(){
+
 $(window).scroll(function(){
     
     var bouton = document.getElementsByClassName(".boutonlogout");
@@ -107,4 +107,4 @@ $(window).scroll(function(){
     bouton.style.color= 'red';
     
 });
-});
+
