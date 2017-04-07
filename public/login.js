@@ -2,10 +2,22 @@ var socket = io.connect('http://milivoy.screeb.io');
 
 //socket.emit('jesuisla');
 $('#formulaire_login').submit(function () {
-    $('#formulaire_login').submit();
-    socket.emit('verification');  
-    $('#Username').val('').focus(); 
-    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
+
+    
+
+    $.post("/login",
+    {
+        Username: $('#Username').value,
+        password: $('#password').value
+    });
+
+    
+    
+    
+    
+ //   socket.emit('verification');  
+//    $('#Username').val('').focus(); 
+//    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
     return false;
 });
 
