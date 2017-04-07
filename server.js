@@ -38,7 +38,7 @@ app.get('/home', function (req, res) {
  console.log(req.session);
     sess = req.session
 
-    if (req.session.user === "Milivoy"){
+    if (req.session.AuthMi === 1){
         console.log("Authentification reussie dans authe");
         
         
