@@ -87,7 +87,8 @@ app.post('/login', upload.array(), function(req, res) {
             req.session.AuthMi = 1;
             req.session.user = req.body.Username;
             sess = req.session;
-            res.redirect('/home').end();
+            res.redirect('/home')
+            res.end();
             
         }
         
