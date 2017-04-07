@@ -102,11 +102,11 @@ $(window).scroll(function(){
 
     if (document.body.scrollTop < 40){
         bouton1.style.top= 50 - document.body.scrollTop + 'px';
-        bouton2.style.top= 90 - document.body.scrollTop + 'px';
+        bouton2.style.top= 100 - document.body.scrollTop + 'px';
     }
     else {
         bouton1.style.top = '10px';
-        bouton2.style.top = '50px';
+        bouton2.style.top = '600px';
     };
     
     //Animation du bouton ticket
