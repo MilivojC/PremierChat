@@ -119,7 +119,7 @@ console.log(req.body);
 app.get('/ticket', function (req, res) {    
  console.log(req.session);
     sess = req.session
-    connectVendPRIMAIRE();
+    connectVendSEC();
     if (req.session.AuthMi === 1){
         console.log("Authentification reussie dans ticket");
         
@@ -297,9 +297,45 @@ request(options, function (error, response, body) {
   console.log(body);
 });
      
+/* REPONSE DE VEND
+{
+    "access_token": "3ZEuZLsLJKBJw5lCe2glzY:pNuJpqiSRZWlUaYpO",
+    "token_type": "Bearer",
+    "expires": 1491790881,
+    "expires_in": 86400,
+    "refresh_token": "WOt9BPPcEqQhINmrlNbSo3ItDjYMNljgeBX7W0tF",
+    "domain_prefix": "lacliniqueduportable"
+}
+*/
+    
     
     };
 
+function connectVendSEC(){
+    
+
+    
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://lacliniqueduportable.vendhq.com/api/register_sales',
+  qs: { outlet_id: '0624dbcd-ef4a-11e6-e0bb-aab07aa5411b' },
+  headers: 
+   { 'cache-control': 'no-cache',
+     accept: 'application/json',
+     'content-type': 'application/json',
+     authorization: 'Bearer 3ZEuZLsLJKBJw5lCe2glzY:pNuJpqiSRZWlUaYpO' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body.register_sales.invoice_number);
+});
+     
+
+    
+    
+    };
 
 
 
