@@ -248,11 +248,11 @@ function connectVendPRIMAIRE(){
     
     //REPONSE DU SERVER VEND
     //http://milivoy.screeb.io/?code=ES4XpaVk4pfh12ODMpq0fY4aKqn7mM3DnmWMBFtr&domain_prefix=lacliniqueduportable&user_id=874da965-ea9f-11e3-a0f5-b8ca3a64f8f4&signature=86fd73b446fc495d9799f38155e277583313a93850a1591d79023d2463adccf2
-    
+    //http://milivoy.screeb.io/?code=i07aJ1jH1qzVl7tEBOf7HAmpkQUEdfuD1yim6irw&domain_prefix=lacliniqueduportable&user_id=874da965-ea9f-11e3-a0f5-b8ca3a64f8f4&signature=61fa80c30d20dabcfbafc0af14e65570ec1d56d0a80f4cea439bbb17798911c1
     
     //ERREUR CAR HTTPREQUEST NEST PAS DANS NODE
     
-        var codeV =  'ES4XpaVk4pfh12ODMpq0fY4aKqn7mM3DnmWMBFtr',
+        var codeV =  'i07aJ1jH1qzVl7tEBOf7HAmpkQUEdfuD1yim6irw',
             client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
             client_secretV = 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
             redirect_uriV = 'http://milivoy.screeb.io';
