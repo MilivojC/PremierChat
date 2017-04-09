@@ -227,7 +227,7 @@ io.sockets.on('connection', function (socket, pseudo) {
         
 
 var request = require("request");
-var jsonParser = bodyParser.json()
+var jsonParser = bodyParser.json();
     
     
 var options = { method: 'GET',
@@ -243,20 +243,13 @@ request(options, function (error, response, body) {
   if (error) throw new Error(error);
 
     console.log(body);
-    console.log("ET LA ON PARSE")
+    console.log("ET LA ON PARSE");
     var i=0;
     while (i < Number(JSON.parse(body).pagination.results)){
         socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
         i++;
         
-     } 
-    
-        
-        
-        
-        
-        
-        
+     };        
     });
     
 }); 
@@ -269,16 +262,39 @@ server.listen(8080, "127.0.0.1");
 
 function connectVendPRIMAIRE(){
     
+           var codeV =  'i07aJ1jH1qzVl7tEBOf7HAmpkQUEdfuD1yim6irw',
+            client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
+            client_secretV = 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
+            redirect_uriV = 'http://milivoy.screeb.io';
+    
+        var request = require("request");
+
+        var options = { method: 'POST',
+  url: 'https://lacliniqueduportable.vendhq.com/api/1.0/token',
+  headers: 
+   { 'cache-control': 'no-cache',
+     'content-type': 'application/x-www-form-urlencoded' },
+  form: 
+   { code: codeV,
+     client_id: client_idV,
+     client_secret: client_secretV,
+     grant_type: 'authorization_code',
+     redirect_uri: redirect_uriV } };
+
+        request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+    
+    
     //REPONSE DU SERVER VEND
     //http://milivoy.screeb.io/?code=ES4XpaVk4pfh12ODMpq0fY4aKqn7mM3DnmWMBFtr&domain_prefix=lacliniqueduportable&user_id=874da965-ea9f-11e3-a0f5-b8ca3a64f8f4&signature=86fd73b446fc495d9799f38155e277583313a93850a1591d79023d2463adccf2
     //http://milivoy.screeb.io/?code=i07aJ1jH1qzVl7tEBOf7HAmpkQUEdfuD1yim6irw&domain_prefix=lacliniqueduportable&user_id=874da965-ea9f-11e3-a0f5-b8ca3a64f8f4&signature=61fa80c30d20dabcfbafc0af14e65570ec1d56d0a80f4cea439bbb17798911c1
     
     //ERREUR CAR HTTPREQUEST NEST PAS DANS NODE
     
-        var codeV =  'i07aJ1jH1qzVl7tEBOf7HAmpkQUEdfuD1yim6irw',
-            client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
-            client_secretV = 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
-            redirect_uriV = 'http://milivoy.screeb.io';
+ 
        
     /*
     var data = "code=" + codeV + "&client_id=" + client_idV + "&client_secret=" + client_secretV + "&grant_type=authorization_code&redirect_uri=" + redirect_uriV;
@@ -298,28 +314,7 @@ function connectVendPRIMAIRE(){
         xhr.setRequestHeader("cache-control", "no-cache");
         xhr.send(data);   
     */
-    
-    
-var request = require("request");
-
-var options = { method: 'POST',
-  url: 'https://lacliniqueduportable.vendhq.com/api/1.0/token',
-  headers: 
-   { 'cache-control': 'no-cache',
-     'content-type': 'application/x-www-form-urlencoded' },
-  form: 
-   { code: codeV,
-     client_id: client_idV,
-     client_secret: client_secretV,
-     grant_type: 'authorization_code',
-     redirect_uri: redirect_uriV } };
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
-     
+         
 /* REPONSE DE VEND
 {
     "access_token": "3ZEuZLsLJKBJw5lCe2glzY:pNuJpqiSRZWlUaYpO",
@@ -333,6 +328,9 @@ request(options, function (error, response, body) {
     
     
     };
+    
+    
+    
 /*
 function connectVendSEC(socket){
     
@@ -372,7 +370,3 @@ request(options, function (error, response, body) {
     
     };
 */
-
-
-
-
