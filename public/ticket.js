@@ -2,16 +2,10 @@
 
 // Connexion    socket.io
 var socket = io.connect('http://milivoy.screeb.io');
-/*
-// On demande le pseudo, on l'envoie au serveur et on l'affiche dans le titre
-var pseudo = prompt('Quel est votre pseudo ?');
-socket.emit('nouveau_client', pseudo);
-document.title = pseudo + ' - ' + document.title;
-document.getElementById("user").innerHTML = pseudo;
-*/
-/*
-//On previent au socket quon rentre sur le chat
-socket.emit('ouvertureChat');
+
+// ESSAYER DE VOIR SI ON PEUT CONDITIONNER L4ACTION SOCKET COTE SERVEUR POUR QU4IL N4ENVOI QUE LORSQUE LA PAGE EST ACTIVE
+
+
 
 // Le serveur nous repond et renvoi les identifiants qui nous permettent de parametrer la page
 socket.on('acceptationChat', function(nomUtilisateur){
@@ -43,33 +37,9 @@ socket.on('nouveau_client', function(pseudo) {
     $('#zone_chat').append('<p><em>' + pseudo + ' a rejoint le Chat !</em></p>');
     $('html,body').animate({scrollTop: $('#cale').offset().top}, 'slow');
 });
-
-// Lorsqu'on envoie le formulaire, on transmet le message et on l'affiche sur la page
-$('#formulaire_chat').submit(function () {
-    var message = $('#message').val();
-    var nowtimeB = new Date();
-    var jour = nowtimeB.getDate();
-    var mois = nowtimeB.getMonth()+1;
-    var annee = 2000+nowtimeB.getYear()-100;
-    var heure = nowtimeB.getHours();
-    var minutet = nowtimeB.getMinutes();
-    var nowtime = annee + "-" + format00(mois) + "-" + format00(jour) + " || " + format00(heure) + ":" + format00(minutet);
-
-
-    socket.emit('message', message, nowtimeB); // Transmet le message aux autres
-
-    insereMessage(document.getElementById("user").innerHTML, message, nowtime); // Affiche le message aussi sur notre page
-    $('#message').val('').focus(); // Vide la zone de Chat et remet le focus dessus
-    $('html,body').animate({scrollTop: $('#cale').offset().top}, 'slow');
-
-    return false; // Permet de bloquer l'envoi "classique" du formulaire
-});*/
+*/
 /*   
-// Ajoute un message dans la page
-function insereMessage(pseudo, message, date) {
-    $('#zone_chat').append('<div class="msg"><div class="msgvrai"><div class="entete"><div class="msguser">' + pseudo + '</div><div class="msgdate">' + date +  '</div></div>' + message + '</div></div>');
 
-};
 //sdlkfls
 // Fonction trasformation 00
 function format00(x){
@@ -94,6 +64,17 @@ function format00(x){
 
 
 */
+
+
+socket.emit('ouvertureTicket');
+
+socket.on('tickets', function(noBon, date) {
+    
+    insereTicket(noBon, date);
+
+});
+
+
 $(window).scroll(function(){
     
     
@@ -113,4 +94,10 @@ $(window).scroll(function(){
     //Animation du bouton ticket
     
 });
+
+// Ajoute un ticket dans la page
+function insereTicket(noBon, date) {
+    $('#zone_chat').append('<div class="ticket">' + date + ' : ' + noBon + '</div>');
+
+};
 

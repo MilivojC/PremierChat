@@ -116,6 +116,25 @@ console.log(req.body);
     
 });
 
+app.get('/ticket', function (req, res) {    
+ console.log(req.session);
+    sess = req.session
+    connectVendPRIMAIRE();
+    if (req.session.AuthMi === 1){
+        console.log("Authentification reussie dans ticket");
+        
+        
+        res.sendFile(__dirname + '/public/ticket.html');
+        
+    }
+    else {
+        console.log("Authentification rate dans authe");
+        res.redirect('/login');
+        res.end()
+    }
+});
+
+
 //Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
 app.all('/',function(req,res){res.redirect('/home');});
 
@@ -175,7 +194,85 @@ io.sockets.on('connection', function (socket, pseudo) {
             socket.emit('refus');
     });
     
+    
+    socket.on('ouvertureTicket', function(){
+        
+        
+        //Partie coton
+        
+        /*var pg3 = require('pg');
+        var conString3 = "postgres://postgres@localhost:5432/db_work";
+        var client3 = new pg3.Client(conString);
+        client3.connect();
+        var query3 = client3.query("SELECT * FROM messages");
+	
+        
+        
+        
+        
+        
+        query3.on('row', function(row) {
+		  try{
+			 console.log(row);
+              //socket.emit('tickets', {noBon: row.utilisateur, date: row.date});
+		  }
+		  catch(err){
+			 console.log("Problème sur le broadcast");
+		  }
+	   });
+	
+	   query3.on('end', function() {
+	       client3.end();
+	   }); */
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+    });
+    
 }); 
 
 
 server.listen(8080, "127.0.0.1");
+
+// FONCTIONS DE TEST CONNECTION VENDHQ
+
+
+function connectVendPRIMAIRE(){
+    
+    //REPONSE DU SERVER VEND
+    //http://milivoy.screeb.io/?code=ES4XpaVk4pfh12ODMpq0fY4aKqn7mM3DnmWMBFtr&domain_prefix=lacliniqueduportable&user_id=874da965-ea9f-11e3-a0f5-b8ca3a64f8f4&signature=86fd73b446fc495d9799f38155e277583313a93850a1591d79023d2463adccf2
+    
+        var codeV =  'ES4XpaVk4pfh12ODMpq0fY4aKqn7mM3DnmWMBFtr',
+            client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
+            client_secretV = 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
+            redirect_uriV = 'http://milivoy.screeb.io';
+        var data = "code=" + codeV + "&client_id=" + client_idV + "&client_secret=" + client_secretV + "&grant_type=authorization_code&redirect_uri=" + redirect_uriV;
+        
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function () {
+          if (this.readyState === 4) {
+            console.log(this.responseText);
+          }
+        });
+
+        xhr.open("POST", "https://lacliniqueduportable.vendhq.com/api/1.0/token");
+        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        xhr.setRequestHeader("cache-control", "no-cache");
+        xhr.send(data);   
+    };
+
+
+
+
+
+
