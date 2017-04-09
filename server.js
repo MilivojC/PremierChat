@@ -226,8 +226,31 @@ io.sockets.on('connection', function (socket, pseudo) {
 	   }); */
         
 
-        connectVendSEC(socket);
+var request = require("request");
+var jsonParser = bodyParser.json()
+    
+    
+var options = { method: 'GET',
+  url: 'https://lacliniqueduportable.vendhq.com/api/register_sales',
+  qs: { outlet_id: '0624dbcd-ef4a-11e6-e0bb-aab07aa5411b' },
+  headers: 
+   { 'cache-control': 'no-cache',
+     accept: 'application/json',
+     'content-type': 'application/json',
+     authorization: 'Bearer 3ZEuZLsLJKBJw5lCe2glzY:pNuJpqiSRZWlUaYpO' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+    console.log(body);
+    console.log("ET LA ON PARSE")
+    var i=0;
+    while (i < Number(JSON.parse(body).pagination.results)){
+        socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
+        i++;
         
+     } 
+    
         
         
         
@@ -310,7 +333,7 @@ request(options, function (error, response, body) {
     
     
     };
-
+/*
 function connectVendSEC(socket){
     
 
@@ -348,7 +371,7 @@ request(options, function (error, response, body) {
     
     
     };
-
+*/
 
 
 
