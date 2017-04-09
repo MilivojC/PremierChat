@@ -204,12 +204,7 @@ io.sockets.on('connection', function (socket, pseudo) {
         var conString3 = "postgres://postgres@localhost:5432/db_work";
         var client3 = new pg3.Client(conString);
         client3.connect();
-        var query3 = client3.query("SELECT * FROM messages");
-	
-        
-        
-        
-        
+        var query3 = client3.query("SELECT * FROM messages")
         
         query3.on('row', function(row) {
 		  try{
@@ -226,34 +221,34 @@ io.sockets.on('connection', function (socket, pseudo) {
 	   }); */
         
 
-var request = require("request");
-var jsonParser = bodyParser.json();
+            var request = require("request");
+            var jsonParser = bodyParser.json();
     
     
-var options = { method: 'GET',
-  url: 'https://lacliniqueduportable.vendhq.com/api/register_sales',
-  qs: { outlet_id: '0624dbcd-ef4a-11e6-e0bb-aab07aa5411b' },
-  headers: 
-   { 'cache-control': 'no-cache',
-     accept: 'application/json',
-     'content-type': 'application/json',
-     authorization: 'Bearer 3ZEuZLsLJKBJw5lCe2glzY:pNuJpqiSRZWlUaYpO' } };
+            var options = { method: 'GET',
+                  url: 'https://lacliniqueduportable.vendhq.com/api/register_sales',
+                  qs: { outlet_id: '0624dbcd-ef4a-11e6-e0bb-aab07aa5411b' },
+                  headers: 
+                   { 'cache-control': 'no-cache',
+                     accept: 'application/json',
+                     'content-type': 'application/json',
+                     authorization: 'Bearer 3ZEuZLsLJKBJw5lCe2glzY:pNuJpqiSRZWlUaYpO' } };
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
+            request(options, function (error, response, body) {
+                if (error) throw new Error(error);
 
-    console.log(body);
-    console.log("ET LA ON PARSE");
-    var i=0;
-    while (i < Number(JSON.parse(body).pagination.results)){
-        socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
-        i++;
-        
-     };        
-    });
+                    console.log(body);
+                    console.log("ET LA ON PARSE");
+                    var i=0;
+                    while (i < Number(JSON.parse(body).pagination.results)){
+                        socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
+                        i++;
+                    };        
+            });
     
+    }); 
+
 }); 
-
 
 server.listen(8080, "127.0.0.1");
 
@@ -286,6 +281,9 @@ function connectVendPRIMAIRE(){
 
   console.log(body);
 });
+    
+     };
+    
     
     
     //REPONSE DU SERVER VEND
@@ -327,7 +325,7 @@ function connectVendPRIMAIRE(){
 */
     
     
-    };
+   
     
     
     
