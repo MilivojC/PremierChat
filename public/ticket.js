@@ -69,7 +69,7 @@ function format00(x){
 socket.emit('ouvertureTicket');
 
 socket.on('tickets', function(noBon, date) {
-    
+    console.log("scoket marche sur le client");
     insereTicket(noBon, date);
 
 });
