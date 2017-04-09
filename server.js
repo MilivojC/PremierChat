@@ -249,11 +249,16 @@ function connectVendPRIMAIRE(){
     //REPONSE DU SERVER VEND
     //http://milivoy.screeb.io/?code=ES4XpaVk4pfh12ODMpq0fY4aKqn7mM3DnmWMBFtr&domain_prefix=lacliniqueduportable&user_id=874da965-ea9f-11e3-a0f5-b8ca3a64f8f4&signature=86fd73b446fc495d9799f38155e277583313a93850a1591d79023d2463adccf2
     
+    
+    //ERREUR CAR HTTPREQUEST NEST PAS DANS NODE
+    
         var codeV =  'ES4XpaVk4pfh12ODMpq0fY4aKqn7mM3DnmWMBFtr',
             client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
             client_secretV = 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
             redirect_uriV = 'http://milivoy.screeb.io';
-        var data = "code=" + codeV + "&client_id=" + client_idV + "&client_secret=" + client_secretV + "&grant_type=authorization_code&redirect_uri=" + redirect_uriV;
+       
+    /*
+    var data = "code=" + codeV + "&client_id=" + client_idV + "&client_secret=" + client_secretV + "&grant_type=authorization_code&redirect_uri=" + redirect_uriV;
         
 
         var xhr = new XMLHttpRequest();
@@ -269,6 +274,30 @@ function connectVendPRIMAIRE(){
         xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
         xhr.setRequestHeader("cache-control", "no-cache");
         xhr.send(data);   
+    */
+    
+    
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://lacliniqueduportable.vendhq.com/api/1.0/token',
+  headers: 
+   { 'cache-control': 'no-cache',
+     'content-type': 'application/x-www-form-urlencoded' },
+  form: 
+   { code: codeV,
+     client_id: client_idV,
+     client_secret: client_secretV,
+     grant_type: 'authorization_code',
+     redirect_uri: redirect_uriV } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+     
+    
     };
 
 
