@@ -97,6 +97,7 @@ $(window).scroll(function(){
 
 // Ajoute un ticket dans la page
 function insereTicket(noBon, date) {
+    console.log(noBon);
     $('#zone_ticket').append('<div class="ticket">' + date + ' : ' + noBon + '</div>');
 
 };
