@@ -119,7 +119,7 @@ console.log(req.body);
 app.get('/ticket', function (req, res) {    
  console.log(req.session);
     sess = req.session
-    connectVendSEC();
+
     if (req.session.AuthMi === 1){
         console.log("Authentification reussie dans ticket");
         
