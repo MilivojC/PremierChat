@@ -65,6 +65,7 @@ function format00(x){
 
 */
 
+var socket = io.connect('http://milivoy.screeb.io');
 
 socket.emit('ouvertureTicket');
 
