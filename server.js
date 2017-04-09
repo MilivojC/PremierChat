@@ -226,7 +226,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 	   }); */
         
 
-
+        connectVendSEC();
         
         
         
@@ -335,11 +335,12 @@ request(options, function (error, response, body) {
     console.log("ET LA ON PARSE")
     var i=0;
     while (i < Number(JSON.parse(body).pagination.results)){
-        
-   
-    console.log(JSON.parse(body).register_sales[i].invoice_number);
+        socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
         i++;
+        
      } 
+    
+
     
 });
      
