@@ -240,10 +240,14 @@ io.sockets.on('connection', function (socket, pseudo) {
 
                     console.log(body);
                     console.log("ET LA ON PARSE");
+                    console.log(JSON.parse(body).pagination.results);
                     var i=0;
                     while (i < Number(JSON.parse(body).pagination.results)){
                         socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
+                        console.log(i);
+                        console.log(JSON.parse(body).register_sales[i].invoice_number);
                         i++;
+                        
                     };        
             });
     
