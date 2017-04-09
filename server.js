@@ -316,7 +316,9 @@ function connectVendSEC(){
 
     
 var request = require("request");
-
+var jsonParser = bodyParser.json()
+    
+    
 var options = { method: 'GET',
   url: 'https://lacliniqueduportable.vendhq.com/api/register_sales',
   qs: { outlet_id: '0624dbcd-ef4a-11e6-e0bb-aab07aa5411b' },
@@ -329,8 +331,12 @@ var options = { method: 'GET',
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
 
-  console.log(JSON.parse(body).register_sales.invoice_number);
+    console.log(body);
+    conlole.log("ET LA ON PARSE")
+  console.log(JSON.parse(body));
 
+    
+    
 });
      
 
