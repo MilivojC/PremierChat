@@ -226,7 +226,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 	   }); */
         
 
-        connectVendSEC();
+        connectVendSEC(socket);
         
         
         
@@ -311,7 +311,7 @@ request(options, function (error, response, body) {
     
     };
 
-function connectVendSEC(){
+function connectVendSEC(socket){
     
 
     
