@@ -125,12 +125,13 @@ app.get('/ticket', function (req, res) {
         
         
         res.sendFile(__dirname + '/public/ticket.html');
+        res.end();
         
     }
     else {
         console.log("Authentification rate dans authe");
         res.redirect('/login');
-        res.end()
+        res.end();
     }
 });
 
