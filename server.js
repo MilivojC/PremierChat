@@ -332,7 +332,7 @@ request(options, function (error, response, body) {
   if (error) throw new Error(error);
 
     console.log(body);
-    conlole.log("ET LA ON PARSE")
+    console.log("ET LA ON PARSE")
   console.log(JSON.parse(body));
 
     
