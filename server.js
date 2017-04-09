@@ -333,7 +333,7 @@ request(options, function (error, response, body) {
 
     console.log(body);
     console.log("ET LA ON PARSE")
-  console.log(JSON.parse(body).pagination.register_sales);
+  console.log(JSON.parse(body)[pagination][register_sales]);
 
     
     
