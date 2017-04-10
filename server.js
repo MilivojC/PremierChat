@@ -52,15 +52,7 @@ app.get('/home', function (req, res) {
     }
 });
 
-app.post('/home', upload.array(), function (req, res) { 
-    
-   var pg2 = require('pg'),
-        conString2 = "postgres://postgres@localhost:5432/db_work",
-       client2 = new pg2.Client(conString2);
-       client2.connect();
-    var query2 = client2.query("DELETE FROM session WHERE sid ='" + req.session.id+ "'");
-    res.redirect('/login');
-});   
+
 
 // Chargement de la page login.html | Vérification de l'existence de la session et redirection si necessaire.
 app.get('/login', function (req, res) {  
@@ -70,50 +62,8 @@ app.get('/login', function (req, res) {
   }
     else { //sinon on envoi le formulaire
       res.sendFile(__dirname + '/public/login.html');
+        res.end();
   }
-});
-
-//Reception de la requete d'identification
-app.post('/login', upload.array(), function(req, res) {
-console.log(req.body);
-    //Requete qui va chercher dans la db si le mdp et l'id correspondent
-    var pg1 = require('pg'),
-        conString1 = "postgres://postgres@localhost:5432/db_work",
-        client1 = new pg.Client(conString1);
-        client1.connect();
-    var query1 = client1.query("SELECT * FROM identification WHERE nigol ='" + req.body.Username +"'");
-    query1.on('row', function(row) {   
-        if (row.drowssap == req.body.password && row.nigol == req.body.Username){ // Si cela correspond on affecte les valeurs à la variable de session et on renvoi sur home (notement authMi qui donne acces aux pages)
-            req.session.AuthMi = 1;
-            req.session.user = req.body.Username;
-            sess = req.session;
-            res.redirect('/home')
-            
-            
-        }
-        
-   //     else --> Sinon on affiche une erreur d'authentification avec le websocket
-        else {
-            sess = req.session; //Pour cela on affecte la session a la variable sess qui sera utilisé par le websocket.
-            
-            
-            res.end();
-            
-        }
-      
-            
-        
-
-	});
-    
-      query1.on('end', function() {
-	       client1.end();
-	   });
-          
-    
-    
-    
-    
 });
 
 app.get('/ticket', function (req, res) {    
@@ -134,10 +84,6 @@ app.get('/ticket', function (req, res) {
         res.end();
     }
 });
-
-
-//Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
-app.all('/',function(req,res){res.redirect('/home');});
 
         //Ouverture de l'écoute io.sockets
 io.sockets.on('connection', function (socket, pseudo) {
@@ -254,6 +200,67 @@ io.sockets.on('connection', function (socket, pseudo) {
     }); 
 
 }); 
+
+
+app.post('/home', upload.array(), function (req, res) { 
+    
+   var pg2 = require('pg'),
+        conString2 = "postgres://postgres@localhost:5432/db_work",
+       client2 = new pg2.Client(conString2);
+       client2.connect();
+    var query2 = client2.query("DELETE FROM session WHERE sid ='" + req.session.id+ "'");
+    res.redirect('/login');
+});   
+
+//Reception de la requete d'identification
+app.post('/login', upload.array(), function(req, res) {
+console.log(req.body);
+    //Requete qui va chercher dans la db si le mdp et l'id correspondent
+    var pg1 = require('pg'),
+        conString1 = "postgres://postgres@localhost:5432/db_work",
+        client1 = new pg.Client(conString1);
+        client1.connect();
+    var query1 = client1.query("SELECT * FROM identification WHERE nigol ='" + req.body.Username +"'");
+    query1.on('row', function(row) {   
+        if (row.drowssap == req.body.password && row.nigol == req.body.Username){ // Si cela correspond on affecte les valeurs à la variable de session et on renvoi sur home (notement authMi qui donne acces aux pages)
+            req.session.AuthMi = 1;
+            req.session.user = req.body.Username;
+            sess = req.session;
+            res.redirect('/home')
+            
+            
+        }
+        
+   //     else --> Sinon on affiche une erreur d'authentification avec le websocket
+        else {
+            sess = req.session; //Pour cela on affecte la session a la variable sess qui sera utilisé par le websocket.
+            res.end();
+            
+        }
+      
+            
+        
+
+	});
+    
+      query1.on('end', function() {
+	       client1.end();
+	   });
+          
+    
+    
+    
+    
+});
+
+
+
+
+//Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
+app.all('/',function(req,res){res.redirect('/home');});
+
+
+
 
 server.listen(8080, "127.0.0.1");
 
