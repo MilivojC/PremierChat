@@ -236,10 +236,10 @@ console.log(req.body);
         } else {
             
             console.log("erreur d'identification");
-            sess = req.session; //Pour cela on affecte la session a la variable sess qui sera utilisé par le websocket.
+            
             console.log("erreur d'identification");
             
-            res.end();
+            
             
     
       
@@ -253,8 +253,8 @@ console.log(req.body);
 	   });
           
     
-    
-    
+    sess = req.session; //Pour cela on affecte la session a la variable sess qui sera utilisé par le websocket.
+    res.end();
     
 });
 
