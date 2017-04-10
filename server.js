@@ -87,6 +87,7 @@ app.get('/ticket', function (req, res) {
 });
 
         //Ouverture de l'écoute io.sockets
+/*
 io.sockets.on('connection', function (socket, pseudo) {
     
 // ECOUTE CONCERNANT LE CHAT
@@ -166,7 +167,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 	
 	   query3.on('end', function() {
 	       client3.end();
-	   }); */
+	   });                             //* /
         
 
             var request = require("request");
@@ -202,7 +203,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 
 }); 
 
-
+*/
 app.post('/home', upload.array(), function (req, res) { 
     
    var pg2 = require('pg'),
