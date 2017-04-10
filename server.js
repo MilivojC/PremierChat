@@ -56,7 +56,8 @@ app.get('/home', function (req, res) {
 
 // Chargement de la page login.html | Vérification de l'existence de la session et redirection si necessaire.
 app.get('/login', function (req, res) {  
-
+    sess = req.session;
+    
     if (req.session.AuthMi === 1) { //si la variable d'autorisation est déja a 1 alors redirection
         res.redirect('/');        
   }
@@ -234,7 +235,17 @@ console.log(req.body);
    //     else --> Sinon on affiche une erreur d'authentification avec le websocket
         else {
             sess = req.session; //Pour cela on affecte la session a la variable sess qui sera utilisé par le websocket.
-            res.end();
+
+            io.sockets.on('connection', function (socket, pseudo) {
+            
+                socket.on('verification', function(){
+                    socket.emit('refus');
+                    
+                socket.disconnect();
+                });
+    
+            
+            
             
         }
       
