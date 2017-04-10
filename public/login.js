@@ -10,7 +10,7 @@ $('#formulaire_login').submit(function () {
         }
     else {
             this.submit();
-         }
+         };
     
     
     $('#Username').val('').focus(); 
