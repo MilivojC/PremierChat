@@ -65,7 +65,34 @@ app.get('/login', function (req, res) {
       res.sendFile(__dirname + '/public/login.html');
 
   }
+}).post('/login', upload.array(), function(req, res) {
+console.log(req.body);
+    //Requete qui va chercher dans la db si le mdp et l'id correspondent
+    var pg1 = require('pg'),
+        conString1 = "postgres://postgres@localhost:5432/db_work",
+        client1 = new pg1.Client(conString1);
+        client1.connect();
+    var query1 = client1.query("SELECT * FROM identification WHERE nigol ='" + req.body.Username +"'");
+    query1.on('row', function(row) {   
+        if (row.drowssap == req.body.password && row.nigol == req.body.Username){ // Si cela correspond on affecte les valeurs à la variable de session et on renvoi sur home (notement authMi qui donne acces aux pages)
+            console.log("identification acceptee dans le post");
+            req.session.AuthMi = 1;
+            req.session.user = req.body.Username;
+            sess = req.session;
+            res.redirect('/home');     
+        }
+        
+
+	});
+    
+      query1.on('end', function() {
+	       client1.end();
+
+	   });
+
+    
 });
+
 
 app.get('/ticket', function (req, res) {    
  console.log(req.session);
@@ -216,47 +243,6 @@ app.post('/home', upload.array(), function (req, res) {
 });   
 
 //Reception de la requete d'identification
-app.post('/login', upload.array(), function(req, res) {
-console.log(req.body);
-    //Requete qui va chercher dans la db si le mdp et l'id correspondent
-    var pg1 = require('pg'),
-        conString1 = "postgres://postgres@localhost:5432/db_work",
-        client1 = new pg1.Client(conString1);
-        client1.connect();
-    var query1 = client1.query("SELECT * FROM identification WHERE nigol ='" + req.body.Username +"'");
-    query1.on('row', function(row) {   
-        if (row.drowssap == req.body.password && row.nigol == req.body.Username){ // Si cela correspond on affecte les valeurs à la variable de session et on renvoi sur home (notement authMi qui donne acces aux pages)
-            console.log("identification acceptee dans le post");
-            req.session.AuthMi = 1;
-            req.session.user = req.body.Username;
-            sess = req.session;
-            res.redirect('/home');
-            
-            
-        } else {
-            
-            console.log("erreur d'identification");
-            
-            console.log("erreur d'identification");
-            
-            
-            
-    
-      
-              }
-        
-
-	});
-    
-      query1.on('end', function() {
-	       client1.end();
-	   });
-          
-    
-    sess = req.session; //Pour cela on affecte la session a la variable sess qui sera utilisé par le websocket.
-    res.end();
-    
-});
 
 
 
