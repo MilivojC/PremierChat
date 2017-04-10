@@ -3,6 +3,7 @@ var socket = io.connect('http://milivoy.screeb.io');
 //socket.emit('jesuisla');
 $('#formulaire_login').submit(function () {
 
+    
     if ($.browser.safari)
         {
             this.action += '?t=' + new Date().getTime();
