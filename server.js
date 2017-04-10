@@ -232,10 +232,7 @@ console.log(req.body);
             res.redirect('/home')
             
             
-        }
-        
-   //     else --> Sinon on affiche une erreur d'authentification avec le websocket
-        else {
+        } else {
             
             console.log("erreur d'identification");
             sess = req.session; //Pour cela on affecte la session a la variable sess qui sera utilisé par le websocket.
