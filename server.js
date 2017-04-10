@@ -221,7 +221,7 @@ console.log(req.body);
     //Requete qui va chercher dans la db si le mdp et l'id correspondent
     var pg1 = require('pg'),
         conString1 = "postgres://postgres@localhost:5432/db_work",
-        client1 = new pg.Client(conString1);
+        client1 = new pg1.Client(conString1);
         client1.connect();
     var query1 = client1.query("SELECT * FROM identification WHERE nigol ='" + req.body.Username +"'");
     query1.on('row', function(row) {   
@@ -232,7 +232,7 @@ console.log(req.body);
             res.redirect('/home')
             
             
-        }
+        };
         
    //     else --> Sinon on affiche une erreur d'authentification avec le websocket
         else {
@@ -243,7 +243,7 @@ console.log(req.body);
             
     
       
-              }
+              };
         
 
 	});
