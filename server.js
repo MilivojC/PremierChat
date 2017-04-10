@@ -226,10 +226,11 @@ console.log(req.body);
     var query1 = client1.query("SELECT * FROM identification WHERE nigol ='" + req.body.Username +"'");
     query1.on('row', function(row) {   
         if (row.drowssap == req.body.password && row.nigol == req.body.Username){ // Si cela correspond on affecte les valeurs à la variable de session et on renvoi sur home (notement authMi qui donne acces aux pages)
+            console.log("identification acceptee dans le post");
             req.session.AuthMi = 1;
             req.session.user = req.body.Username;
             sess = req.session;
-            res.redirect('/home')
+            res.redirect('/home');
             
             
         } else {
