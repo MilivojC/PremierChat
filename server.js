@@ -62,7 +62,7 @@ app.get('/login', function (req, res) {
   }
     else { //sinon on envoi le formulaire
       res.sendFile(__dirname + '/public/login.html');
-        res.end();
+
   }
 });
 
