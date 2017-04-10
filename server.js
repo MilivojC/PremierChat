@@ -87,7 +87,7 @@ app.get('/ticket', function (req, res) {
 });
 
         //Ouverture de l'écoute io.sockets
-/*
+
 io.sockets.on('connection', function (socket, pseudo) {
     
 // ECOUTE CONCERNANT LE CHAT
@@ -167,7 +167,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 	
 	   query3.on('end', function() {
 	       client3.end();
-	   });                             //* /
+	   }); */
         
 
             var request = require("request");
@@ -203,7 +203,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 
 }); 
 
-*/
+
 app.post('/home', upload.array(), function (req, res) { 
     
    var pg2 = require('pg'),
@@ -237,15 +237,7 @@ console.log(req.body);
         else {
             sess = req.session; //Pour cela on affecte la session a la variable sess qui sera utilisé par le websocket.
 
-            io.sockets.on('connection', function (socket, pseudo) {
-            
-                socket.on('verification', function(){
-                    socket.emit('refus');
-                    
-                socket.disconnect();
-                });
-    
-            
+        
             
             
         });
