@@ -140,6 +140,7 @@ io.sockets.on('connection', function (socket, pseudo) {
     
 // ---- Après que le client est envoye ses identifiant il va demander si tout s'est bien deroule io va alors lui repondre
     socket.on('verification', function(){
+        console.log("socket a reçu la demande");
             socket.emit('refus');
     });
     
@@ -237,8 +238,8 @@ console.log(req.body);
         else {
             sess = req.session; //Pour cela on affecte la session a la variable sess qui sera utilisé par le websocket.
 
-        
-            
+            console.log("erreur d'identification");
+            res.end();
             
     
       
