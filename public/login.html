@@ -10,12 +10,12 @@
     <body>
         <div class="BandeauLogin"><p>CHATSCREEB</p></div>
         <div class="formLogin">
-            <form action="/login" method="post" id="formulaire_login">
+            <form action="/login" method="post" id="formulaire_login" onsubmit="soumission()">
                 <p><div class="labelLogin"><label>Nom d'utilisateur</label></div>
 		<input type="text" name="Username" id="Username" class="inputLogin" placeholder="Username" size="50" autofocus /></p></br>
         <p><div class="labelLogin"><label>Mot de passe</label></div>
 		<input type="password" name="password" id="password" class="inputLogin" size="50" placeholder="Password" /></p></br>			
-                <input class="setLogin" type="submit" onsubmit="soumission()" value="Login"/>
+                <input class="setLogin" type="submit" value="Login"/>
             </form>
         </div>
         <div id="console"></div>
