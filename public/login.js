@@ -11,6 +11,8 @@ $('#formulaire_login').submit(function () {
     else {*/
 
  //        }
+    
+    this.submit();
     console.log("La fonction 1 est jouee");
 
 });
