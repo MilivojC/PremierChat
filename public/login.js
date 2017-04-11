@@ -2,7 +2,7 @@ var socket = io.connect('http://milivoy.screeb.io');
 
 //socket.emit('jesuisla');
 $('#formulaire_login').submit(function () {
-
+e.preventDefault();
     try {
         
         this.submit();
