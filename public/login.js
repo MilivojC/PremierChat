@@ -4,11 +4,9 @@ var socket = io.connect('http://milivoy.screeb.io');
 $('#formulaire_login').submit(function () {
 
     
-<<<<<<< HEAD
+
     e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
     
-=======
->>>>>>> b6c5e7a201f6c4cc6feb4e0cb367c4ae8d49eaa3
     if ($.browser.safari)
         {
             this.action += '?t=' + new Date().getTime();
