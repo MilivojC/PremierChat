@@ -5,7 +5,7 @@ $('#formulaire_login').submit(function () {
 
     
 
-    e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
+    
     
     if ($.browser.safari)
         {
@@ -17,10 +17,14 @@ $('#formulaire_login').submit(function () {
          };
     
     
+   
+    return false;
+},function () {
+ 
     $('#Username').val('').focus(); 
     $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
     socket.emit('verification');    
-    return false;
+ 
 });
 
 
