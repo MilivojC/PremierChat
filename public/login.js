@@ -13,6 +13,7 @@ function aftersoum(){
     document.getElementById("Username").value="";
     document.getElementById("password").value="";
     socket.emit('verification');
+    console.log("La fonction aftersoum est jouee");
 }
 
 
