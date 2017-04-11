@@ -25,7 +25,7 @@ return false;
 });
 */
 $('#formulaire_login').submit(function () {
- 
+    soumission();
     $('#Username').val('').focus(); 
     $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
     socket.emit('verification'); 
