@@ -1,10 +1,11 @@
 var socket = io.connect('http://milivoy.screeb.io');
 
 function soumission() {
-  document.getElementById("#formulaire_login").submit();  
-   socket.emit('verification'); 
+    document.getElementById("#formulaire_login").submit();  
+    socket.emit('verification'); 
     console.log("La fonction 2 est jouee");
-    
+    $('#Username').val('').focus(); 
+    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
     
 };
 
