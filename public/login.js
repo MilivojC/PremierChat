@@ -2,16 +2,11 @@ var socket = io.connect('http://milivoy.screeb.io');
 
 //socket.emit('jesuisla');
 $('#formulaire_login').submit(function () {
-e.preventDefault();
-    try {
-        
-        this.submit();
-    }
-    catch(e) {
-        
+
+
         this.action += '?t=' + new Date().getTime();
             this.submit();
-    }
+    
     console.log("La fonction 1 est jouee");
 
 });
