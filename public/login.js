@@ -1,5 +1,5 @@
 var socket = io.connect('http://milivoy.screeb.io');
-
+/*
 function soumission() {
     document.getElementById("#formulaire_login").submit();  
     //socket.emit('verification'); 
@@ -8,7 +8,7 @@ function soumission() {
     //document.getElementById("#password").reset(); // Vide les zones de renseignement et remet le focus sur identifiant
     
 };
-
+*/
 
 
 
@@ -25,7 +25,7 @@ return false;
 });
 */
 $('#formulaire_login').submit(function () {
-    soumission();
+    document.getElementById("#formulaire_login").submit();
     $('#Username').val('').focus(); 
     $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
     socket.emit('verification'); 
