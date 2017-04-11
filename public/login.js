@@ -13,8 +13,8 @@ return false;
 
 $('#formulaire_login').submit(function () {
  
-    $('#Username').val('').focus(); 
-    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
+   // $('#Username').val('').focus(); 
+    //$('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
     socket.emit('verification'); 
     console.log("La fonction 2 est jouee");
  return false;
