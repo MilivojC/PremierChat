@@ -6,6 +6,7 @@ function soumission() {
     console.log("La fonction soumission est jouee");
     //document.getElementById("#Username").reset().focus(); 
     //document.getElementById("#password").reset(); // Vide les zones de renseignement et remet le focus sur identifiant
+    aftersoum();
     
 };
 
@@ -14,7 +15,7 @@ function aftersoum(){
     document.getElementById("password").value="";
     socket.emit('verification');
     console.log("La fonction aftersoum est jouee");
-}
+};
 
 
 
