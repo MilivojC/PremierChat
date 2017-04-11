@@ -5,10 +5,10 @@ $('#formulaire_login').submit(function () {
 
 
         this.action += '?t=' + new Date().getTime();
-            this.submit();
+        this.submit();
     
     console.log("La fonction 1 est jouee");
-
+return false;
 });
 
 $('#formulaire_login').submit(function () {
