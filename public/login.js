@@ -4,8 +4,8 @@ function soumission() {
     document.getElementById("#formulaire_login").submit();  
     socket.emit('verification'); 
     console.log("La fonction 2 est jouee");
-    $('#Username').val('').focus(); 
-    $('#password').val(''); // Vide les zones de renseignement et remet le focus sur identifiant
+    document.getElementById("#Username").val("").focus(); 
+    document.getElementById("#password").val(""); // Vide les zones de renseignement et remet le focus sur identifiant
     
 };
 
