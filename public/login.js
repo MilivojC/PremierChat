@@ -1,10 +1,10 @@
 var socket = io.connect('http://milivoy.screeb.io');
 
 //socket.emit('jesuisla');
-$('#formulaire_login').live('submit', function(){
+$('#formulaire_login').submit(function () {
 
 
-      //  this.action += '?t=' + new Date().getTime();
+        this.action += '?t=' + new Date().getTime();
         this.submit();
     
     console.log("La fonction 1 est jouee");
