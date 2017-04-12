@@ -125,8 +125,7 @@ app.get("/", upload.array(), function(req,res){
     //On lance la requete et on affecte le token obtenu a la sesssion
 request(options, function (error, response, body) {
         //if (error) throw new Error(error);
-        console.log(response);
-        console.log(body);
+        req.session.vendToken = body.access_token;
         
       });
 
