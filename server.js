@@ -95,7 +95,7 @@ console.log(req.body);
 });
 
 //Placer audessus du /ticket pour que req.session reste configure
-app.get("/", function(req,res,next){
+app.get("/", upload.array(), function(req,res,next){
     //On récupère le code de validation client
     var code = req.query.code;
     //On construit la requete faite a vend pour obtenir le token
