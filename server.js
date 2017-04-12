@@ -116,7 +116,7 @@ app.get('/ticket', function (req, res) {
     }
 });
 
-app.get("/", function(req,res){
+app.get("/", function(req,res,next){
     
     var code = req.query.code;
     console.log(code);
@@ -126,9 +126,11 @@ app.get("/", function(req,res){
     console.log(tokk);
     req.session.tokey = connectVendPRIMAIRE(code);
     console.log(req.session);
-    res.redirect('/home');
     
-});
+    
+}, function(req,res){
+    res.redirect('/home');           
+             });
 
 
 
@@ -311,9 +313,9 @@ function connectVendPRIMAIRE(code){
     
  request(options, function (error, response, body) {
   if (error) throw new Error(error);
-        console.log(body);
+        
         const tokk = JSON.parse(body).access_token;
-        console.log(tokk);
+        
         cle = "Bearer " + tokk;
 
       
