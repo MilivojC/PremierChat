@@ -120,17 +120,18 @@ app.get("/", upload.array(), function(req,res){
                         redirect_uri: redirect_uriV 
                     } 
         };
-    
+    var streamify = require('streamify');
+    var stream = streamify();
     
     //On lance la requete et on affecte le token obtenu a la sesssion
 var request1 = request(options, function (error, response, body) {
         //if (error) throw new Error(error);
         req.session.vendToken = body.access_token;
-        res.send("Le res fonction dans request1");
+        stream.resolve(body)
       });
     
     
-
+console.log(stream);
 console.log(req.session);
 
     
