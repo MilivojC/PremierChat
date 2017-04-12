@@ -129,7 +129,7 @@ app.get("/", upload.array(), function(req,res){
         if (error) throw new Error(error);
         //req.session.vendToken = "Bearer " + JSON.parse(body).access_token;
       }).on('response', function(response){
-        console.log(response);
+        console.log(body);
         console.log("Dnas le request on au desus");
         
     });
