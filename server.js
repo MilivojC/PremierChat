@@ -94,33 +94,7 @@ console.log(req.body);
 
 });
 
-
-app.get('/ticket', function (req, res) {    
- console.log(req.session);
-    sess = req.session
-
-
-    
-    
-    if (req.session.AuthMi === 1){
-        console.log("Authentification reussie dans ticket");
-        
-        if (req.session.vendToken){
-        res.sendFile(__dirname + '/public/ticket.html');
-        res.end();
-        }
-        else{
-        res.redirect('https://secure.vendhq.com/connect?response_type=code&client_id=7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc&redirect_uri=http://milivoy.screeb.io');
-        res.end();
-        }
-    }
-    else {
-        console.log("Authentification rate dans authe");
-        res.redirect('/login');
-        res.end();
-    }
-});
-
+//Placer audessus du /ticket pour que req.session reste configure
 app.get("/", function(req,res,next){
     //On récupère le code de validation client
     var code = req.query.code;
@@ -157,6 +131,35 @@ app.get("/", function(req,res,next){
 }, function(req,res){
     res.redirect('/home');           
              });
+
+
+app.get('/ticket', function (req, res) {    
+ console.log(req.session);
+    sess = req.session
+
+
+    
+    
+    if (req.session.AuthMi === 1){
+        console.log("Authentification reussie dans ticket");
+        
+        if (req.session.vendToken){
+        res.sendFile(__dirname + '/public/ticket.html');
+        res.end();
+        }
+        else{
+        res.redirect('https://secure.vendhq.com/connect?response_type=code&client_id=7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc&redirect_uri=http://milivoy.screeb.io');
+        res.end();
+        }
+    }
+    else {
+        console.log("Authentification rate dans authe");
+        res.redirect('/login');
+        res.end();
+    }
+});
+
+
 
 
 
@@ -307,7 +310,7 @@ app.all('/',function(req,res){
 server.listen(8080, "127.0.0.1");
 
 // FONCTIONS DE TEST CONNECTION VENDHQ
-function testConnexionVend(res){
+function testConnexionVend(sessionToken){
     
     
     
