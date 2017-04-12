@@ -129,6 +129,7 @@ app.get("/", upload.array(), function(req,res){
         if (error) throw new Error(error);
         //req.session.vendToken = "Bearer " + JSON.parse(body).access_token;
       });
+    console.log(request.prototype.onRequestResponse);
     console.log(req.session);
     
     res.redirect('/home');    
