@@ -116,6 +116,18 @@ app.get('/ticket', function (req, res) {
     }
 });
 
+app.get("/", function(req,res){
+    
+    var code = req.query.code;
+    console.log(code);
+    req.session.tokey = connectVendPRIMAIRE(code);
+    console.log(req.session);
+    res.redirect('/home');
+    
+});
+
+
+
         //Ouverture de l'écoute io.sockets
 
 io.sockets.on('connection', function (socket, pseudo) {
@@ -250,15 +262,7 @@ app.post('/home', upload.array(), function (req, res) {
 
 
 
-app.get("/", function(req,res){
-    
-    var code = req.query.code;
-    console.log(code);
-    req.session.tokey = connectVendPRIMAIRE(code);
-    console.log(req.session);
-    res.redirect('/home');
-    
-});
+
 //Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
 app.all('/',function(req,res){
 
