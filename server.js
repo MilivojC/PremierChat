@@ -315,7 +315,7 @@ function connectVendPRIMAIRE(code){
         //const cle = "Bearer " + tokk;
         //    console.log(cle);
       
-})).body;
+}).body);
     console.log(tokk);
      };
     
