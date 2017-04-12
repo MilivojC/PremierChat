@@ -125,12 +125,18 @@ app.get("/", upload.array(), function(req,res){
     //On lance la requete et on affecte le token obtenu a la sesssion
     var request1 = request(options, function (error, response, body) {
         if (error) throw new Error(error);
-        //req.session.vendToken = "Bearer " + JSON.parse(body).access_token;
+        req.session.vendToken = "Bearer " + JSON.parse(body).access_token;
+        request1.reponse = "Bearer " + JSON.parse(body).access_token;
       });
+    console.log(request1.reponse);
+    
+  /*
     request1.on('response', function(body){
        
         console.log(body.toJSON);
     });
+    */
+    
     
     console.log(req.session);
     
