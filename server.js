@@ -254,7 +254,7 @@ app.get("/", function(req,res){
     code = req.query("code");
     console.log(code);
     connectVendPRIMAIRE(code);
-    res.redirect('/home');});
+    res.redirect('/home');
     
 });
 //Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
