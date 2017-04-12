@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 
 var sess; // variable de session utilisee par socket
-var tokey;
+
 
 app.get('/home', function (req, res) {    
  console.log(req.session);
@@ -118,7 +118,7 @@ app.get('/ticket', function (req, res) {
 
         //Ouverture de l'écoute io.sockets
 
-io.sockets.on('connection', function (socket, pseudo, tokey) {
+io.sockets.on('connection', function (socket, pseudo) {
     
 // ECOUTE CONCERNANT LE CHAT
 
@@ -213,7 +213,7 @@ io.sockets.on('connection', function (socket, pseudo, tokey) {
                    { 'cache-control': 'no-cache',
                      accept: 'application/json',
                      'content-type': 'application/json',
-                     authorization: tokey } };
+                     authorization: sess.tokey} };
 
             request(options, function (error, response, body) {
                 if (error) throw new Error(error);
@@ -254,7 +254,7 @@ app.get("/", function(req,res){
     
     var code = req.query.code;
     console.log(code);
-    tokey = connectVendPRIMAIRE(code);
+    req.session.tokey = connectVendPRIMAIRE(code);
     
     res.redirect('/home');
     
