@@ -120,6 +120,10 @@ app.get("/", function(req,res){
     
     var code = req.query.code;
     console.log(code);
+    var tokk;
+    tokk=connectVendPRIMAIRE(code);
+    concole.log("la cle a ete recuperer")
+    console.log(tokk);
     req.session.tokey = connectVendPRIMAIRE(code);
     console.log(req.session);
     res.redirect('/home');
@@ -264,10 +268,11 @@ app.post('/home', upload.array(), function (req, res) {
 
 
 //Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
+/*
 app.all('/',function(req,res){
 
     res.redirect('/home');});
-
+*/
 
 
 
