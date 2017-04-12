@@ -122,7 +122,7 @@ app.get("/", function(req,res,next){
     console.log(code);
     var tokk;
     tokk = connectVendPRIMAIRE(code, function(data){
-        res.json(data);
+        return data;
         
     });
     console.log("la cle a ete recuperer")
