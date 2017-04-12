@@ -1,18 +1,18 @@
 var socket = io.connect('http://milivoy.screeb.io');
 
 function soumission() {
-    var x=0;
-    while (x<2) {
+
+   for (x = 0; x < 2; x++) { 
         switch (x){
             case 0:
                 soum();
-                x++;
+                x=x+1;
                 break;
             case 1:
                 aftersoum();
                 break;
-                x++;
-                 }
+                x=x+1;
+                 };
         
     }
     
@@ -30,7 +30,7 @@ function soum() {
     document.getElementById("formulaire_login").submit(); 
     console.log("La fonction soumission est jouee");
     
-}
+};
 
 
 
