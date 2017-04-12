@@ -117,19 +117,38 @@ app.get('/ticket', function (req, res) {
 });
 
 app.get("/", function(req,res,next){
-    
+    //On récupère le code de validation client
     var code = req.query.code;
-    console.log(code);
-    var tokk="";
-    connectVendPRIMAIRE(code, tokk);
-    console.log("la cle a ete recuperer")
-    console.log(tokk);
-
-    //req.session.tokey = connectVendPRIMAIRE(code);
-    console.log(req.session);
-    next();
-    
-    
+    //On construit la requete faite a vend pour obtenir le token
+    var codeV =  code,
+        client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
+        client_secretV = 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
+        redirect_uriV = 'http://milivoy.screeb.io';
+        var request = require("request");
+        var options = { 
+                method: 'POST',
+                url: 'https://lacliniqueduportable.vendhq.com/api/1.0/token',
+                headers: 
+                    { 
+                        'cache-control': 'no-cache',
+                        'content-type': 'application/x-www-form-urlencoded' 
+                    },
+                form: 
+                    { 
+                        code: codeV,
+                        client_id: client_idV,
+                        client_secret: client_secretV,
+                        grant_type: 'authorization_code',
+                        redirect_uri: redirect_uriV 
+                    } 
+        };
+    //On lance la requete et on affecte le token obtenu a la sesssion
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        req.session.vendToken = "Bearer " + JSON.parse(body).access_token;
+        console.log(req.session);
+      });
+    next();   
 }, function(req,res){
     res.redirect('/home');           
              });
@@ -290,39 +309,7 @@ function testConnexionVend(res){
     
 }
 
-function connectVendPRIMAIRE(code, token){
-    
-           var codeV =  code,
-            client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
-            client_secretV = 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
-            redirect_uriV = 'http://milivoy.screeb.io';
-    
-        var request = require("request");
 
-        var options = { method: 'POST',
-  url: 'https://lacliniqueduportable.vendhq.com/api/1.0/token',
-  headers: 
-   { 'cache-control': 'no-cache',
-     'content-type': 'application/x-www-form-urlencoded' },
-  form: 
-   { code: codeV,
-     client_id: client_idV,
-     client_secret: client_secretV,
-     grant_type: 'authorization_code',
-     redirect_uri: redirect_uriV } };
-
-
-    
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-        
-        const tokk = JSON.parse(body).access_token;
-        
-        token = "Bearer " + tokk;
-      });
-    
-     };
-    
     
     
     //REPONSE DU SERVER VEND
