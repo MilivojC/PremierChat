@@ -1,11 +1,11 @@
 var socket = io.connect('http://milivoy.screeb.io');
 
-function soumission() {
+function soumission(this) {
 
    for (i = 0; i < 2; i++) { 
         switch (i){
             case 0:
-                soum();
+                soum(this);
                 break;
             case 1:
                 aftersoum();
@@ -24,9 +24,9 @@ function aftersoum(){
     console.log("La fonction aftersoum est jouee");
 };
 
-function soum() {
+function soum(this) {
     
-    document.getElementById("#formulaire_login").submit(); 
+    this.submit(); 
     console.log("La fonction soumission est jouee");
     
 };
@@ -34,12 +34,12 @@ function soum() {
 
 
 
-
+/*
 $('#formulaire_login').submit(function () {
     console.log("La fonction blocage est jouée");
 return false;
 });
-
+*/
 /*
 
 $('#formulaire_login').submit(function () {
