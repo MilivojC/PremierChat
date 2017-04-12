@@ -306,7 +306,7 @@ function connectVendPRIMAIRE(code){
   if (error) throw new Error(error);
 
   
-        const cle = body.token_type + " " + body.access_token;
+        const cle = "Bearer " + body.access_token;
             console.log(cle);
     return cle;        
 });
