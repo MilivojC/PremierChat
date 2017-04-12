@@ -253,10 +253,9 @@ app.post('/home', upload.array(), function (req, res) {
 
 //Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
 app.all('/',function(req,res){
-    console.log(req.body)
-    res.redirect('/home');
-
-});
+    code = req.param("code");
+    console.log(code)
+    res.redirect('/home');});
 
 
 
