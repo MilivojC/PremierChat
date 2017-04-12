@@ -320,7 +320,7 @@ function connectVendPRIMAIRE(code){
         cle = "Bearer " + tokk;
 
       
-});
+}).pipe(cle);
     
     
     console.log(cle);
