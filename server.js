@@ -121,10 +121,7 @@ app.get("/", function(req,res,next){
     var code = req.query.code;
     console.log(code);
     var tokk;
-    connectVendPRIMAIRE(code, function(data){
-    tokk = data;
-    console.log(data);    
-    });
+    connectVendPRIMAIRE(code, tokk);
     console.log("la cle a ete recuperer")
     console.log(tokk);
     console.log(res);
@@ -293,7 +290,7 @@ function testConnexionVend(res){
     
 }
 
-function connectVendPRIMAIRE(code, callback){
+function connectVendPRIMAIRE(code, token){
     
            var codeV =  code,
             client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
@@ -321,14 +318,8 @@ request(options, function (error, response, body) {
         
         const tokk = JSON.parse(body).access_token;
         
-        var cle = "Bearer " + tokk;
-        console.log(cle);
-        callback(cle);
+        token = "Bearer " + tokk;
       });
-    
-   
-
-
     
      };
     
