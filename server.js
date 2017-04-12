@@ -131,7 +131,7 @@ var request1 = request(options, function (error, response, body) {
       });
     
     
-console.log(stream);
+console.log(stream._read);
 console.log(req.session);
 
     
