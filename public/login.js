@@ -20,12 +20,12 @@ function aftersoum(){
 
 
 
-
+/*
 $('#formulaire_login').submit(function () {
     console.log("La fonction blocage est jouée");
 return false;
 });
-
+*/
 /*
 
 $('#formulaire_login').submit(function () {
