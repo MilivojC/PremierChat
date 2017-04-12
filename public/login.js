@@ -25,8 +25,8 @@ function aftersoum(){
 };
 
 function soum() {
-    
-    document.getElementById("formulaire_login").submit(); 
+    document.forms[0].submit();
+    //document.getElementById("formulaire_login").submit(); 
     console.log("La fonction soumission est jouee");
     
 };
