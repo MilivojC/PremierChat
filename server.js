@@ -126,10 +126,11 @@ app.get("/", upload.array(), function(req,res){
     var request1 = request(options, function (error, response, body) {
         if (error) throw new Error(error);
         req.session.vendToken = "Bearer " + JSON.parse(body).access_token;
-        console.log(req.session);
+
+        req.session.save();
       });
 
-    
+console.log(req.session);
   /*
     request1.on('response', function(body){
        
