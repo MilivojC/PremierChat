@@ -6,11 +6,9 @@ function soumission() {
         switch (i){
             case 0:
                 soum();
-                x=x+1;
                 break;
             case 1:
                 aftersoum();
-                x=x+1;
                 break;
                 
                  };
