@@ -79,6 +79,7 @@ console.log(req.body);
             console.log("identification acceptee dans le post");
             req.session.AuthMi = 1;
             req.session.user = req.body.Username;
+            req.session.vendToken="";
             sess = req.session;
             res.redirect('/home');     
         }
@@ -127,19 +128,14 @@ app.get("/", upload.array(), function(req,res,next){
         req.session.vendToken = "Bearer " + JSON.parse(body).access_token;
         console.log(req.session);
       });
-    next();   
-}, function(req,res){
-    res.redirect('/home');           
-             });
+    res.redirect('/home');    
+});
 
 
 app.get('/ticket', function (req, res) {    
  console.log(req.session);
     sess = req.session
 
-
-    
-    
     if (req.session.AuthMi === 1){
         console.log("Authentification reussie dans ticket");
         
