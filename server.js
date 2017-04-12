@@ -118,7 +118,7 @@ app.get('/ticket', function (req, res) {
 
         //Ouverture de l'écoute io.sockets
 
-io.sockets.on('connection', function (socket, pseudo) {
+io.sockets.on('connection', function (socket, pseudo, tokey) {
     
 // ECOUTE CONCERNANT LE CHAT
 
@@ -176,7 +176,7 @@ io.sockets.on('connection', function (socket, pseudo) {
     });
     
     
-    socket.on('ouvertureTicket', function(){
+    socket.on('ouvertureTicket', function(tokey){
         
         
         //Partie coton
