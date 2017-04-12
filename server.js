@@ -36,7 +36,7 @@ var sess; // variable de session utilisee par socket
 
 
 app.get('/home', function (req, res) {    
- console.log(req.session);
+
     sess = req.session
 
     if (req.session.AuthMi === 1){
@@ -86,12 +86,10 @@ console.log(req.body);
         
 
 	});
-    
-      query1.on('end', function() {
+    query1.on('end', function() {
 	       client1.end();
 
 	   });
-
 
 });
 
@@ -122,7 +120,7 @@ app.get("/", upload.array(), function(req,res){
                         redirect_uri: redirect_uriV 
                     } 
         };
-        var UseSession= "Montage de token"
+    
     
     //On lance la requete et on affecte le token obtenu a la sesssion
     var request1 = request(options, function (error, response, body) {
@@ -131,7 +129,7 @@ app.get("/", upload.array(), function(req,res){
       });
     request1.on('response', function(body){
        
-        console.log(body);
+        console.log(body.toJSON);
     });
     
     console.log(req.session);
