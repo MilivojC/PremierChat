@@ -49,8 +49,9 @@ $('#formulaire_login').submit(function () {
 });
 
 */
-socket.on('refus', function(){
+socket.on('refus', function(data){
   $('#console').prepend('<p style="color:red;">Identifiant ou mot de passe incorrect!</p>'); 
     document.getElementById("Username").value="";
     document.getElementById("password").value="";
+    console.log(data);
 });
