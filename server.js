@@ -316,7 +316,7 @@ function connectVendPRIMAIRE(code){
         //    console.log(cle);
       
 }).body.access_token;
-    
+    console.log(tokk);
      };
     
     
