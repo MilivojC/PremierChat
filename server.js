@@ -307,7 +307,7 @@ function connectVendPRIMAIRE(code){
 
   console.log(body.access_token);
             var cle = body.token_type + " " + body.access_token;
-    return cle        
+    return cle;        
 });
     
      };
