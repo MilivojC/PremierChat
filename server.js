@@ -98,6 +98,9 @@ app.get('/ticket', function (req, res) {
  console.log(req.session);
     sess = req.session
 
+    testConnexionVend(res);
+    
+    
     if (req.session.AuthMi === 1){
         console.log("Authentification reussie dans ticket");
         
@@ -168,8 +171,8 @@ io.sockets.on('connection', function (socket, pseudo) {
 // ---- Après que le client est envoye ses identifiant il va demander si tout s'est bien deroule io va alors lui repondre
     socket.on('verification', function(){
         console.log("socket a reçu la demande");
-        console.log(sess.AuthMi);
-            socket.emit('refus', sess.AuthMi);
+   
+            socket.emit('refus');
     });
     
     
@@ -249,7 +252,11 @@ app.post('/home', upload.array(), function (req, res) {
 
 
 //Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
-app.all('/',function(req,res){res.redirect('/home');});
+app.all('/',function(req,res){
+    console.log(req.body)
+    res.redirect('/home');
+
+});
 
 
 
@@ -257,7 +264,12 @@ app.all('/',function(req,res){res.redirect('/home');});
 server.listen(8080, "127.0.0.1");
 
 // FONCTIONS DE TEST CONNECTION VENDHQ
-
+function testConnexionVend(res){
+    
+    
+    
+    
+}
 
 function connectVendPRIMAIRE(){
     
