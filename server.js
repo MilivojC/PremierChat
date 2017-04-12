@@ -121,7 +121,7 @@ app.get("/", function(req,res){
     var code = req.query.code;
     console.log(code);
     var tokk;
-    tokk=connectVendPRIMAIRE(code);
+    tokk = connectVendPRIMAIRE(code);
     console.log("la cle a ete recuperer")
     console.log(tokk);
     req.session.tokey = connectVendPRIMAIRE(code);
@@ -307,7 +307,7 @@ function connectVendPRIMAIRE(code){
      grant_type: 'authorization_code',
      redirect_uri: redirect_uriV } };
 
-        request(options, function (error, response, body) {
+ return request(options, function (error, response, body) {
   if (error) throw new Error(error);
         console.log(body);
         const tokk = JSON.parse(body).access_token;
