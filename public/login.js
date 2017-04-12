@@ -2,32 +2,21 @@ var socket = io.connect('http://milivoy.screeb.io');
 
 function soumission() {
 console.log(navigator.appName)
-//   for (i = 0; i < 2; i++) { 
-//        switch (i){
-//            case 0:
-//                soum();
-//                break;
-//            case 1:
-//                aftersoum();
-//                break;
-//                
-//                 };
-//        
-//    }
-  
-    soum();
-    setTimeout(aftersoum(), 10000);
-    
-    
-    
-    
-    
-    
+   for (i = 0; i < 2; i++) { 
+        switch (i){
+            case 0:
+                soum();
+                break;
+            case 1:
+                aftersoum();
+                break;
+                
+                 };
+        
+    }    
 };
 
 function aftersoum(){
-    document.getElementById("Username").value="";
-    document.getElementById("password").value="";
     socket.emit('verification');
     console.log("La fonction aftersoum est jouee");
 };
@@ -61,5 +50,7 @@ $('#formulaire_login').submit(function () {
 
 */
 socket.on('refus', function(){
-  $('#console').prepend('<p style="color:red;">Identifiant ou mot de passe incorrect!</p>');  
+  $('#console').prepend('<p style="color:red;">Identifiant ou mot de passe incorrect!</p>'); 
+    document.getElementById("Username").value="";
+    document.getElementById("password").value="";
 });
