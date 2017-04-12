@@ -121,10 +121,13 @@ app.get("/", function(req,res,next){
     var code = req.query.code;
     console.log(code);
     var tokk;
-    tokk = connectVendPRIMAIRE(code);
+    tokk = connectVendPRIMAIRE(code, function(data){
+        res.json(data);
+        
+    });
     console.log("la cle a ete recuperer")
     console.log(tokk);
-    req.session.tokey = connectVendPRIMAIRE(code);
+    //req.session.tokey = connectVendPRIMAIRE(code);
     console.log(req.session);
     next();
     
@@ -289,7 +292,7 @@ function testConnexionVend(res){
     
 }
 
-function connectVendPRIMAIRE(code){
+function connectVendPRIMAIRE(code, callback){
     
            var codeV =  code,
             client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
@@ -310,21 +313,22 @@ function connectVendPRIMAIRE(code){
      grant_type: 'authorization_code',
      redirect_uri: redirect_uriV } };
 
-    var cle;
+
     
- request(options, function (error, response, body) {
+request(options, function (error, response, body) {
   if (error) throw new Error(error);
         
         const tokk = JSON.parse(body).access_token;
         
-        cle = "Bearer " + tokk;
+        var cle = "Bearer " + tokk;
+        console.log(cle);
+        callback(cle);
+      });
+    
+   
 
-      
-}).pipe(cle);
-    
-    
-    console.log(cle);
-    return cle;
+
+    //return cle;
      };
     
     
