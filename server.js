@@ -33,6 +33,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 
 var sess; // variable de session utilisee par socket
+var tokey;
 
 app.get('/home', function (req, res) {    
  console.log(req.session);
@@ -98,12 +99,11 @@ app.get('/ticket', function (req, res) {
  console.log(req.session);
     sess = req.session
 
-    testConnexionVend(res);
+
     
     
     if (req.session.AuthMi === 1){
         console.log("Authentification reussie dans ticket");
-        
         
         res.sendFile(__dirname + '/public/ticket.html');
         res.end();
@@ -213,7 +213,7 @@ io.sockets.on('connection', function (socket, pseudo) {
                    { 'cache-control': 'no-cache',
                      accept: 'application/json',
                      'content-type': 'application/json',
-                     authorization: 'Bearer 3ZEuZLsLJKBJw5lCe2glzY:pNuJpqiSRZWlUaYpO' } };
+                     authorization: tokey } };
 
             request(options, function (error, response, body) {
                 if (error) throw new Error(error);
@@ -252,9 +252,10 @@ app.post('/home', upload.array(), function (req, res) {
 
 app.get("/", function(req,res){
     
-    code = req.query.code;
+    var code = req.query.code;
     console.log(code);
-    connectVendPRIMAIRE(code);
+    tokey = connectVendPRIMAIRE(code);
+    
     res.redirect('/home');
     
 });
@@ -300,7 +301,9 @@ function connectVendPRIMAIRE(code){
         request(options, function (error, response, body) {
   if (error) throw new Error(error);
 
-  console.log(body);
+  console.log(body.access_token);
+            var cle = body.token_type + " " + body.access_token;
+    return cle        
 });
     
      };
