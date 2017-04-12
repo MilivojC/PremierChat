@@ -1,7 +1,7 @@
 var socket = io.connect('http://milivoy.screeb.io');
 
 function soumission() {
-
+console.log(navigator.appName)
    for (i = 0; i < 2; i++) { 
         switch (i){
             case 0:
@@ -25,8 +25,8 @@ function aftersoum(){
 };
 
 function soum() {
-    document.forms[0].submit();
-    //document.getElementById("formulaire_login").submit(); 
+
+    document.getElementById("formulaire_login").submit(); 
     console.log("La fonction soumission est jouee");
     
 };
