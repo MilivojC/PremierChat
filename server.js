@@ -121,9 +121,9 @@ app.get("/", function(req,res,next){
     var code = req.query.code;
     console.log(code);
     var tokk;
-    tokk = connectVendPRIMAIRE(code, function(data){
-        res.write(data);
-        
+    connectVendPRIMAIRE(code, function(data){
+    tokk = data;
+    console.log(data);    
     });
     console.log("la cle a ete recuperer")
     console.log(tokk);
