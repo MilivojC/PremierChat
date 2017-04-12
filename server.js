@@ -250,12 +250,16 @@ app.post('/home', upload.array(), function (req, res) {
 
 
 
-
-//Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
-app.all('/',function(req,res){
+app.get("/", function(req,res){
     code = req.query("code");
     console.log(code);
     connectVendPRIMAIRE(code);
+    res.redirect('/home');});
+    
+});
+//Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
+app.all('/',function(req,res){
+
     res.redirect('/home');});
 
 
