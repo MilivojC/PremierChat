@@ -304,8 +304,8 @@ function connectVendPRIMAIRE(code){
 
         request(options, function (error, response, body) {
   if (error) throw new Error(error);
-
-  
+        const tokk = body.access_token;
+        console.log(tokk);
         const cle = "Bearer " + body.access_token;
             console.log(cle);
     return cle;        
