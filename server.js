@@ -307,7 +307,7 @@ function connectVendPRIMAIRE(code){
         console.log(body);
         const tokk = JSON.parse(body).access_token;
         console.log(tokk);
-        const cle = "Bearer " + body.access_token;
+        const cle = "Bearer " + tokk;
             console.log(cle);
     return cle;        
 });
