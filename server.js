@@ -96,7 +96,7 @@ console.log(req.body);
 });
 
 //Placer audessus du /ticket pour que req.session reste configure
-app.get("/", upload.array(), function(req,res,next){
+app.get("/", upload.array(), function(req,res){
     //On récupère le code de validation client
     var code = req.query.code;
     //On construit la requete faite a vend pour obtenir le token
@@ -126,8 +126,8 @@ app.get("/", upload.array(), function(req,res,next){
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
         req.session.vendToken = "Bearer " + JSON.parse(body).access_token;
-        console.log(req.session);
       });
+    console.log(req.session);
     res.redirect('/home');    
 });
 
