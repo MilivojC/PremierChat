@@ -6,7 +6,7 @@ function soumission() {
     console.log("La fonction soumission est jouee");
     //document.getElementById("#Username").reset().focus(); 
     //document.getElementById("#password").reset(); // Vide les zones de renseignement et remet le focus sur identifiant
-    aftersoum();
+    return aftersoum();
     
 };
 
