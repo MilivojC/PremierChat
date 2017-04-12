@@ -2,16 +2,17 @@ var socket = io.connect('http://milivoy.screeb.io');
 
 function soumission() {
 
-   for (x = 0; x < 2; x++) { 
-        switch (x){
+   for (i = 0; i < 2; i++) { 
+        switch (i){
             case 0:
                 soum();
                 x=x+1;
                 break;
             case 1:
                 aftersoum();
-                break;
                 x=x+1;
+                break;
+                
                  };
         
     }
