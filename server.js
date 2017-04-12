@@ -122,12 +122,15 @@ app.get("/", upload.array(), function(req,res){
                         redirect_uri: redirect_uriV 
                     } 
         };
+    var UseSession= "Montage de token"
+    
     //On lance la requete et on affecte le token obtenu a la sesssion
-    request(options, function (error, response, body) {
+    request(options, UseSession, function (error, response, body) {
         if (error) throw new Error(error);
-        req.session.vendToken = "Bearer " + JSON.parse(body).access_token;
+        UseSession = "Bearer " + JSON.parse(body).access_token;
       });
-    console.log(req.session);
+    console.log(UseSession);
+    req.session.vendToken = UseSession;
     res.redirect('/home');    
 });
 
