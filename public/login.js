@@ -16,7 +16,7 @@ console.log(navigator.appName)
 //    }
   
     soum();
-    setTimeout(aftersoum(), 2000);
+    setTimeout(aftersoum(), 10000);
     
     
     
