@@ -26,7 +26,7 @@ function aftersoum(){
 
 function soum() {
     
-    document.getElementById("formulaire_login").submit(); 
+    document.getElementById("#formulaire_login").submit(); 
     console.log("La fonction soumission est jouee");
     
 };
@@ -34,12 +34,12 @@ function soum() {
 
 
 
-/*
+
 $('#formulaire_login').submit(function () {
     console.log("La fonction blocage est jouée");
 return false;
 });
-*/
+
 /*
 
 $('#formulaire_login').submit(function () {
