@@ -252,7 +252,7 @@ app.post('/home', upload.array(), function (req, res) {
 
 app.get("/", function(req,res){
     
-    code = req.params;
+    code = req.query;
     console.log(code);
     connectVendPRIMAIRE(code);
     res.redirect('/home');
