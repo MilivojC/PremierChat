@@ -122,11 +122,12 @@ app.get("/", function(req,res,next){
     console.log(code);
     var tokk;
     tokk = connectVendPRIMAIRE(code, function(data){
-        return data;
+        res.write(data);
         
     });
     console.log("la cle a ete recuperer")
     console.log(tokk);
+    console.log(res);
     //req.session.tokey = connectVendPRIMAIRE(code);
     console.log(req.session);
     next();
@@ -328,7 +329,7 @@ request(options, function (error, response, body) {
    
 
 
-    //return cle;
+    
      };
     
     
