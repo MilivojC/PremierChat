@@ -122,20 +122,18 @@ app.get("/", upload.array(), function(req,res){
                         redirect_uri: redirect_uriV 
                     } 
         };
-    var UseSession= "Montage de token"
+        var UseSession= "Montage de token"
     
     //On lance la requete et on affecte le token obtenu a la sesssion
-    request(options, function (error, response, body) {
+    var request1 = request(options, function (error, response, body) {
         if (error) throw new Error(error);
         //req.session.vendToken = "Bearer " + JSON.parse(body).access_token;
-      }).on('response', function(response){
+      });
+    request1.on('response', function(body){
+       
         console.log(body);
-        console.log("Dnas le request on au desus");
-        
     });
     
-    
-
     console.log(req.session);
     
     res.redirect('/home');    
