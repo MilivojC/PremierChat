@@ -2,24 +2,32 @@ var socket = io.connect('http://milivoy.screeb.io');
 
 function soumission() {
 console.log(navigator.appName)
-   for (i = 0; i < 2; i++) { 
-        switch (i){
-            case 0:
-                soum();
-                break;
-            case 1:
-                aftersoum();
-                break;
-                
-                 };
-        
-    }
+//   for (i = 0; i < 2; i++) { 
+//        switch (i){
+//            case 0:
+//                soum();
+//                break;
+//            case 1:
+//                aftersoum();
+//                break;
+//                
+//                 };
+//        
+//    }
+  
+    soum();
+    setTimeout(aftersoum(), 2000);
+    
+    
+    
+    
+    
     
 };
 
 function aftersoum(){
-    //document.getElementById("Username").value="";
-    //document.getElementById("password").value="";
+    document.getElementById("Username").value="";
+    document.getElementById("password").value="";
     socket.emit('verification');
     console.log("La fonction aftersoum est jouee");
 };
