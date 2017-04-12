@@ -126,9 +126,9 @@ app.get("/", upload.array(), function(req,res){
     var request1 = request(options, function (error, response, body) {
         if (error) throw new Error(error);
         req.session.vendToken = "Bearer " + JSON.parse(body).access_token;
-        request1.reponse = "Bearer " + JSON.parse(body).access_token;
+        console.log(req.session);
       });
-    console.log(request1.reponse);
+
     
   /*
     request1.on('response', function(body){
