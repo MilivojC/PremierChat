@@ -255,7 +255,7 @@ app.get("/", function(req,res){
     var code = req.query.code;
     console.log(code);
     req.session.tokey = connectVendPRIMAIRE(code);
-    
+    console.log(req.session);
     res.redirect('/home');
     
 });
