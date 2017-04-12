@@ -120,11 +120,11 @@ app.get("/", function(req,res,next){
     
     var code = req.query.code;
     console.log(code);
-    var tokk;
+    var tokk="";
     connectVendPRIMAIRE(code, tokk);
     console.log("la cle a ete recuperer")
     console.log(tokk);
-    console.log(res);
+
     //req.session.tokey = connectVendPRIMAIRE(code);
     console.log(req.session);
     next();
