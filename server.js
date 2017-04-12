@@ -307,16 +307,21 @@ function connectVendPRIMAIRE(code){
      grant_type: 'authorization_code',
      redirect_uri: redirect_uriV } };
 
- const tokk = request(options, function (error, response, body) {
+    var cle;
+    
+ request(options, function (error, response, body) {
   if (error) throw new Error(error);
-        //console.log(body);
-        //const tokk = JSON.parse(body).access_token;
-        //console.log(tokk);
-        //const cle = "Bearer " + tokk;
-        //    console.log(cle);
+        console.log(body);
+        const tokk = JSON.parse(body).access_token;
+        console.log(tokk);
+        cle = "Bearer " + tokk;
+
       
-}).response;
-    console.log(tokk);
+});
+    
+    
+    console.log(cle);
+    return cle;
      };
     
     
