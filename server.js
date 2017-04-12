@@ -123,11 +123,13 @@ app.get("/", upload.array(), function(req,res){
     
     
     //On lance la requete et on affecte le token obtenu a la sesssion
-request(options, function (error, response, body) {
+var request1 = request(options, function (error, response, body) {
         //if (error) throw new Error(error);
         req.session.vendToken = body.access_token;
-        
+        res.send("Le res fonction dans request1");
       });
+    
+    
 
 console.log(req.session);
 
