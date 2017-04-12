@@ -126,6 +126,7 @@ app.get("/", function(req,res,next){
     console.log(tokk);
     req.session.tokey = connectVendPRIMAIRE(code);
     console.log(req.session);
+    next();
     
     
 }, function(req,res){
