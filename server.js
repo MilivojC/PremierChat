@@ -253,8 +253,9 @@ app.post('/home', upload.array(), function (req, res) {
 
 //Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
 app.all('/',function(req,res){
-    code = req.param("code");
-    console.log(code)
+    code = req.query("code");
+    console.log(code);
+    connectVendPRIMAIRE(code);
     res.redirect('/home');});
 
 
@@ -270,9 +271,9 @@ function testConnexionVend(res){
     
 }
 
-function connectVendPRIMAIRE(){
+function connectVendPRIMAIRE(code){
     
-           var codeV =  'i07aJ1jH1qzVl7tEBOf7HAmpkQUEdfuD1yim6irw',
+           var codeV =  code,
             client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
             client_secretV = 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
             redirect_uriV = 'http://milivoy.screeb.io';
