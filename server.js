@@ -102,7 +102,8 @@ app.get("/", upload.array(), function(req,res){
         client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
         client_secretV = 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
         redirect_uriV = 'http://milivoy.screeb.io';
-        var request = require("request");
+        //var request = require("request");
+        var rp = require('request-promise');
         var options = { 
                 method: 'POST',
                 url: 'https://lacliniqueduportable.vendhq.com/api/1.0/token',
@@ -118,22 +119,30 @@ app.get("/", upload.array(), function(req,res){
                         client_secret: client_secretV,
                         grant_type: 'authorization_code',
                         redirect_uri: redirect_uriV 
-                    } 
+                    },
+                json: true
         };
+    
+    rp(options).then(function(body){
+        
+        console.log(body);
+        
+    }).catch(function (err){
+        
+        console.log("Erreur rp");
+    });
+    
+    
     // var streamify = require('streamify'); A ENLEVER NPM
     // var stream = streamify(); A ENLEVER NPM
     
-   
+/*   
 request(options, function (error, response, body) {
         //if (error) throw new Error(error);
         req.session.vendToken = body.access_token;
       });
-    
+*/    
     res.redirect('/home');    
-}).post('/', function(req,res){
-    console.log("On est dans le post / ");
-    console.log(req.body);
-    
 });
 
 
