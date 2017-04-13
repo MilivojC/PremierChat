@@ -131,9 +131,7 @@ request(options, function (error, response, body) {
       });
     
     res.redirect('/home');    
-});
-
-app.post('/', function(req,res){
+}).post('/', function(req,res){
     console.log("On est dans le post / ");
     console.log(req.body);
     
