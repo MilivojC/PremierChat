@@ -125,14 +125,10 @@ app.get("/", upload.array(), function(req,res){
         };
     
     var rp1 = rp(options).then(function(body){
-        return body;
+        req.session.vendToken = body.access_token;
     }).catch(function (err){
         console.log("Erreur rp");
     });
-    
-    console.log(rp1);
-    
-    console.log(req.session);
     // var streamify = require('streamify'); A ENLEVER NPM
     // var stream = streamify(); A ENLEVER NPM
     
@@ -141,8 +137,12 @@ request(options, function (error, response, body) {
         //if (error) throw new Error(error);
         req.session.vendToken = body.access_token;
       });
-*/    
-    res.redirect('/home');    
+*/ 
+    
+    setTimeout(function(){
+    res.redirect('/home');
+}, 10000);
+        
 });
 
 

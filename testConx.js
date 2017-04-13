@@ -64,7 +64,8 @@ setTimeout(function(){
     
 
     if (a===1){
-        return f;}
+        return f;
+    }
 
   
     
