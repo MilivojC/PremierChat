@@ -88,17 +88,14 @@ div.userBandeau {
 }
 
 .boutonlogout {
-
+    
     position: fixed;
-    top: 50px;
+    font-size: 16px;
     right: 10px;
     border:0;
     color:#EBEBEB;
     background-color:#206281;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+    text-align: center;
     border-radius: 10px;
     height:40px;
     width: 100px;
@@ -107,6 +104,27 @@ div.userBandeau {
 .boutonlogout:hover {
    
     background-color:#369124;
+}
+
+#logoutdiv {
+
+    top:50px;
+}
+
+#goTicket {
+    font-size: 16px;
+    top:100px;
+    line-height:40px;
+}
+
+#logout {
+    padding:0px;
+    border:0;
+    background: none;
+    color: #EBEBEB;
+ font-family: "Andale Mono", AndaleMono, monospace;
+    font-size: 16px;
+    line-height:40px;
 }
 
 
