@@ -13,6 +13,7 @@ var express = require('express'),
     // Ajout pour récupération de POST
 var multer = require('multer'); // v1.0.5
 var upload = multer(); // for parsing multipart/form-data
+var keys = require('./.keysVend');
 
 
 // Suivi de session
@@ -100,9 +101,9 @@ app.get("/", upload.array(), function(req,res){
     console.log("code :/"+ code);
     //On construit la requete faite a vend pour obtenir le token
     var codeV =  code,
-        client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
-        client_secretV = 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
-        redirect_uriV = 'http://milivoy.screeb.io';
+        client_idV = keys.client_id,
+        client_secretV = keys.client_secret,
+        redirect_uriV = keys.redirect_uri;
         //var request = require("request");
         var rp = require('request-promise');
         var options = { 
@@ -158,7 +159,7 @@ app.get('/ticket', function (req, res) {
         res.end();
         }
         else{
-        res.redirect('https://secure.vendhq.com/connect?response_type=code&client_id=7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc&redirect_uri=http://milivoy.screeb.io');
+        res.redirect(keys.demande_client);
         res.end();
         }
     }
@@ -235,36 +236,12 @@ io.sockets.on('connection', function (socket, pseudo) {
     
     socket.on('ouvertureTicket', function(tokey){
         
-        
-        //Partie coton
-        
-        /*var pg3 = require('pg');
-        var conString3 = "postgres://postgres@localhost:5432/db_work";
-        var client3 = new pg3.Client(conString);
-        client3.connect();
-        var query3 = client3.query("SELECT * FROM messages")
-        
-        query3.on('row', function(row) {
-		  try{
-			 console.log(row);
-              //socket.emit('tickets', {noBon: row.utilisateur, date: row.date});
-		  }
-		  catch(err){
-			 console.log("Problème sur le broadcast");
-		  }
-	   });
-	
-	   query3.on('end', function() {
-	       client3.end();
-	   }); */
-        
-
             var request = require("request");
             var jsonParser = bodyParser.json();
     
     
             var options = { method: 'GET',
-                  url: 'https://lacliniqueduportable.vendhq.com/api/register_sales?page=2',
+                  url: 'https://' + keys.prefix_client + '.vendhq.com/api/register_sales?page=2',
                   qs: { outlet_id: '0624dbcd-ef4a-11e6-e0bb-aab07aa5411b' },
                   headers: 
                    { 'cache-control': 'no-cache',
@@ -303,112 +280,4 @@ app.post('/home', upload.array(), function (req, res) {
     res.redirect('/login');
 });   
 
-//Reception de la requete d'identification
-
-
-
-
-//Renvoie toutes les demandes '/' sur '/home' -> permet de shinté les problèmes avec index.html
-/*
-app.all('/',function(req,res){
-
-    res.redirect('/home');});
-*/
-
-
-
 server.listen(8080, "127.0.0.1");
-
-// FONCTIONS DE TEST CONNECTION VENDHQ
-function testConnexionVend(sessionToken){
-    
-    
-    
-    
-}
-
-
-    
-    
-    //REPONSE DU SERVER VEND
-    //http://milivoy.screeb.io/?code=ES4XpaVk4pfh12ODMpq0fY4aKqn7mM3DnmWMBFtr&domain_prefix=lacliniqueduportable&user_id=874da965-ea9f-11e3-a0f5-b8ca3a64f8f4&signature=86fd73b446fc495d9799f38155e277583313a93850a1591d79023d2463adccf2
-    //http://milivoy.screeb.io/?code=i07aJ1jH1qzVl7tEBOf7HAmpkQUEdfuD1yim6irw&domain_prefix=lacliniqueduportable&user_id=874da965-ea9f-11e3-a0f5-b8ca3a64f8f4&signature=61fa80c30d20dabcfbafc0af14e65570ec1d56d0a80f4cea439bbb17798911c1
-    
-    //ERREUR CAR HTTPREQUEST NEST PAS DANS NODE
-    
- 
-       
-    /*
-    var data = "code=" + codeV + "&client_id=" + client_idV + "&client_secret=" + client_secretV + "&grant_type=authorization_code&redirect_uri=" + redirect_uriV;
-        
-
-        var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
-
-        xhr.addEventListener("readystatechange", function () {
-          if (this.readyState === 4) {
-            console.log(this.responseText);
-          }
-        });
-
-        xhr.open("POST", "https://lacliniqueduportable.vendhq.com/api/1.0/token");
-        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-        xhr.setRequestHeader("cache-control", "no-cache");
-        xhr.send(data);   
-    */
-         
-/* REPONSE DE VEND
-{
-    "access_token": "3ZEuZLsLJKBJw5lCe2glzY:pNuJpqiSRZWlUaYpO",
-    "token_type": "Bearer",
-    "expires": 1491790881,
-    "expires_in": 86400,
-    "refresh_token": "WOt9BPPcEqQhINmrlNbSo3ItDjYMNljgeBX7W0tF",
-    "domain_prefix": "lacliniqueduportable"
-}
-*/
-    
-    
-   
-    
-    
-    
-/*
-function connectVendSEC(socket){
-    
-
-    
-var request = require("request");
-var jsonParser = bodyParser.json()
-    
-    
-var options = { method: 'GET',
-  url: 'https://lacliniqueduportable.vendhq.com/api/register_sales',
-  qs: { outlet_id: '0624dbcd-ef4a-11e6-e0bb-aab07aa5411b' },
-  headers: 
-   { 'cache-control': 'no-cache',
-     accept: 'application/json',
-     'content-type': 'application/json',
-     authorization: 'Bearer 3ZEuZLsLJKBJw5lCe2glzY:pNuJpqiSRZWlUaYpO' } };
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-    console.log(body);
-    console.log("ET LA ON PARSE")
-    var i=0;
-    while (i < Number(JSON.parse(body).pagination.results)){
-        socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
-        i++;
-        
-     } 
-    
-
-    
-});
-     
-
-    
-    
-    };
-*/
