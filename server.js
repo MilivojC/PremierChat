@@ -249,6 +249,8 @@ io.sockets.on('connection', function (socket, pseudo) {
                      accept: 'application/json',
                      'content-type': 'application/json',
                      authorization: "Bearer " + sess.vendToken} };
+        
+        console.log(options);
 
             request(options, function (error, response, body) {
                 if (error) throw new Error(error);
