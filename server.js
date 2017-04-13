@@ -123,13 +123,14 @@ app.get("/", upload.array(), function(req,res){
                 json: true
         };
     
-    rp(options).then(function(body){
+    console.log(rp(options).then(function(body){
 
-        console.log(app.session);
+  
+        return body;
     }).catch(function (err){
         
         console.log("Erreur rp");
-    });
+    }););
     
     console.log(req.session);
     // var streamify = require('streamify'); A ENLEVER NPM
