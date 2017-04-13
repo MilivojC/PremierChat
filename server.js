@@ -153,14 +153,14 @@ app.get('/ticket', function (req, res) {
     if (req.session.AuthMi === 1){
         console.log("Authentification reussie dans ticket");
         
-    //    if (req.session.vendToken){
+    if (req.session.vendToken){
         res.sendFile(__dirname + '/public/ticket.html');
         res.end();
-    //    }
-    //    else{
-    //    res.redirect('https://secure.vendhq.com/connect?response_type=code&client_id=7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc&redirect_uri=http://milivoy.screeb.io');
-    //    res.end();
-    //    }
+        }
+        else{
+        res.redirect('https://secure.vendhq.com/connect?response_type=code&client_id=7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc&redirect_uri=http://milivoy.screeb.io');
+        res.end();
+        }
     }
     else {
         console.log("Authentification rate dans authe");
