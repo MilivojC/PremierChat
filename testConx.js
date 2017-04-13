@@ -29,7 +29,7 @@ var req = http.request(options, function (res) {
   });
 });
 
-req.write(qs.stringify({ code: 'baPaGDzYBS5RryAk3mjF6dPeaULjbbz1pS9UUGHk',
+req.write(qs.stringify({ code: 'EAbLxGcsLSnIxHk1F484lNeFkZId3PMrMdKY3zvk',
   client_id: '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
   client_secret: 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
   grant_type: 'authorization_code',
@@ -45,6 +45,7 @@ function finalLink(){
  var datok;
 testConx(datok , function(datok , result){
          datok = result;
+        console.log(datok);
          });
 autre(datok);
     
