@@ -279,7 +279,7 @@ io.sockets.on('connection', function (socket, pseudo) {
                     console.log("ET LA ON PARSE");
                     console.log(JSON.parse(body).pagination.results);
                     var i=0;
-                    while (i < 50)){
+                    while (i < 50){
                         socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
                         console.log(i);
                         console.log(JSON.parse(body).register_sales[i].invoice_number);
