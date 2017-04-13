@@ -2,7 +2,7 @@
 
 function testConx(){
 var reponse;    
-var code = 'vbNVlP3cXwUMfyUgC29bpyxW5YXbooet5jW6660Z';
+var code = 'kcOOYxhbTwOzKwjPTQcDgRMG1XNbQOFRkt8kEtsg';
 var codeV =  code,
     client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
     client_secretV = 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
@@ -28,14 +28,14 @@ var codeV =  code,
                 json: true
         };
     
-    var rp1 = rp(options).then(function(body){
+rp(options).then(function(body){
         reponse = body;
         console.body(body);
     }).catch(function (err){
         console.log("Erreur rp");
     });
     
-    
+    console.log(options);
     return reponse;
     
     };
