@@ -1,5 +1,7 @@
 
-function testConx(getdata ,callback){
+
+
+function testConx(callback){
 
 var qs = require("querystring");
 var http = require("https");
@@ -25,11 +27,11 @@ var req = http.request(options, function (res) {
   res.on("end", function () {
     var body = Buffer.concat(chunks);
 
-      callback(getdata, body.toString());
+      callback(body.toString());
   });
 });
 
-req.write(qs.stringify({ code: 'EAbLxGcsLSnIxHk1F484lNeFkZId3PMrMdKY3zvk',
+req.write(qs.stringify({ code: 'Uk9KMEXDDlASkPiPDBs16015dx9GeERJdQk6wCP8',
   client_id: '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
   client_secret: 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
   grant_type: 'authorization_code',
@@ -40,31 +42,20 @@ req.end();
 };
 
 
+  
 
-function finalLink(){
- var datok;
-testConx(datok , function(datok , result){
-         datok = result;
-        console.log(datok);
+
+
+function final(){
+
+
+testConx(function(result){
+
+        console.log(result);
          });
-autre(datok);
     
-    
-};
-
-function autre(datok){
-    
-    console.log("autre fonction")
-    console.log(datok);
+setTimeout(return result, 20000);
 }
-
-finalLink();
-
-
-
-
-
-
 
 
 
