@@ -69,9 +69,9 @@ var socket = io.connect('http://milivoy.screeb.io');
 
 socket.emit('ouvertureTicket');
 
-socket.on('tickets', function(noBon, date) {
+socket.on('tickets', function(data) {
     console.log("scoket marche sur le client");
-    insereTicket(noBon, date);
+    insereTicket(data.noBon, data.date);
 
 });
 
