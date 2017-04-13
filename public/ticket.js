@@ -69,6 +69,14 @@ var socket = io.connect('http://milivoy.screeb.io');
 
 socket.emit('ouvertureTicket');
 
+// Le serveur nous repond et renvoi les identifiants qui nous permettent de parametrer la page
+socket.on('acceptationTicket', function(nomUtilisateur){
+   
+    document.title = nomUtilisateur + ' - ' + document.title;
+    document.getElementById("user").innerHTML = nomUtilisateur;
+    
+});
+
 socket.on('tickets', function(data) {
     console.log("scoket marche sur le client");
     insereTicket(data.noBon, data.date);

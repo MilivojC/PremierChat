@@ -170,10 +170,6 @@ app.get('/ticket', function (req, res) {
     }
 });
 
-
-
-
-
         //Ouverture de l'écoute io.sockets
 
 io.sockets.on('connection', function (socket, pseudo) {
@@ -235,6 +231,11 @@ io.sockets.on('connection', function (socket, pseudo) {
     
     
     socket.on('ouvertureTicket', function(tokey){
+        
+            var nomUtilisateur = sess.user;
+//          pseudo = ent.encode(pseudo);
+            socket.pseudo = nomUtilisateur;
+            socket.emit('acceptationTicket', nomUtilisateur)
         
             var request = require("request");
             var jsonParser = bodyParser.json();
