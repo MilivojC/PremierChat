@@ -31,7 +31,7 @@ var req = http.request(options, function (res) {
   });
 });
 
-req.write(qs.stringify({ code: 'kwvDdgkFDsMmckSs8pGYT55eq7XuuMK2ZL2qMXDe',
+req.write(qs.stringify({ code: 'lMcTMtOhJR4Ke3KGgFeUwiASunaJc8Sdplrtw8kU',
   client_id: '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
   client_secret: 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
   grant_type: 'authorization_code',
@@ -46,20 +46,39 @@ req.end();
 
 
 
-function final(){
+var final = function(){
 
-var f;
+var f,
+    a=0,
+    i=0;
+    
 testConx(function(result){
         f=result;
         console.log(result);
          });
     
 setTimeout(function(){
+    a=1;
     console.log(f);
-}, 20000);
-}
+}, 10000);
+    
+while (a===0){
+   console.log(i);
+    i++
+    if (a===1){
+        return f;
+        break;
+    }
+    
+}    
+    
+    
+};
 
 
-final();
+
+
+
+console.log(final());
 
 
