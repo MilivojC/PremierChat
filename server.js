@@ -254,8 +254,6 @@ io.sockets.on('connection', function (socket, pseudo) {
 
             request(options, function (error, response, body) {
                 if (error) throw new Error(error);
-
-                    console.log(body);
                     console.log("ET LA ON PARSE");
                     console.log(JSON.parse(body).pagination.results);
                     var i=0;
