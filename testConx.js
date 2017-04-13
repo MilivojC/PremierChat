@@ -2,7 +2,7 @@
 
 function testConx(){
 var reponse;    
-var code = 'ixXdh8rKit6TkIOmbbRWzqNki8ih9CioifIyVCRi';
+var code = 'vbNVlP3cXwUMfyUgC29bpyxW5YXbooet5jW6660Z';
 var codeV =  code,
     client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
     client_secretV = 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
@@ -30,7 +30,7 @@ var codeV =  code,
     
     var rp1 = rp(options).then(function(body){
         reponse = body;
-        console.body(reponse);
+        console.body(body);
     }).catch(function (err){
         console.log("Erreur rp");
     });
