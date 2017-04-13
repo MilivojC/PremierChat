@@ -24,29 +24,39 @@ var req = http.request(options, function (res) {
 
   res.on("end", function () {
     var body = Buffer.concat(chunks);
-    console.log(body.toString());
+
       callback(body.toString());
   });
 });
 
-req.write(qs.stringify({ code: 'HCp3XWAAONmvTsXU1nNlYD9RJulCrHaNABGbENgG',
+req.write(qs.stringify({ code: 'jr4gw6L9h6bHJ1CQj7YEB6MmqpDHjTSE0XaJw5Rd',
   client_id: '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
   client_secret: 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
   grant_type: 'authorization_code',
   redirect_uri: 'http://milivoy.screeb.io' }));
 req.end();
 
+
 };
 
 
 
-
-var datok;
-testConx(function(result){
+function finalLink(){
+ testConx(function(result){
          datok = result;
-        console.log("resultat:");
-        console.log(result);
-         
-         });
+         });      
+return datok;    
+};
 
-console.log(datok);
+console.log(finalLink());
+
+
+
+
+
+
+
+
+
+
+
