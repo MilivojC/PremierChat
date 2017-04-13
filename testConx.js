@@ -31,7 +31,7 @@ var req = http.request(options, function (res) {
   });
 });
 
-req.write(qs.stringify({ code: 'lMcTMtOhJR4Ke3KGgFeUwiASunaJc8Sdplrtw8kU',
+req.write(qs.stringify({ code: 'qVKeCeSd9amptkpO7PQtg6c3qG4jOXdKaIzsWwu1',
   client_id: '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
   client_secret: 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
   grant_type: 'authorization_code',
@@ -62,16 +62,11 @@ setTimeout(function(){
     console.log(f);
 }, 10000);
     
-while (a===0){
-   console.log(i);
-    i++
+
     if (a===1){
-        return f;
-        break;
-    }
-    
-}    
-    
+        return f;}
+
+  
     
 };
 
