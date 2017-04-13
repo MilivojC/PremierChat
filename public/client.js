@@ -97,7 +97,7 @@ $(window).scroll(function(){
     
     
     //Animation du bouton logout
-    var bouton1 = document.getElementById("logout");
+    var bouton1 = document.getElementById("logoutdiv");
     var bouton2 = document.getElementById("goTicket");
 
     if (document.body.scrollTop < 40){
