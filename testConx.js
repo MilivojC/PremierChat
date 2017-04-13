@@ -38,8 +38,4 @@ while (i == 0){
 
 };
 
-
-console.log(testConx(bodyreq,testConx(bodyreq)));
-console.log(bodyreq);
-bodyreq= testConx(bodyreq,testConx(bodyreq));
-console.log(bodyreq);
+testConx();
