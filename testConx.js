@@ -1,33 +1,45 @@
 
 function testConx(callback){
 
-var request = require("request");
-var options = { method: 'POST',
-  url: 'https://lacliniqueduportable.vendhq.com/api/1.0/token',
-  headers: 
-   { 'cache-control': 'no-cache',
-     'content-type': 'application/x-www-form-urlencoded' },
-  form: 
-   { code: 'BCduDstGVsZVAPShfOVT6JBJYu6XFVT1H30nTy31',
-     client_id: '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
-     client_secret: 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
-     grant_type: 'authorization_code',
-     redirect_uri: 'http://milivoy.screeb.io' } };
-    
-    
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-    if (response.statusCode  callback(body);
-    
-            if (response.statusCode === 200) { // success
-            
-                callback(body); // we're calling our method
-            
-            }
+var qs = require("querystring");
+var http = require("https");
+
+var options = {
+  "method": "POST",
+  "hostname": "lacliniqueduportable.vendhq.com",
+  "port": null,
+  "path": "/api/1.0/token",
+  "headers": {
+    "content-type": "application/x-www-form-urlencoded",
+    "cache-control": "no-cache"
+  }
+};
+
+var req = http.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+      callback(body.toString());
+  });
 });
 
+req.write(qs.stringify({ code: 'HCp3XWAAONmvTsXU1nNlYD9RJulCrHaNABGbENgG',
+  client_id: '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
+  client_secret: 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
+  grant_type: 'authorization_code',
+  redirect_uri: 'http://milivoy.screeb.io' }));
+req.end();
 
 };
+
+
+
 
 var datok;
 testConx(function(result){
