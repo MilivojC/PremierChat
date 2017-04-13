@@ -127,7 +127,6 @@ app.get("/", upload.array(), function(req,res){
 request(options, function (error, response, body) {
         //if (error) throw new Error(error);
         req.session.vendToken = body.access_token;
-        stream.resolve(body)
       });
     
     res.redirect('/home');    
