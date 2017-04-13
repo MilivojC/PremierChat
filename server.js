@@ -264,7 +264,7 @@ io.sockets.on('connection', function (socket, pseudo) {
     
     
             var options = { method: 'GET',
-                  url: 'https://lacliniqueduportable.vendhq.com/api/register_sales',
+                  url: 'https://lacliniqueduportable.vendhq.com/api/register_sales&page=2',
                   qs: { outlet_id: '0624dbcd-ef4a-11e6-e0bb-aab07aa5411b' },
                   headers: 
                    { 'cache-control': 'no-cache',
