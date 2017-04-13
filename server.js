@@ -120,22 +120,23 @@ app.get("/", upload.array(), function(req,res){
                         redirect_uri: redirect_uriV 
                     } 
         };
-    var streamify = require('streamify');
-    var stream = streamify();
+    // var streamify = require('streamify'); A ENLEVER NPM
+    // var stream = streamify(); A ENLEVER NPM
     
-    //On lance la requete et on affecte le token obtenu a la sesssion
-var request1 = request(options, function (error, response, body) {
+   
+request(options, function (error, response, body) {
         //if (error) throw new Error(error);
         req.session.vendToken = body.access_token;
         stream.resolve(body)
       });
     
-    
-console.log(stream._read);
-console.log(req.session);
-
-    
     res.redirect('/home');    
+});
+
+app.post('/', function(req,res){
+    console.log("On est dans le post / ");
+    console.log(req.body);
+    
 });
 
 
