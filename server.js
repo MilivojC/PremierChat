@@ -123,7 +123,7 @@ app.get("/", upload.array(), function(req,res){
                 json: true
         };
     
-    rp(options).then(function(body){
+    rp(options).then(function(body,req){
         req.session.vendToken = body.access_token;
         console.log(req.session);
     }).catch(function (err){
