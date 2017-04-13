@@ -270,6 +270,81 @@ io.sockets.on('connection', function (socket, pseudo) {
 
     
     socket.on('recherche_no', function( magasin , no_bon){
+        
+         var request = require("request");
+        var jsonParser = bodyParser.json();
+        
+        // ON VA DANS UN PREMIER TEMPS LANCE LA REQUETE POUR AVOIR LE NOMBRE DE PAGE
+        var nbrPages;
+        var options = { method: 'GET',
+            url: 'https://' + keys.prefix_client + '.vendhq.com/api/register_sales',
+            qs: { outlet_id: magasin },
+            headers: 
+                {   'cache-control': 'no-cache',
+                    accept: 'application/json',
+                    'content-type': 'application/json',
+                    authorization: "Bearer " + sess.vendToken} };
+
+        request(options, function (error, response, body) {
+            
+            if (error) throw new Error(error);
+            nbrPages = JSON.parse(body).pagination.pages; 
+            console.log("Je suis a la fin de la requete et je dis que le nombre de page est de " + nbrPages );
+            
+        });
+
+        setTimeout(function(){
+            
+            console.log(nbrPages);
+            
+        }, 5000);
+        
+        
+        
+        
+        // ON VA CHERCHER DANS LA BASE DE VEND AVEC REQUEST
+        
+
+    
+                while(i==1){
+                    
+                var options = { method: 'GET',
+                  url: 'https://' + keys.prefix_client + '.vendhq.com/api/register_sales?page=2',
+                  qs: { outlet_id: '0624dbcd-ef4a-11e6-e0bb-aab07aa5411b' },
+                  headers: 
+                   { 'cache-control': 'no-cache',
+                     accept: 'application/json',
+                     'content-type': 'application/json',
+                     authorization: "Bearer " + sess.vendToken} };
+        
+        console.log(options);
+
+            request(options, function (error, response, body) {
+                if (error) throw new Error(error);
+                    console.log("ET LA ON PARSE");
+                    console.log(JSON.parse(body).pagination.results);
+                    var i=0;
+                    while (i < 50){
+                        socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
+                        console.log(i);
+                        console.log(JSON.parse(body).register_sales[i].invoice_number);
+                        i++;
+                        
+                       } 
+                        
+                    });  
+                    
+                }
+                    
+            });
+        
+        
+        
+        
+        
+        
+        
+        
         console.log("Le client demande qu'on lui envoi le bon "+ no_bon + " du magasin " + magasin);
         
     });
