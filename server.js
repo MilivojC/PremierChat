@@ -270,7 +270,7 @@ io.sockets.on('connection', function (socket, pseudo) {
                    { 'cache-control': 'no-cache',
                      accept: 'application/json',
                      'content-type': 'application/json',
-                     authorization: sess.vendToken} };
+                     authorization: "Bearer " + sess.vendToken} };
 
             request(options, function (error, response, body) {
                 if (error) throw new Error(error);
