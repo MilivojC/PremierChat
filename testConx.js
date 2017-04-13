@@ -1,7 +1,6 @@
 
-function testConx(){
-var data = 'Pas de token',
-    triger = false;
+function testConx(callback){
+
 var request = require("request");
 var options = { method: 'POST',
   url: 'https://lacliniqueduportable.vendhq.com/api/1.0/token',
@@ -9,7 +8,7 @@ var options = { method: 'POST',
    { 'cache-control': 'no-cache',
      'content-type': 'application/x-www-form-urlencoded' },
   form: 
-   { code: 'gQmEtzzLPoyNzhSI6Yrm1CzYoNX1JWsydNGChJIp',
+   { code: 'BCduDstGVsZVAPShfOVT6JBJYu6XFVT1H30nTy31',
      client_id: '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
      client_secret: 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
      grant_type: 'authorization_code',
@@ -18,14 +17,24 @@ var options = { method: 'POST',
     
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-data = body;
-    console.log(data);
-}).success(function(body){
-    data = body;
-    console.log(data);
+    if (response.statusCode  callback(body);
+    
+            if (response.statusCode === 200) { // success
+            
+                callback(body); // we're calling our method
+            
+            }
 });
 
-    console.log(data);
+
 };
 
-testConx();
+var datok;
+testConx(function(result){
+         datok = result;
+        console.log("resultat:");
+        console.log(result);
+         
+         });
+
+console.log(datok);
