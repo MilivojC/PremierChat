@@ -64,7 +64,7 @@ function format00(x){
 
 
 */
-/*
+
 var socket = io.connect('http://milivoy.screeb.io');
 
 socket.emit('ouvertureTicket');
@@ -74,7 +74,7 @@ socket.on('tickets', function(data) {
     insereTicket(data.noBon, data.date);
 
 });
-*/
+
 
 $(window).scroll(function(){
     
