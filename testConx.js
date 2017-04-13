@@ -1,7 +1,13 @@
+var bodyreq;
+function general(data, callback){
+    
+   callback(data); 
+    return data;
+}
 
 
-function testConx(){
-var reponse;    
+function testConx(data){
+    
 var request = require("request");
 var options = { method: 'POST',
   url: 'https://lacliniqueduportable.vendhq.com/api/1.0/token',
@@ -9,7 +15,7 @@ var options = { method: 'POST',
    { 'cache-control': 'no-cache',
      'content-type': 'application/x-www-form-urlencoded' },
   form: 
-   { code: 'c1ebDRULL9dmsB85sPdY0A4w1QwCi3B178P3QKy5',
+   { code: 'iQcOnobz5TmEz21Xh1PZovnUsOJsEaNUxdgZ2TTc',
      client_id: '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
      client_secret: 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
      grant_type: 'authorization_code',
@@ -20,9 +26,13 @@ request(options, function (error, response, body) {
   if (error) throw new Error(error);
 
 
-    return body;
+    data = body;
 });
  
 };
 
-console.log(testConx());
+
+console.log(testConx(bodyreq,testConx(bodyreq)));
+console.log(bodyreq);
+bodyreq= testConx(bodyreq,testConx(bodyreq));
+console.log(bodyreq);
