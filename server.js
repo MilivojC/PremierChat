@@ -124,15 +124,14 @@ app.get("/", upload.array(), function(req,res){
         };
     
     rp(options).then(function(body){
-        
-        console.log(body);
+        req.session.vendToken = body.access_token;
         
     }).catch(function (err){
         
         console.log("Erreur rp");
     });
     
-    
+    console.log(req.session);
     // var streamify = require('streamify'); A ENLEVER NPM
     // var stream = streamify(); A ENLEVER NPM
     
