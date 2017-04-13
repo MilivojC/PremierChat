@@ -9,7 +9,7 @@ var options = { method: 'POST',
    { 'cache-control': 'no-cache',
      'content-type': 'application/x-www-form-urlencoded' },
   form: 
-   { code: 'Ly6afbLI8pH4HvXS9NTOpYdL1qb47EMyqKH3u2LX',
+   { code: 'c1ebDRULL9dmsB85sPdY0A4w1QwCi3B178P3QKy5',
      client_id: '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
      client_secret: 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
      grant_type: 'authorization_code',
@@ -19,8 +19,8 @@ var options = { method: 'POST',
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
 
-  console.log(body);
-    return body.access_token;
+
+    return body;
 });
  
 };
