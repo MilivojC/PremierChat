@@ -97,6 +97,7 @@ console.log(req.body);
 app.get("/", upload.array(), function(req,res){
     //On récupère le code de validation client
     var code = req.query.code;
+    console.log("code :/"+ code);
     //On construit la requete faite a vend pour obtenir le token
     var codeV =  code,
         client_idV = '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
