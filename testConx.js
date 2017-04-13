@@ -31,7 +31,7 @@ var req = http.request(options, function (res) {
   });
 });
 
-req.write(qs.stringify({ code: 'Uk9KMEXDDlASkPiPDBs16015dx9GeERJdQk6wCP8',
+req.write(qs.stringify({ code: 'YMpE0z6F6phocs6YpqNBnX9GGfd42bs0XOAkim6v',
   client_id: '7nN9aYKD42QsLGuLFdR9kWY3rbQIR7cc',
   client_secret: 'ZA0qaHzmT4yMGtGmUyj0dIrYQwhaBpfy',
   grant_type: 'authorization_code',
@@ -48,13 +48,15 @@ req.end();
 
 function final(){
 
-
+var f;
 testConx(function(result){
-
+        f=result;
         console.log(result);
          });
     
-setTimeout(return result, 20000);
+setTimeout(function(){
+    console.log(f);
+}, 20000);
 }
 
 
