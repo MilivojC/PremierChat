@@ -268,6 +268,11 @@ io.sockets.on('connection', function (socket, pseudo) {
     
     }); 
 
+    
+    socket.on('recherche_no', function( magasin , no_bon){
+        console.log("Le client demande qu'on lui envoi le bon "+ no_bon + " du magasin " + magasin);
+        
+    });
 }); 
 
 

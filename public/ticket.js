@@ -77,6 +77,8 @@ socket.on('acceptationTicket', function(nomUtilisateur){
     
 });
 
+
+
 socket.on('tickets', function(data) {
     console.log("scoket marche sur le client");
     insereTicket(data.noBon, data.date);
@@ -110,4 +112,14 @@ function insereTicket(noBon, date) {
     $('#zone_ticket').append('<div class="ticket">' + date + ' : ' + noBon + '</div>');
 
 };
+
+
+$('#rechercheBon').submit(function () {
+    var magasin = $('#quel_magasin').val(),
+        no_bon =$('#nobonid').val();
+    
+    socket.emit('recherche_no', magasin , no_bon); // Transmet les informations pour récuperer le bon
+
+    return false; // Permet de bloquer l'envoi "classique" du formulaire
+});
 

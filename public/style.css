@@ -316,3 +316,12 @@ div.userBandeau {
 
 
 }
+
+
+
+/* AJOUT POUR LA FEUILLE TICKET*/
+
+.zone_form {
+    width: 100%;
+    padding: 20px;
+}
