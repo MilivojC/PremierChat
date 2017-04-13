@@ -123,9 +123,9 @@ app.get("/", upload.array(), function(req,res){
                 json: true
         };
     
-    rp(options).then(function(body,req){
-        req.session.vendToken = body.access_token;
-        console.log(req.session);
+    rp(options).then(function(body){
+
+        console.log(app.session);
     }).catch(function (err){
         
         console.log("Erreur rp");
