@@ -302,14 +302,13 @@ io.sockets.on('connection', function (socket, pseudo) {
                         console.log(JSON.parse(body).register_sales[i].invoice_number);
                         i++;
                         
-                       }  
-            
-            } catch(e) {
-            
-            break;
-        }
-                
+                       }        
             });
+            
+                } catch(e) {
+            
+                break;
+                }
             
             noPage++;
             } while (noPage <= nbrPages);
