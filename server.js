@@ -263,10 +263,14 @@ io.sockets.on('connection', function (socket, pseudo) {
             
             if (error) throw new Error(error);
             var i=0;
-  
+            
             while (i < 50){
+                
+                
+                
+                try {
                 var chernom = JSON.parse(body).register_sales[i].invoice_number.substr(6); 
-                if (chernom === cherbon) {
+                    if (chernom === cherbon) {
                 
                         socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
                         console.log("on a trouve!");
@@ -276,6 +280,7 @@ io.sockets.on('connection', function (socket, pseudo) {
                 console.log(JSON.parse(body).register_sales[i].invoice_number);
                 
                        }; 
+                }
             
 
             });
