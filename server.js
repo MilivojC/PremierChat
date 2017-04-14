@@ -276,6 +276,7 @@ io.sockets.on('connection', function (socket, pseudo) {
         
         // ON VA DANS UN PREMIER TEMPS LANCE LA REQUETE POUR AVOIR LE NOMBRE DE PAGE
         var noPage = 1;
+        var estVide = 1;
         do {
         var options = { method: 'GET',
             url: 'https://' + keys.prefix_client + '.vendhq.com/api/register_sales?page=' + noPage,
