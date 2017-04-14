@@ -250,8 +250,6 @@ io.sockets.on('connection', function (socket, pseudo) {
 
             request(options, function (error, response, body) {
                 if (error) throw new Error(error);
-                    
-                    console.log(JSON.parse(body).pagination.results);
                     var i=0;
                     while (i < JSON.parse(body).registers.length){
                         var magasinName= JSON.parse(body).registers[i].name,
