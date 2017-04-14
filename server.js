@@ -265,8 +265,8 @@ io.sockets.on('connection', function (socket, pseudo) {
             var i=0;
   
             while (i < 50){
-                
-                if (JSON.parse(body).register_sales[i].invoice_number.substr(6) === cherbon) {
+                var chernom = JSON.parse(body).register_sales[i].invoice_number.substr(6); 
+                if (chernom === cherbon) {
                 
                         socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
                         console.log("on a trouve!");
