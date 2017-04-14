@@ -286,7 +286,7 @@ io.sockets.on('connection', function (socket, pseudo) {
                 }
             
             noPage++;
-            
+            console.log(nbrPages);
         } 
         
         
