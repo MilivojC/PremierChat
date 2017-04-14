@@ -305,6 +305,8 @@ io.sockets.on('connection', function (socket, pseudo) {
                        }  
             
             });
+            
+            noPage++;
             }
                 
             while (noPage <= nbrPages);
