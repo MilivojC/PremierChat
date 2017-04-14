@@ -300,7 +300,7 @@ io.sockets.on('connection', function (socket, pseudo) {
         }, 5000);
         
         
-        
+        /*
         
         // ON VA CHERCHER DANS LA BASE DE VEND AVEC REQUEST
         
@@ -339,12 +339,7 @@ io.sockets.on('connection', function (socket, pseudo) {
             });
         
         
-        
-        
-        
-        
-        
-        
+        */
         console.log("Le client demande qu'on lui envoi le bon "+ no_bon + " du magasin " + magasin);
         
     });
