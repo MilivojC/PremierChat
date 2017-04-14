@@ -263,8 +263,8 @@ io.sockets.on('connection', function (socket, pseudo) {
             
             if (error) throw new Error(error);
             var i=0;
-            var taille = Number(JSON.parse(body).register_sales.length);
-            while (i < taille){
+  
+            while (i < 50){
                 
                 if (JSON.parse(body).register_sales[i].invoice_number.substr(6) === cherbon) {
                 
