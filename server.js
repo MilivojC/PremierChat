@@ -251,9 +251,10 @@ io.sockets.on('connection', function (socket, pseudo) {
             request(options, function (error, response, body) {
                 if (error) throw new Error(error);
                     var i=0;
-                    while (i < JSON.parse(body).registers.length){
-                        var magasinName= JSON.parse(body).registers[i].name,
-                            magasinId= JSON.parse(body).registers[i].outlet_id;
+                    var rep1 = JSON.parse(body);
+                    while (i < rep1.registers.length){
+                        var magasinName= rep1.registers[i].name,
+                            magasinId= rep1.registers[i].outlet_id;
                             setTimeout(function(){
                             var options2 = { method: 'GET',
                             url: 'https://' + keys.prefix_client + '.vendhq.com/api/register_sales',
