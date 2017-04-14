@@ -236,7 +236,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 //          pseudo = ent.encode(pseudo);
             socket.pseudo = nomUtilisateur;
             socket.emit('acceptationTicket', nomUtilisateur)
-        
+        /*
             var request = require("request");
             var jsonParser = bodyParser.json();
     
@@ -265,7 +265,7 @@ io.sockets.on('connection', function (socket, pseudo) {
                         
                     };        
             });
-    
+    */
     }); 
 
     
@@ -290,6 +290,7 @@ io.sockets.on('connection', function (socket, pseudo) {
             if (error) throw new Error(error);
             noPage = JSON.parse(body).pagination.page; 
             console.log("Je suis a la fin de la requete et je dis que le nombre de page est de " + noPage );
+            var i=0;
             while (i < 50){
                         socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
                         console.log(i);
