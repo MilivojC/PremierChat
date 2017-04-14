@@ -275,7 +275,7 @@ io.sockets.on('connection', function (socket, pseudo) {
         var jsonParser = bodyParser.json();
         
         // ON VA DANS UN PREMIER TEMPS LANCE LA REQUETE POUR AVOIR LE NOMBRE DE PAGE
-        var nbrPages;
+        var noPage;
         var options = { method: 'GET',
             url: 'https://' + keys.prefix_client + '.vendhq.com/api/register_sales',
             qs: { outlet_id: magasin },
@@ -288,8 +288,19 @@ io.sockets.on('connection', function (socket, pseudo) {
         request(options, function (error, response, body) {
             
             if (error) throw new Error(error);
-            nbrPages = JSON.parse(body).pagination.pages; 
-            console.log("Je suis a la fin de la requete et je dis que le nombre de page est de " + nbrPages );
+            noPage = JSON.parse(body).pagination.page; 
+            console.log("Je suis a la fin de la requete et je dis que le nombre de page est de " + noPage );
+            while (i < 50){
+                        socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
+                        console.log(i);
+                        console.log(JSON.parse(body).register_sales[i].invoice_number);
+                        i++;
+                        
+                       } 
+            
+            
+            
+            
             
         });
 
@@ -339,9 +350,9 @@ io.sockets.on('connection', function (socket, pseudo) {
             });
         
         
-        */
-        console.log("Le client demande qu'on lui envoi le bon "+ no_bon + " du magasin " + magasin);
         
+        console.log("Le client demande qu'on lui envoi le bon "+ no_bon + " du magasin " + magasin);
+        */
     });
 }); 
 
