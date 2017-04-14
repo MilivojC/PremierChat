@@ -77,6 +77,14 @@ socket.on('acceptationTicket', function(nomUtilisateur){
     
 });
 
+socket.on('params', function(data){
+    {magasinName: magasinName , magasinId: magasinId, nbrPage: nbrPages }
+    
+    $('#quel_magasin').append('<option value="' + data.magasinId + '" data-info="' + data.nbrPage + '">' + data.magasinName + '</option>');
+    
+    
+    
+});
 
 
 socket.on('tickets', function(data) {

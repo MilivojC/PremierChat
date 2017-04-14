@@ -236,36 +236,51 @@ io.sockets.on('connection', function (socket, pseudo) {
 //          pseudo = ent.encode(pseudo);
             socket.pseudo = nomUtilisateur;
             socket.emit('acceptationTicket', nomUtilisateur)
-        /*
+        
             var request = require("request");
             var jsonParser = bodyParser.json();
-    
-    
             var options = { method: 'GET',
-                  url: 'https://' + keys.prefix_client + '.vendhq.com/api/register_sales?page=2',
-                  qs: { outlet_id: '0624dbcd-ef4a-11e6-e0bb-aab07aa5411b' },
+                  url: 'https://' + keys.prefix_client + '.vendhq.com/api/registers',
                   headers: 
                    { 'cache-control': 'no-cache',
                      accept: 'application/json',
                      'content-type': 'application/json',
                      authorization: "Bearer " + sess.vendToken} };
-        
-        console.log(options);
 
             request(options, function (error, response, body) {
                 if (error) throw new Error(error);
-                    console.log("ET LA ON PARSE");
+                    
                     console.log(JSON.parse(body).pagination.results);
                     var i=0;
-                    while (i < 50){
-                        socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
-                        console.log(i);
-                        console.log(JSON.parse(body).register_sales[i].invoice_number);
+                    while (i < JSON.parse(body).registers.length){
+                        var magasinName= JSON.parse(body).registers[i].name,
+                            magasinId= JSON.parse(body).registers[i].outlet_id;
+
+                            var options2 = { method: 'GET',
+                            url: 'https://' + keys.prefix_client + '.vendhq.com/api/register_sales',
+                            qs: { outlet_id: magasinId },
+                            headers: 
+                                {   'cache-control': 'no-cache',
+                                    accept: 'application/json',
+                                    'content-type': 'application/json',
+                                    authorization: "Bearer " + sess.vendToken} };
+                          
+                                request(options2, function (error, response, body) {
+
+                                    if (error) throw new Error(error);
+                                    nbrPages = JSON.parse(body).pagination.page;
+                                    socket.emit('params', {magasinName: magasinName , magasinId: magasinId, nbrPage: nbrPages });
+
+                            });
                         i++;
                         
-                    };        
+                    };  
             });
-    */
+    
+        
+        
+        
+        
     }); 
 
     
