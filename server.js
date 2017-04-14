@@ -304,12 +304,6 @@ io.sockets.on('connection', function (socket, pseudo) {
             
             
         });
-
-        setTimeout(function(){
-            
-            console.log(nbrPages);
-            
-        }, 5000);
         
         
         /*
