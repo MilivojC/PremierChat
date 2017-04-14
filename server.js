@@ -247,7 +247,7 @@ io.sockets.on('connection', function (socket, pseudo) {
         
         // ON VA DANS UN PREMIER TEMPS LANCE LA REQUETE POUR AVOIR LE NOMBRE DE PAGE
         var noPage = 1;
-        var nbrPages = 1000;
+        var nbrPages = 500;
         while (noPage <= nbrPages) {
         var options = { method: 'GET',
             url: 'https://' + keys.prefix_client + '.vendhq.com/api/register_sales?page=' + noPage,
@@ -262,7 +262,7 @@ io.sockets.on('connection', function (socket, pseudo) {
         request(options, function (error, response, body) {
             
             if (error) throw new Error(error);
-            nbrPages = JSON.parse(body).pagination.pages;
+            nbrPages = Number(JSON.parse(body).pagination.pages) ;
             
            
             console.log("Je suis a la fin de la requete et je dis que le no de page est " + JSON.parse(body).pagination.page );
