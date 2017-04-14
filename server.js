@@ -293,7 +293,7 @@ io.sockets.on('connection', function (socket, pseudo) {
             nbrPages = JSON.parse(body).pagination.pages;
             
             
-            console.log("Je suis a la fin de la requete et je dis que le no de page est " + JSON.parse(body).pagination.page; );
+            console.log("Je suis a la fin de la requete et je dis que le no de page est " + JSON.parse(body).pagination.page );
             var i=0;
             console.log(JSON.parse(body).register_sales.length);
             while (i < JSON.parse(body).register_sales.length){
