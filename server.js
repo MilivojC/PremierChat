@@ -304,9 +304,11 @@ io.sockets.on('connection', function (socket, pseudo) {
                         
                        }  
             
+            });
             }
-            while (noPage <= nbrPages)
-        });
+                
+            while (noPage <= nbrPages);
+        
         
         
         /*
