@@ -118,6 +118,8 @@ $('#rechercheBon').submit(function () {
         no_bon =$('#nobonid').val();
     
     socket.emit('recherche_no', magasin , no_bon); // Transmet les informations pour récuperer le bon
+    
+    $('#nobonid').val()="";
 
     return false; // Permet de bloquer l'envoi "classique" du formulaire
 });
