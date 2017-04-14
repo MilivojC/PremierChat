@@ -244,7 +244,7 @@ io.sockets.on('connection', function (socket, pseudo) {
         
          var request = require("request");
         var jsonParser = bodyParser.json();
-        
+        var cherbon = String(no_bon);
         // ON VA DANS UN PREMIER TEMPS LANCE LA REQUETE POUR AVOIR LE NOMBRE DE PAGE
         var noPage = 1;
         var nbrPages = 500;
@@ -262,19 +262,18 @@ io.sockets.on('connection', function (socket, pseudo) {
         request(options, function (error, response, body) {
             
             if (error) throw new Error(error);
-            nbrPages = Number(JSON.parse(body).pagination.pages) ;
-            
-           
-            console.log("Je suis a la fin de la requete et je dis que le no de page est " + JSON.parse(body).pagination.page );
             var i=0;
-            console.log("Nombre de page: " + JSON.parse(body).pagination.pages);
-            console.log("Nombre de registre: " + JSON.parse(body).register_sales.length);
             while (i < JSON.parse(body).register_sales.length){
+                
+                if(JSON.parse(body).register_sales[i].invoice_number.substr(6) === cherbon){
+                
                         socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
-    
-                        console.log(JSON.parse(body).register_sales[i].invoice_number);
+                        console.log("on a trouve!");
                         i++;
-                        
+                       } 
+                
+                
+                
                        } 
             
 
@@ -286,7 +285,7 @@ io.sockets.on('connection', function (socket, pseudo) {
                 }
             
             noPage++;
-            console.log(nbrPages);
+
         } 
         
         
