@@ -236,53 +236,7 @@ io.sockets.on('connection', function (socket, pseudo) {
 //          pseudo = ent.encode(pseudo);
             socket.pseudo = nomUtilisateur;
             socket.emit('acceptationTicket', nomUtilisateur)
-        
-            var request = require("request");
-            var request2 = require("request");
-            var jsonParser = bodyParser.json();
-            var options = { method: 'GET',
-                  url: 'https://' + keys.prefix_client + '.vendhq.com/api/registers',
-                  headers: 
-                   { 'cache-control': 'no-cache',
-                     accept: 'application/json',
-                     'content-type': 'application/json',
-                     authorization: "Bearer " + sess.vendToken} };
 
-            request(options, function (error, response, body) {
-                if (error) throw new Error(error);
-                    var i=0;
-                    var rep1 = JSON.parse(body);
-                    while (i < rep1.registers.length){
-                        var magasinName= rep1.registers[i].name,
-                            magasinId= rep1.registers[i].outlet_id;
-                            setTimeout(function(){
-                            var options2 = { method: 'GET',
-                            url: 'https://' + keys.prefix_client + '.vendhq.com/api/register_sales',
-                            qs: { outlet_id: magasinId },
-                            headers: 
-                                {   'cache-control': 'no-cache',
-                                    accept: 'application/json',
-                                    'content-type': 'application/json',
-                                    authorization: "Bearer " + sess.vendToken} };
-                          
-                                request2(options2, function (error, response, body) {
-
-                                    if (error) throw new Error(error);
-                                    nbrPages = JSON.parse(body).pagination.pages;
-                                    console.log("Jesuis dans la deuxième requete");
-                                    socket.emit('params', {magasinName: magasinName , magasinId: magasinId, nbrPage: nbrPages });
-
-                            });
-                                }, 2000);
-                        i++;
-                        
-                    };  
-            });
-    
-        
-        
-        
-        
     }); 
 
     
@@ -307,15 +261,16 @@ io.sockets.on('connection', function (socket, pseudo) {
         request(options, function (error, response, body) {
             
             if (error) throw new Error(error);
-            nbrPages = JSON.parse(body).pagination.page;
+            nbrPages = JSON.parse(body).pagination.pages;
             
-            var estVide = JSON.parse(body).register_sales.length;
+           
             console.log("Je suis a la fin de la requete et je dis que le no de page est " + JSON.parse(body).pagination.page );
             var i=0;
-            console.log(JSON.parse(body).register_sales.length);
+            console.log("Nombre de page: " + JSON.parse(body).register_sales.pages);
+            console.log("Nombre de registre: " + JSON.parse(body).register_sales.length);
             while (i < JSON.parse(body).register_sales.length){
                         socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
-                        console.log(i);
+    
                         console.log(JSON.parse(body).register_sales[i].invoice_number);
                         i++;
                         

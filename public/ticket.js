@@ -77,13 +77,6 @@ socket.on('acceptationTicket', function(nomUtilisateur){
     
 });
 
-socket.on('params', function(data){
-    
-    $('#quel_magasin').append('<option value="' + data.magasinId + '" data-info="' + data.nbrPage + '">' + data.magasinName + '</option>');
-       
-    
-});
-
 
 socket.on('tickets', function(data) {
     console.log("scoket marche sur le client");
