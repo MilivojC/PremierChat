@@ -274,12 +274,13 @@ io.sockets.on('connection', function (socket, pseudo) {
                 
                         socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
                         console.log("on a trouve!");
-                        i++;
+                        
                        } ;
                 
                 console.log(JSON.parse(body).register_sales[i].invoice_number);
             
                 } catch(e) {};
+                i++;
              }; 
 
             });
