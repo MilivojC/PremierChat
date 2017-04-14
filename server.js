@@ -238,6 +238,7 @@ io.sockets.on('connection', function (socket, pseudo) {
             socket.emit('acceptationTicket', nomUtilisateur)
         
             var request = require("request");
+            var request2 = require("request");
             var jsonParser = bodyParser.json();
             var options = { method: 'GET',
                   url: 'https://' + keys.prefix_client + '.vendhq.com/api/registers',
@@ -265,10 +266,11 @@ io.sockets.on('connection', function (socket, pseudo) {
                                     'content-type': 'application/json',
                                     authorization: "Bearer " + sess.vendToken} };
                           
-                                request(options2, function (error, response, body) {
+                                request2(options2, function (error, response, body) {
 
                                     if (error) throw new Error(error);
                                     nbrPages = JSON.parse(body).pagination.page;
+                                    console.log("Jesuis dans la deuxième requete");
                                     socket.emit('params', {magasinName: magasinName , magasinId: magasinId, nbrPage: nbrPages });
 
                             });
