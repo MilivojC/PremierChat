@@ -291,9 +291,9 @@ io.sockets.on('connection', function (socket, pseudo) {
             
             if (error) throw new Error(error);
             nbrPages = JSON.parse(body).pagination.pages;
-            noPage = JSON.parse(body).pagination.page; 
             
-            console.log("Je suis a la fin de la requete et je dis que le no de page est " + noPage );
+            
+            console.log("Je suis a la fin de la requete et je dis que le no de page est " + JSON.parse(body).pagination.page; );
             var i=0;
             console.log(JSON.parse(body).register_sales.length);
             while (i < JSON.parse(body).register_sales.length){
@@ -307,9 +307,7 @@ io.sockets.on('connection', function (socket, pseudo) {
             });
             
             noPage++;
-            }
-                
-            while (noPage <= nbrPages);
+            } while (noPage <= nbrPages);
         
         
         
