@@ -278,10 +278,9 @@ io.sockets.on('connection', function (socket, pseudo) {
                        } ;
                 
                 console.log(JSON.parse(body).register_sales[i].invoice_number);
-                
-                       }; 
-                }
             
+                }
+             }; 
 
             });
             
