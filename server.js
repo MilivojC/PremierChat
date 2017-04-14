@@ -276,7 +276,7 @@ io.sockets.on('connection', function (socket, pseudo) {
         
         // ON VA DANS UN PREMIER TEMPS LANCE LA REQUETE POUR AVOIR LE NOMBRE DE PAGE
         var noPage = 1;
-        var nbrPages = 1;
+        var nbrPages = 50;
         do {
         var options = { method: 'GET',
             url: 'https://' + keys.prefix_client + '.vendhq.com/api/register_sales?page=' + noPage,
@@ -286,7 +286,7 @@ io.sockets.on('connection', function (socket, pseudo) {
                     accept: 'application/json',
                     'content-type': 'application/json',
                     authorization: "Bearer " + sess.vendToken} };
-
+            try {
         request(options, function (error, response, body) {
             
             if (error) throw new Error(error);
@@ -304,6 +304,11 @@ io.sockets.on('connection', function (socket, pseudo) {
                         
                        }  
             
+            } catch(e) {
+            
+            break;
+        }
+                
             });
             
             noPage++;
