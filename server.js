@@ -275,7 +275,9 @@ io.sockets.on('connection', function (socket, pseudo) {
                         console.log(JSON.parse(body).register_sales[i].invoice_number);
                         i++;
                         
-                       }        
+                       } 
+            
+            if (JSON.parse(body).pagination.pages === JSON.parse(body).pagination.page){break;}
             });
             
                 } catch(e) {
