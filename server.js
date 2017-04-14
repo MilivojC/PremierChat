@@ -267,7 +267,7 @@ io.sockets.on('connection', function (socket, pseudo) {
            
             console.log("Je suis a la fin de la requete et je dis que le no de page est " + JSON.parse(body).pagination.page );
             var i=0;
-            console.log("Nombre de page: " + JSON.parse(body).register_sales.pages);
+            console.log("Nombre de page: " + JSON.parse(body).pagination.pages);
             console.log("Nombre de registre: " + JSON.parse(body).register_sales.length);
             while (i < JSON.parse(body).register_sales.length){
                         socket.emit('tickets', {noBon: JSON.parse(body).register_sales[i].invoice_number, date: JSON.parse(body).register_sales[i].sale_date});
