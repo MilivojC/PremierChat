@@ -96,53 +96,56 @@ console.log(req.body);
 
 //Placer audessus du /ticket pour que req.session reste configure
 app.get("/", upload.array(), function(req,res){
-    //On récupère le code de validation client
-    var code = req.query.code;
-    console.log("code :/"+ code);
-    //On construit la requete faite a vend pour obtenir le token
-    var codeV =  code,
-        client_idV = keys.client_id,
-        client_secretV = keys.client_secret,
-        redirect_uriV = keys.redirect_uri;
-        //var request = require("request");
-        var rp = require('request-promise');
-        var options = { 
-                method: 'POST',
-                url: 'https://lacliniqueduportable.vendhq.com/api/1.0/token',
-                headers: 
-                    { 
-                        'cache-control': 'no-cache',
-                        'content-type': 'application/x-www-form-urlencoded' 
-                    },
-                form: 
-                    { 
-                        code: codeV,
-                        client_id: client_idV,
-                        client_secret: client_secretV,
-                        grant_type: 'authorization_code',
-                        redirect_uri: redirect_uriV 
-                    },
-                json: true
-        };
+    //Si l'utilisateur n'a pas encore d'autorisation
+    if(req.query.code != undefined){
+            //On récupère le code de validation client
+            var code = req.query.code;
+            console.log("code :/"+ code);
+            //On construit la requete faite a vend pour obtenir le token
+            var codeV =  code,
+                client_idV = keys.client_id,
+                client_secretV = keys.client_secret,
+                redirect_uriV = keys.redirect_uri;
+                //var request = require("request");
+                var rp = require('request-promise');
+                var options = { 
+                        method: 'POST',
+                        url: 'https://lacliniqueduportable.vendhq.com/api/1.0/token',
+                        headers: 
+                            { 
+                                'cache-control': 'no-cache',
+                                'content-type': 'application/x-www-form-urlencoded' 
+                            },
+                        form: 
+                            { 
+                                code: codeV,
+                                client_id: client_idV,
+                                client_secret: client_secretV,
+                                grant_type: 'authorization_code',
+                                redirect_uri: redirect_uriV 
+                            },
+                        json: true
+                };
+
+            var rp1 = rp(options).then(function(body){
+                req.session.vendToken = body.access_token;
+            }).catch(function (err){
+                console.log("Erreur rp");
+            });
     
-    var rp1 = rp(options).then(function(body){
-        req.session.vendToken = body.access_token;
-    }).catch(function (err){
-        console.log("Erreur rp");
-    });
-    // var streamify = require('streamify'); A ENLEVER NPM
-    // var stream = streamify(); A ENLEVER NPM
+                 setTimeout(function(){
+                res.redirect('/home');
+            }, 10000);   
     
-/*   
-request(options, function (error, response, body) {
-        //if (error) throw new Error(error);
-        req.session.vendToken = body.access_token;
-      });
-*/ 
     
-    setTimeout(function(){
-    res.redirect('/home');
-}, 10000);
+    
+    
+    } else {
+        
+        res.redirect('/home');
+    }
+    
+
         
 });
 
@@ -354,5 +357,12 @@ app.post('/home', upload.array(), function (req, res) {
     var query2 = client2.query("DELETE FROM session WHERE sid ='" + req.session.id+ "'");
     res.redirect('/login');
 });   
+
+app.post('/listenmyapp',upload.array(), function (req, res) {
+    console.log(req.body);
+    res.send("Success");  
+});
+
+
 
 server.listen(8080, "127.0.0.1");
