@@ -1,7 +1,7 @@
 // Fichier serveur pour milivoy.screeb.io
 var express = require('express'), 
     app = require('express')(),
-    server = require('http').createServer(app), //Creation serveur
+    server = require('http').createServer(app); //Creation serveur
 /*    io = require('socket.io').listen(server), // Ecouteur client/serveur
     ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
     fs = require('fs'),// Construction html
@@ -37,7 +37,7 @@ app.use(express.static(__dirname + '/public'));
 var sess; // variable de session utilisee par socket
 
 */
-app.get('/home', function (req, res) {    
+app.get('/', function (req, res) {    
 /*
     sess = req.session
 
@@ -55,7 +55,7 @@ app.get('/home', function (req, res) {
     }
     */
     
-    res.sendFile(__dirname + '/public/home.html');
+    res.sendFile(__dirname + '/public/home2.html');
     
 });
 
